@@ -1,0 +1,17 @@
+.DebugSplit {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  background-color: hsl(0, 0%, 60%);
+}
+.DebugSplit-controlPanel {
+  max-width: 320px;
+  flex: 1;
+  background-color: hsl(0, 0%, 80%);
+}
+.DebugSplit-mainPanel {
+  max-width: 1120px;
+  flex: 1;
+  background-color: white;
+  box-shadow: 0 0 7px 3px rgba(0, 0, 0, 0.07);
+}

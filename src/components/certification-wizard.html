@@ -1,0 +1,11 @@
+<component-wizard model="model">
+  <component-wizard-page index="0">
+    <signing-setup-page-initial></signing-setup-page-initial>
+  </component-wizard-page>
+  <component-wizard-page index="1" ng-if="$ctrl.isSecondPageEnabled">
+    second page
+  </component-wizard-page>
+  <component-wizard-page index="2" is-navigable="$ctrl.isThirdPageNavigable">
+    third page
+  </component-wizard-page>
+</component-wizard>
