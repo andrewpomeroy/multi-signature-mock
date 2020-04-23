@@ -1,0 +1,13 @@
+// -- UtilityItems - Generic Utility Classes -- //
+
+.UtilityItemsPadding {
+  padding: $UtilityItems-paddingV $UtilityItems-paddingH;
+}
+.UtilityItemsPaddingV {
+  padding-top: $UtilityItems-paddingV;
+  padding-bottom: $UtilityItems-paddingV;
+}
+.UtilityItemsPaddingH {
+  padding-left: $UtilityItems-paddingH;
+  padding-right: $UtilityItems-paddingH;
+}

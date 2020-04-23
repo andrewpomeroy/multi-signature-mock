@@ -1,0 +1,67 @@
+// Retrofitting legacy nForm wrapper with print styles. Most critical v4+ print styles can be found in the static-assets package.
+
+@media print {
+
+    .u-noPrint {
+        display: none !important;
+    }
+
+    html {
+        font-size: 12px !important;
+    }
+    body {
+        font-size: inherit !important;
+    }
+    iframe {
+        display: none;
+    }
+    #body-wrapper > header {
+        display: none !important;
+    }
+
+    .AppForm-sectionViewport {
+        height: auto !important;
+    }
+    .AppForm-section-content {
+        min-height: 0 !important;
+    }
+    .Field-label, .FieldBlock-label {
+        page-break-after: avoid;
+    }
+    .FieldBlock, .FieldBlockGroup {
+        page-break-inside: avoid;
+    }
+
+    // Totally insane Firefox hack. Blunt instrument to target any elements that construct the flexbox-based layout, since Firefox's print engine can't handle children of display:flex elements across multiple page lengths. 
+    body,[class*="FlexView"], [class*="AppForm"], [class*="CardRepeater"] {
+        display:block;
+    }
+    // Cleaning up after the previous rule
+    .AppForm-heading--split-item {
+        display: inline-block;
+    }
+    .AppForm-FeeTag, .AppForm-FeeTag-content {
+        display: inline-block;
+    }
+    .AppForm-metaLabel, .AppForm-metaValue {
+        display: inline-block;
+        font-size: 1.2rem;
+    }
+    .AppForm-metaLabel {
+        font-weight: bold;
+    }
+    .AppForm-metaValue {
+        font-weight: normal;
+    }
+    .AppForm-revision {
+        margin-top: .25em;
+        display: inline-flex;
+        > :not(:last-child) {
+            margin-right: 1.5em;
+        }
+    }
+    section.AppForm-sectionViewport {
+        position: relative;
+    }
+
+}

@@ -1,0 +1,98 @@
+$Submission-header-paddingTop: 24px;
+$Submission-header-paddingTop--heading: 32px;
+$Submission-header-paddingBottom: 24px;
+$Submission-header-paddingH: 48px;
+$Submission-header-bgColor: #242f40;
+$Submission-header-mutedOpacity: .7;
+$Submission-header-textColor: #fff;
+$Submission-header-textColor-muted: rgba($Submission-header-textColor, $Submission-header-mutedOpacity);
+
+$Submission-backPanel-bgColor: $app-color-panel-b1;
+$Submission-panel-bgColor: $app-color-panel-top;
+
+// -- Header -- //
+
+.SubmissionHeader {
+  background-color: $Submission-header-bgColor;
+  color: $Submission-header-textColor;
+}
+.SubmissionHeader-block {
+  // padding-top: $Submission-header-paddingTop / 2;
+  // padding-bottom: $Submission-header-paddingBottom / 2;
+  padding-top: $Submission-header-paddingTop;
+  padding-bottom: $Submission-header-paddingBottom;
+  &:not(:last-child) {
+    margin-right: 1rem;
+  }
+}
+.SubmissionHeader-block--heading {
+  padding-top: $Submission-header-paddingTop--heading;
+  padding-bottom: $Submission-header-paddingBottom;
+}
+
+.SubmissionHeading-main {
+  margin-top: 0;
+  margin-bottom: .125em; 
+  font-size: 24px;
+}
+
+// --- Heading --- //
+
+.SubmissionHeading-subtitle, .SubmissionSupplementals {
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: $CommonMeta-label-letterSpacing;
+}
+.SubmissionHeading-subtitle, .SubmissionSupplementals-item-label {
+  color: $Submission-header-textColor-muted;
+}
+
+// --- Supplementals --- //
+
+$SubmissionSupplementals-marginH: 12px;
+$SubmissionSupplementals-paddingV: 4px;
+
+.SubmissionSupplementals-row {
+  display: flex;
+  align-items: center;
+}
+.SubmissionSupplementals-item {
+  padding-top: $SubmissionSupplementals-paddingV;
+  padding-bottom: $SubmissionSupplementals-paddingV;
+  &:not(:last-child) {
+    margin-right: $SubmissionSupplementals-marginH;
+  }
+  &.SubmissionSupplementals-item--noPaddingV {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+// --- Body --- //
+
+$SubmissionBody-column-paddingV: 36px;
+
+.SubmissionBody {
+  // background-color: $app-color-panel-b1;
+  // background-color: $Submission-backPanel-bgColor;
+  // background-color: #f7f7fc; // TODO: Config
+  background-color: $app-color-panel-top;
+}
+
+.SubmissionBody-sidebarStyle {
+  background-color: $app-color-panel-b1;
+  background-color: #f7f7fc; // TODO: Config
+}
+.SubmissionBody-sidebarStyle--dark {
+  background-color: $app-color-panel-b2;
+}
+
+.SubmissionBody-column {
+  padding-top: $SubmissionBody-column-paddingV;
+}
+.SubmissionBody-column--main {
+  // flex: 3;
+  padding-left: $CenterColumnWrap-gutter;
+  padding-right: $CenterColumnWrap-gutter;
+}

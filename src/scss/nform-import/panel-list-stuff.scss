@@ -1,0 +1,132 @@
+// $PanelList-paddingV: 1.25rem;
+// $PanelList-paddingH: 1.75rem;
+
+// $PanelList-item-text-normal: #5B707D;
+// $PanelList-item-text-gray: #6B6B6B;
+// $PanelList-item-text-nearBlack: #2B2B2B;
+
+// $PanelList-item-innerPaddingV: 1rem;
+// $PanelList-item-innerPaddingH: $PanelList-paddingH;
+
+// $PanelList-item-header-paddingV: 1.5em;
+// $PanelList-item-header-innerPaddingH: .875em;
+
+// $PanelList-item-expanded-borderWidth: 6px;
+
+// $PanelList-item-expanded-transition-duration: 300ms;
+// $PanelList-item-expanded-transition-duration-opacity: 180ms;
+// $PanelList-item-expanded-transition-duration-margin: 220ms;
+
+// $PanelList-item-section-paddingV: 16px;
+
+// $PanelList-item-section-heading-paddingV: 12px;
+// $PanelList-item-section-heading-text: $PanelList-item-text-gray;
+
+$PanelList-paddingV: 1.25rem;
+$PanelList-paddingH: $Slab-innerPaddingH;
+
+$PanelList-gutterV: 6px;
+
+$PanelList-item-text-normal: $Slab-text-normal;
+$PanelList-item-text-gray: $Slab-text-gray;
+$PanelList-item-text-nearBlack: $Slab-text-nearBlack;
+
+$PanelList-item-boxShadow: $Slab-boxShadow;
+
+$PanelList-item-expanded-borderWidth: $Slab-expanded-borderWidth;
+
+$PanelList-item-expanded-transition-duration: 120ms;
+
+
+.AppForm-sidePanel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.AppForm-sidePanel-content {
+    height: 100%;
+    & > notation-field > [ng-transclude] {
+        // seemingly no other targeted way to style this, since notation-field is used as a generic wrapper
+        height: 100%;
+    }
+}
+
+wnd-submission-notation-panel {
+    background: #E8E8E8;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.PanelListGroup {
+    flex: 0 1 auto;
+}
+
+.PanelListGroup {
+    /* background: white; */
+}
+
+.PanelList {
+    margin-bottom: $PanelList-gutterV;
+}
+
+.PanelListHeader {
+    background-color: hsl(0,0%,30%);
+    color: white;
+    padding: $PanelList-paddingV $PanelList-paddingH;
+}
+.PanelListHeader-heading {
+    font-weight: 400;
+    font-size: 21px;
+    display: flex;
+}
+
+.u-headingInherit {
+    font-weight: inherit;
+}
+
+.PanelListHeader-heading > *:not(:last-child) {
+    margin-right: .5em;
+}
+
+.CountCircle {
+    font-size: .5em;
+    align-self: center;
+    /* padding: .5em; */
+    background: rgba(0,0,0,.35);
+    border-radius: 999px;
+    max-width: 2em;
+    min-width: 2em;
+    height: 2em;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.PanelList-item {
+    border-bottom: 1px solid #bfbfbf;
+    color: $PanelList-item-text-normal;
+}
+
+.PanelList-item--is-expanded {
+    margin: $PanelList-gutterV;
+    box-shadow: $PanelList-item-boxShadow;
+}
+
+// Transitions
+
+.PanelList-item {
+    transition: $PanelList-item-expanded-transition-duration margin cubic-bezier(0.180, 0.870, 0.495, 0.985);
+}
+
+// Theming
+
+@mixin themePanelList($name, $baseColor) {
+    .PanelListHeader--#{$name} {
+        background: $baseColor;
+    }
+}
+
+@include themePanelList($name: 'processing', $baseColor: $app-color-processingIssue-base);
+@include themePanelList($name: 'correction', $baseColor: $app-color-correctionRequest-base);
+@include themePanelList($name: 'note', $baseColor: $app-color-note-base);

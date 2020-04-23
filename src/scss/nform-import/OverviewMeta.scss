@@ -1,0 +1,52 @@
+.OverviewMeta {
+}
+.OverviewMeta-row,
+.OverviewMeta-item {
+  // display: flex;
+}
+.OverviewMeta--twoColumn {
+  display: table;
+  width: 100%;
+  .OverviewMeta-row {
+    display: table-row;
+  }
+  .OverviewMeta-item-label,
+  .OverviewMeta-item-value {
+    display: table-cell;
+  }
+  .OverviewMeta-item-label {
+    width: 1%;
+    min-width: 12em;
+    padding-right: 1em;
+  }
+  .OverviewMeta-item-valueGroup-item {
+    display: block;
+  }
+}
+
+.OverviewMeta-item-label {
+  font-size: $CommonMeta-label-size;
+  line-height: 1em;
+  font-weight: $CommonMeta-label-weight;
+  color: $CommonMeta-label-color;
+  text-transform: uppercase;
+  letter-spacing: $CommonMeta-label-letterSpacing;
+}
+.OverviewMeta-item-value {
+  font-size: $CommonMeta-value-size;
+  color: $CommonMeta-value-color;
+  font-weight: $CommonMeta-value-weight;
+}
+.OverviewMeta-item-label,
+.OverviewMeta-item-value {
+  padding-top: 0.25em;
+  padding-bottom: 1em;
+}
+.OverviewMeta-item-valueGroup-item {
+  padding-bottom: 0.25em;
+}
+
+// .OverviewMeta-item-valueGroup {
+// }
+// .OverviewMeta-item-valueGroup-item {
+// }

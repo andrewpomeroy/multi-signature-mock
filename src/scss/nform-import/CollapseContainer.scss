@@ -1,0 +1,44 @@
+.CollapseContainer-button {
+    background: gainsboro;
+    border: 0;
+    padding: .25em;
+    margin-right: .5em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+}
+
+.CollapseContainer-arrow {
+    width: 12px;
+    height: 12px;
+    transition: 120ms transform ease;
+}
+
+.CollapseContainer-control {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border: 0;
+    padding: 0;
+    background: none;
+    &:focus, :focus {
+        outline: 0;
+    }
+}
+
+.CollapseContainer-button--is-expanded .CollapseContainer-arrow {
+    transform: rotate(90deg);
+}
+
+.CollapseContainer-heading {
+    font-size: 14px;
+}
+
+.CollapseContainer-content {
+    padding-top: .5em;
+}
+
+.CollapseContainer {
+    // margin-bottom: 1.5em;
+}

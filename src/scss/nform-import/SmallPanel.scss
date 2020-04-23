@@ -1,0 +1,146 @@
+$SmallPanel-text-normal: $Slab-text-normal;
+$SmallPanel-text-gray: $Slab-text-gray;
+$SmallPanel-text-nearBlack: $Slab-text-nearBlack;
+
+$SmallPanel-innerPaddingV: $Slab-innerPaddingV;
+$SmallPanel-innerPaddingH: $Slab-innerPaddingH;
+
+$SmallPanel-innerPaddingV-small: $Slab-innerPaddingV-small;
+$SmallPanel-innerPaddingH-small: $Slab-innerPaddingH-small;
+
+$SmallPanel-section-paddingV: 16px;
+
+$SmallPanel-section-heading-paddingV: 12px;
+$SmallPanel-section-heading-text: $SmallPanel-text-gray;
+
+$SmallPanel-section-element-paddingV: 10px;
+
+.SmallPanel-body {
+    padding-left: $SmallPanel-innerPaddingH;
+    padding-right: $SmallPanel-innerPaddingH;
+    // background-color: rgba(0,0,0,.07);
+    background-color: #f9f9f9;
+    .SmallPanel--small & {
+        padding-left: $SmallPanel-innerPaddingH-small;
+        padding-right: $SmallPanel-innerPaddingH-small;        
+    }
+}
+
+// Sections
+
+.SmallPanel-section:not(:last-child) {
+    border-bottom: 1px solid gainsboro;
+}
+
+.SmallPanel-section {
+    padding: $SmallPanel-section-paddingV 0;
+}
+
+.SmallPanel-headerGroup + .SmallPanel-body .SmallPanel-section:first-child {
+    padding-top: 0;
+}
+
+.SmallPanel-section-heading {
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: $SmallPanel-text-gray;
+    margin-bottom: $SmallPanel-section-heading-paddingV;
+}
+
+// Body content
+
+.SmallPanel-description {
+    margin: 1em 0 .5em;
+}
+
+.Slab-title {
+    font-size: 1em;
+    font-weight: 500;
+    color: $SmallPanel-text-nearBlack;
+}
+
+.Slab-subtitle {
+    font-size: .75em;
+    text-transform: uppercase;
+    letter-spacing: .045em;
+    font-weight: 500;
+    color: $SmallPanel-text-gray;
+}
+
+.Slab-description {
+    font-size: .85em;
+    /* margin-bottom: 10px; */
+}
+
+.SmallPanel-section-element {
+    &:not(:last-child) {
+        margin-bottom: $SmallPanel-section-element-paddingV;
+    }
+}
+
+// Action buttons
+
+.SmallPanel-actions {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -.5em;
+    margin-right: -.5em;
+    margin-bottom: -.5em;
+}
+
+.SmallPanel-actions > * {
+    flex: 1;
+    margin-left: .5em;
+    margin-right: .5em;
+    margin-bottom: .5em;
+}
+
+.SmallPanel-actionButton {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    border: 0;
+    padding: .75em 1em;
+    border-radius: 3px;
+    box-shadow: 0px 1px 2px rgba(0,0,0,.07);
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: .03em;
+    font-weight: 600;
+    background-color: $color-brightblue;
+    color: rgba(0,0,0,.65);
+}
+.SmallPanel-actionButton--small {
+    font-size: 12px;
+}
+.SmallPanel-actionButton--affirm {
+    background-color: #78DDDD;
+}
+.SmallPanel-actionButton--reject {
+    background-color: $color-orange;
+}
+.SmallPanel-actionButton--cancel {
+    background-color: #9facbd;
+}
+
+// Layout utilities 
+
+.SmallPanel-innerPaddingH {
+    padding-left: $SmallPanel-innerPaddingH;
+    padding-right: $SmallPanel-innerPaddingH;
+}
+.SmallPanel-innerPaddingH-small {
+    padding-left: $SmallPanel-innerPaddingH-small;
+    padding-right: $SmallPanel-innerPaddingH-small;
+}
+.SmallPanel-innerPaddingV {
+    padding-top: $SmallPanel-innerPaddingV;
+    padding-bottom: $SmallPanel-innerPaddingV;
+}
+.SmallPanel-innerPaddingV-small {
+    padding-top: $SmallPanel-innerPaddingV-small;
+    padding-bottom: $SmallPanel-innerPaddingV-small;
+}

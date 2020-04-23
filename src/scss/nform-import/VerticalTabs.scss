@@ -1,0 +1,45 @@
+.VerticalTabs > [ng-transclude] {
+    display: flex;
+    flex-direction: column;
+}
+
+.VerticalTabs-tab {
+    display: block;
+    text-align: left;
+  padding: 10px 22px 10px 0;
+  border: 0;
+  border-right: 4px solid currentColor;
+  font-size: 14px;
+  font-weight: 600;
+  min-width: 150px;
+  background-color: transparent;
+}
+
+.VerticalTabs-tab {
+    color: #858585;
+    border-right-color: gainsboro;
+}
+
+.VerticalTabs-tab--is-active {
+    color: $app-color-highlightBlue;
+    border-right-color: $app-color-highlightBlue;
+}
+
+.VerticalTabs-tab:not(.VerticalTabs-tab--is-active):hover {
+    background: rgba($app-color-highlightBlue, .1);
+    color: $app-color-highlightBlue;
+    border-right-color: rgba($app-color-highlightBlue, .25);
+}
+
+.VerticalTabs-group:not(:last-child) {
+    margin-bottom: 40px;
+}
+
+.VerticalTabs-group-heading {
+    font-size: 11px;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: .04em;
+    margin-bottom: 12px;
+    color: hsl(221, 30%, 64%);
+}

@@ -1,0 +1,50 @@
+.StepHeader--split {
+    display: flex;
+}
+
+.StepHeader--split > *:not(:last-child) {
+    margin-right: 1em;
+}
+
+.StepHeader-number {
+    min-width: 2rem;
+    max-width: 2rem;
+    height: 2rem;
+    // background: rgba(0,0,0,.17);
+    background-color: lighten($color-lightblue-highlight, 25%);
+    align-self: flex-start;
+    display: flex;
+    justify-content: center;
+    flex: 0 0 auto;
+    align-items: center;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .03em;
+    color: hsl(hue($color-lightblue-highlight), 40%, 35%);
+}
+
+.StepHeader-number--button {
+    border: 2px solid $color-lightblue-highlight;
+    &:hover, &:focus {
+        background-color: lighten($color-lightblue-highlight, 15%);
+        // color: white;
+    }
+}
+
+// Lock down width and provide padding, such that an SVG icon will fill the remaining dimensions
+.StepHeader-number--icon {
+    width: 2em;
+    padding: 0.5em;
+}
+.StepHeader-number--complete {
+    background-color: $color-brightGreen;
+    border-color: darken($color-brightGreen, 10%);
+    
+    color: white;
+}
+
+.StepHeader-title {
+    align-self: center;
+    align-content: flex-start;
+}

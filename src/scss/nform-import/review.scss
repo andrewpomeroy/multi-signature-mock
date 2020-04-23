@@ -1,0 +1,126 @@
+// Review Section Display
+
+review-field-nform .AppForm-sectionScroll {
+    overflow: hidden;
+    .AppForm-sectionViewport--review {
+        margin: 1rem 0;
+    }
+    .AppForm-section-content {
+        padding: 0;
+    }
+}
+
+// Controls
+
+.Field-input--readOnly {
+    background: none;
+    padding: 2px 0;
+    border: 0;
+}
+
+wnd-submission-version-review {
+    .AppForm-sectionViewport {
+        margin: 1em 0;
+    }
+    .AppForm-PageHeader {
+        font-size: 1.125em;
+        border-bottom: 1px solid #78afd2;
+        margin-bottom: 2em;
+    }
+    .PageHeader-heading {
+        border-bottom: 0;
+        padding: 0;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        padding-top: 0;
+        padding-bottom: .3em;
+        color: #78afd2;
+    }
+    .FieldBlock.FieldBlock--is-error {
+        margin-top: 0;
+        margin-right: 0;
+        margin-left: 0;
+        padding-left: 18px;
+        // padding-top: 10px;
+        padding-top: 0;
+        .FieldBlock-content {
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+    }
+
+    .FieldBlock .Field {
+        margin-bottom: 0;
+    }
+    .FieldBlock {
+        margin-bottom: 10px;
+        padding-left: 18px; // TODO: Comment explaining the purpose/effect of this rule
+        padding-right: 18px; // TODO: Comment explaining the purpose/effect of this rule
+    }
+    wnd-field-block-group {
+        padding-left: 18px;
+    }
+    .FieldBlockGroup {
+        padding-left: 0;
+        margin-left: 18px; // TODO: Comment explaining the purpose/effect of this rule
+    }
+    wnd-field:not(:last-child) .Field {
+        margin-bottom: 10px;
+    }
+    :not(.FieldBlock-content):not(wnd-field-block-group) > .FieldBlock-label {
+        padding-left: 18px; // TODO: Comment explaining the purpose/effect of this rule
+    }
+    // .FieldBlockGroup-label {
+    //     padding-left: 18px;
+    // }
+    .Field-label {
+        font-size: .9em;
+        text-transform: uppercase;
+        letter-spacing: .03em;
+        margin-bottom: .05em;
+    }
+    .AppForm-instructions {
+        font-size: 14px;
+        font-size: em(14px);
+    }
+}
+
+review-field-nform .AppForm-sectionScroll {
+    overflow: visible;
+}
+
+
+// Repeater display
+
+.CardRepeater--readOnly .CardRepeater-row:last-child {
+    margin-bottom: 1rem; // field margins
+}
+
+.CardRepeater--readOnly .CardRepeater-contentContainer {
+    border: 0;
+    border-radius: 0;
+    font-size: 0.8em;
+}
+
+.CardRepeater--readOnly .CardRepeater-row--summary {
+    background: none;
+    color: inherit;
+    cursor: default;
+}
+
+.CardRepeater--readOnly .CardRepeater-row--content {
+    outline: 0;
+    border: 1px solid #a9acb7;
+    margin-left: 1em;
+}
+
+.CardRepeater--readOnly .CardRepeater-item {
+    &:before, &:after {
+        display: none;
+    }
+}
+.CardRepeater--readOnly .CardRepeater-row.CardRepeater-row--content {
+    overflow-x: auto;
+    // padding: 3em 2em 0;
+    padding: 2em 1em 1em;
+}

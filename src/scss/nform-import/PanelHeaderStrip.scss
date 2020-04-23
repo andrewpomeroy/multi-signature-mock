@@ -1,0 +1,56 @@
+$PanelHeaderStrip-fontSize: 18px;
+
+$PanelHeaderStrip-innerPaddingV: 16px;
+$PanelHeaderStrip-innerPaddingH: 8px;
+
+.PanelHeaderStrip {
+    padding: $PanelHeaderStrip-innerPaddingV $PanelHeaderStrip-innerPaddingH;
+    display: flex;
+    align-items: center;
+    font-size: $PanelHeaderStrip-fontSize;
+}
+
+.PanelHeaderStrip-backButton {
+    width: 1.125em;
+    height: 1.125em;
+}
+
+.PanelHeaderStrip-element:not(:last-child) {
+    margin-right: .5em;
+}
+
+.PanelHeaderStrip-title {
+    margin: 0;
+    font-weight: 500;
+}
+.PanelHeaderStrip-subtitle {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    opacity: .8;
+}
+
+.PanelHeaderStrip--clickable {
+    &:hover, &:focus {
+        color: white;
+        cursor: pointer;
+    }
+}
+
+@mixin themePanelList($name, $baseColor) {
+    .PanelHeaderStrip--#{$name} {
+        background-color: $baseColor;
+        color: white;
+        &:hover, &:not([clicked]):focus {
+            background-color: lighten($baseColor, 10%);
+        }
+        &:active {
+            background-color: darken($baseColor, 10%);
+        }
+    }
+}
+
+@include themePanelList($name: 'processing', $baseColor: $app-color-processingIssue-base);
+@include themePanelList($name: 'correction', $baseColor: $app-color-correctionRequest-base);
+@include themePanelList($name: 'message', $baseColor: $app-color-note-base);

@@ -1,0 +1,146 @@
+.CardRow {
+    display: flex;
+}
+
+.Card {
+    border-radius: 5px;
+    background: white;
+    border: 1px solid gainsboro;
+}
+
+.Card--medium {
+    padding: 1rem 1.25rem;
+}
+
+.Card-content-item--alignRight {
+    align-self: flex-end;
+}
+
+.Card {
+    display: flex;
+    flex-direction: column;
+}
+
+.Card-content-item:not(:first-child) {
+    margin-top: .5rem;
+}
+
+.CardRow, // remove this once we add more sizes?
+.CardRow--medium {
+    padding-left: .25rem;
+    padding-right: .25rem;
+    margin-right: -.25em;
+    margin-left: -.25em;
+}
+
+.CardRow > .Card {
+    &:not(.Card--naked) {
+        margin-right: .25em;
+        margin-left: .25em;
+    }
+    flex: 1;
+}
+
+.Card .StepHeader {
+    flex: 0 0 auto;
+}
+
+.Card--medium {
+    /* font-size: 12px; */
+}
+
+.Card--naked {
+    background-color: transparent;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
+}
+
+.Card--naked:not(:last-child) {
+    border-right: 1px solid gainsboro;
+}
+
+.Card--noMaxWidth {
+    max-width: none;
+}
+
+.Card--linked {
+    cursor: pointer;
+    transition: 70ms linear;
+    &:hover, &:focus {
+        outline: 0;
+        box-shadow: 0;
+        border-color: rgba($color-electricBlue, .25);
+        background-color: rgba($color-electricBlue, .05);
+    }
+    &:active {
+        background-color: darken(rgba($color-electricBlue, .1), 10%);
+    }
+}
+
+.Card--green {
+    border-color: $color-brightGreen-text;
+    background-color: rgba($color-brightGreen, .1);
+    &.Card--linked {
+        &:hover, &:focus {
+            border-color: lighten($color-brightGreen-text, 20%);
+            background-color: lighten(rgba($color-brightGreen, .1), 20%);
+        }
+        &:active {
+            background-color: darken(rgba($color-brightGreen, .1), 10%);
+        }
+    }
+}
+
+.CardRow-bookend {
+    background: #f1f1f1;
+    background: rgba(0,0,0,.07);
+    align-self: stretch;
+}
+.CardRow-bookend--index {
+    width: 2.5rem;
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-weight: bold;
+    color: gray;
+}
+
+.CardRow--separateRows {
+    margin-bottom: 10px;
+    border-bottom: 1px solid gainsboro;
+    border-top: 0 solid gainsboro;
+    &:not(:first-child) {
+        border-top-width: 1px;
+    }
+}
+
+
+.CardRow--highlightBlue {
+    background-color: rgba($color-electricBlue, .1);
+    border-top: 1px solid $color-electricBlue;
+    border-bottom: 1px solid $color-electricBlue;
+    .CardRow-bookend {
+        background: rgba($color-electricBlue, .1);
+    }
+}
+
+.CardRow--wrapping {
+    flex-wrap: wrap;
+    margin-right: -1px;
+    margin-bottom: -1px;
+    // overwriting 'not:(last-child)'
+    &.CardRow--medium {
+        margin-right: calc(-.25em - 1px);
+        // margin-left: calc(-.25em - 1px);
+    }
+    .Card--naked {
+        border-right: 1px solid gainsboro;
+        border-bottom: 1px solid gainsboro;
+    }
+    .Card {
+        min-width: 170px;
+    }
+}

@@ -1,0 +1,180 @@
+$Slab-text-normal: #5B707D;
+$Slab-text-gray: #6B6B6B;
+$Slab-text-nearBlack: #2B2B2B;
+
+$Slab-innerPaddingV: 1rem;
+$Slab-innerPaddingH: 1.25rem;
+
+$Slab-header-paddingV: 1.5em;
+$Slab-header-innerPaddingH: .875em;
+
+$Slab-innerPaddingV-small: 1rem;
+$Slab-innerPaddingH-small: .75rem;
+$Slab-header-paddingV-small: 1em;
+$Slab-header-innerPaddingH-small: .75em;
+
+$Slab-boxShadow: 0px 1px 3px -1px rgba(0,0,0,.17);
+
+$Slab-expanded-borderWidth: 6px;
+
+$Slab-expanded-transition-duration: 300ms;
+$Slab-expanded-transition-duration-opacity: 180ms;
+
+
+// Variations
+
+.Slab--shadowed {
+    box-shadow: $Slab-boxShadow;
+}
+.Slab--clickable {
+    cursor: pointer;
+    &:focus {
+        outline: 0;
+    }
+    &:not(.Slab--shadowed):focus {
+        box-shadow: none;
+    }
+}
+.Slab--leftBordered {
+    border-left: $Slab-expanded-borderWidth solid currentColor;
+}
+.Slab--expandable:not(.Slab--is-expanded) {
+    border-left: 0;
+}
+.Slab--expandable.Slab--is-expanded {
+    // border-left: $Slab-expanded-borderWidth solid currentColor;
+    background: white;
+    // margin: 6px 6px;
+    // box-shadow: 0px 1px 3px -1px rgba(0,0,0,.17);
+}
+
+
+// Child components
+
+.Slab-headerGroup, .Slab-body {
+    padding-left: $Slab-innerPaddingH;
+    padding-right: $Slab-innerPaddingH;
+    // background-color: rgba(0,0,0,.07);
+    background-color: #f9f9f9;
+    .Slab--small & {
+        padding-left: $Slab-innerPaddingH-small;
+        padding-right: $Slab-innerPaddingH-small;        
+    }
+}
+
+.Slab-headerGroup {
+    display: flex;
+    width: 100%;
+    text-align: left;
+    align-items: center;
+    padding-top: $Slab-header-paddingV;
+    padding-bottom: $Slab-header-paddingV;
+    font-size: 14px;
+    &:focus {
+        outline: 0;
+        box-shadow: none;
+    }
+    .Slab--is-expanded & {
+        padding-bottom: $Slab-innerPaddingV;
+        font-size: 16px;
+    }
+    .Slab--small & {
+        padding-top: $Slab-header-paddingV-small;
+        padding-bottom: $Slab-header-paddingV-small;
+    }
+    .Slab--small.Slab--is-expanded & {
+        padding-bottom: $Slab-innerPaddingV-small;
+    }
+}
+
+.Slab-headerGroup--clickable {
+    cursor: pointer;
+    &:hover, &:not([clicked]):focus {
+        background-color: hsl(hue($color-lightblue-highlight), 100%, 97%);
+    }
+}
+
+.Slab-headerGroup-innerPadChildren {
+    > *:not(:last-child) {
+        margin-right: $Slab-header-innerPaddingH;
+        .Slab--small & {
+            margin-right: $Slab-header-innerPaddingH-small;
+        }
+    }
+}
+
+.Slab-headingIconWrap {
+    width: 18px;
+    height: 18px;
+}
+
+.Slab-headingIconWrap--chevron {
+    color: $color-neutralblue;
+}
+
+.Slab-collapseButton {
+    @include GenericCloseX();
+    width: 12px;
+    height: 12px;
+}
+
+.Slab-title {
+    font-size: 1em;
+    font-weight: 500;
+    color: $Slab-text-nearBlack;
+}
+
+.Slab-subtitle {
+    font-size: .75em;
+    text-transform: uppercase;
+    letter-spacing: .045em;
+    font-weight: 500;
+    color: $Slab-text-gray;
+}
+
+.Slab-description {
+    font-size: .85em;
+    /* margin-bottom: 10px; */
+}
+
+// Transitions
+
+.Slab-body {
+    &.ng-enter, &.ng-leave {
+        transition-duration: $Slab-expanded-transition-duration-opacity, $Slab-expanded-transition-duration;
+        transition-timing-function: linear, ease;
+        transition-property: opacity, max-height;
+    }
+    &.ng-enter {
+        transition-delay: ($Slab-expanded-transition-duration - $Slab-expanded-transition-duration-opacity), 0;
+    }
+    &.ng-enter, &.ng-leave.ng-leave-active {
+        max-height: 0;
+        opacity: 0;
+    }
+    &.ng-leave, &.ng-enter.ng-enter-active {
+        max-height: 100vh;
+        opacity: 1;
+    }
+}
+
+// Theming 
+
+@mixin themeSlab($name, $baseColor) {
+    .Slab--#{$name} {
+        &.Slab--leftBordered {
+            border-left-color: $baseColor;
+        }
+        .Slab-headingIconWrap--primaryColor {
+            color: $baseColor;
+        }
+        &:hover, &:not([clicked]):focus {
+            .Slab-headingIconWrap--chevron {
+                color: $baseColor;
+            }
+        }
+    }
+}
+
+@include themeSlab($name: 'correction', $baseColor: $app-color-correctionRequest-base);
+@include themeSlab($name: 'message', $baseColor: $app-color-note-base);

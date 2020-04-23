@@ -1,0 +1,66 @@
+$Chip-paddingV: .2em;
+$Chip-paddingH: .4em;
+
+$Chip-weight: 500;
+
+$Chip-fontSize-normal: 14px;
+$Chip-fontSize-small: 12px;
+$Chip-fontSize-smaller: 10px;
+
+$Chip-color-default: rgba(white, .9);
+
+$Chip-letterSpacing: .045em;
+$Chip-borderRadius: 3px;
+
+.Chip {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: $Chip-fontSize-normal;
+  font-weight: $Chip-weight;
+  padding: $Chip-paddingV $Chip-paddingH;
+  letter-spacing: $Chip-letterSpacing;
+  border-radius: $Chip-borderRadius;
+  background-color: gray;
+  color: $Chip-color-default;
+}
+.Chip--small {
+  font-size: $Chip-fontSize-small;
+}
+.Chip--smaller {
+  font-size: $Chip-fontSize-smaller;
+}
+
+.Chip--neutralBlue {
+  background-color: $color-neutralBlue;
+}
+.Chip--green {
+  background-color: $color-neutralGreen;
+}
+
+.Chip--warning {
+  // background-color: $app-color-warning;
+  // too hard to see yellow
+  background-color: $color-orange; 
+}
+
+.Chip--alert {
+  background-color: $app-color-danger; 
+  color: white; 
+}
+
+.Chip--noWrap {
+  white-space: nowrap;
+}
+
+.Chip-item {
+  &:not(:last-child) {
+    margin-right: .33em;
+  }
+}
+.Chip-icon {
+  height: 1em;
+  width: 1em;
+}

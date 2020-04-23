@@ -1,0 +1,17 @@
+$FieldMessage-leftOffset: $FieldMessage-marginH;
+
+.FieldMessageGroup {
+    display: flex;
+    flex-direction: column;
+    & + & {
+        margin-top: $FieldMessage-marginV;
+    }
+}
+.FieldMessage {
+    &:not(:last-child) {
+        margin-bottom: $FieldMessage-marginV;
+    }
+    @media (min-width: ($mq-Form-collapse-max + 1px)) {
+        margin-left: $FieldMessage-leftOffset;
+    }
+}

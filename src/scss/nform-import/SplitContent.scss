@@ -1,0 +1,9 @@
+
+.SplitContent {
+    display: flex;
+    align-items: center;
+}
+
+.SplitContent--small > *:not(:last-child) {
+    margin-right: .5rem;
+}

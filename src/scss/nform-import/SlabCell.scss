@@ -1,0 +1,52 @@
+.SlabCell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: $SlabButton-paddingV $SlabButton-paddingH;
+  font-size: $SlabButton-fontSize-default;
+  min-height: $SlabButton-minHeight;
+  border-radius: 2px;
+  background-color: rgba(0,0,0,.07);
+}
+.SlabButton--leftAligned {
+  justify-content: flex-start;
+}
+.SlabCell--small {
+  font-size: $SlabButton-fontSize-small;
+}
+.SlabCell--warning {
+  background-color: #fa9821;
+  color: white;
+}
+
+.SlabCell--leftAligned {
+  justify-content: flex-start;
+}
+
+// .SlabCell-icon {
+//   @include SlabButton-icon;
+// }
+
+
+.SlabCell-split {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+}
+
+.SlabCell-title {
+  font-weight: 500;
+}
+
+.SlabCell-actionButton {
+  height: 34px;
+  width: 34px;
+  padding: 8px;
+  color: $app-color-highlightBlue;
+}
+
+.SlabCell-infoSplitV {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}

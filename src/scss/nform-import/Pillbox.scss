@@ -1,0 +1,36 @@
+$Pillbox-header-paddingV: $UtilityItems-paddingV;
+$Pillbox-item-innerMarginH: $UtilityItems-paddingH;
+$Pillbox-item-innerMarginV: 12px;
+$Pillbox-borderRadius: 3px;
+.Pillbox {
+  @include commonPanelBoxShadow();
+  border-radius: $Pillbox-borderRadius;
+  background-color: $app-color-panel-top;
+}
+.Pillbox-header {
+  border-top-left-radius: $Pillbox-borderRadius;
+  border-top-right-radius: $Pillbox-borderRadius;
+  padding: $Pillbox-header-paddingV $Pillbox-item-innerMarginH;
+}
+.Pillbox-header--correctionRequest {
+  background-color: $app-color-correctionRequest-base;
+  color: #4a4243;
+}
+.Pillbox-heading {
+  font-size: 15px;
+  font-weight: 600;
+  color: inherit;
+  margin: 0;
+}
+.Pillbox-body {
+}
+.Pillbox-body-item {
+  padding-bottom: $Pillbox-item-innerMarginV;
+  padding-left: $Pillbox-item-innerMarginH;
+  padding-right: $Pillbox-item-innerMarginH;
+  &:first-child {
+    padding-top: $Pillbox-item-innerMarginV;
+  }
+  // padding-left: $Pillbox-item-innerMarginH;
+  // padding-right: $Pillbox-item-innerMarginH;
+}

@@ -1,0 +1,126 @@
+// -- OverviewSection -- //
+
+$OverviewSection-marginV: 46px;
+
+$OverviewSection-item-marginV: 18px;
+$OverviewSection-item-marginV-small: 8px;
+$OverviewSection-paddingV: $OverviewSection-item-marginV;
+$OverviewSection-offsetPaddingH: 8px;
+
+$OverviewSection-separatorWidth: 1px;
+$OverviewSection-separatorColor: rgba(0,0,0,.07);
+$OverviewSection-separatorColor: rgba(#61b4d1, .25);
+
+
+.OverviewSection {
+  padding-bottom: $OverviewSection-marginV;
+}
+
+.OverviewSection-body-item {
+  padding-top: $OverviewSection-item-marginV;
+  &:not(:first-child) {
+    border-top: $OverviewSection-separatorWidth solid $OverviewSection-separatorColor;
+  }
+  &:not(:last-child) {
+    padding-bottom: $OverviewSection-item-marginV;
+  }
+}
+
+.OverviewSection-body-item--noSeparator {
+  &, &:not(:first-child) { // specificity
+    border-top: 0;
+  }
+}
+
+.OverviewSection-body-item--smallPaddingV {
+  padding-top: $OverviewSection-item-marginV-small;
+  &:not(:last-child) {
+    padding-bottom: $OverviewSection-item-marginV-small;
+  }
+}
+
+.OverviewSection-body-item--sibling {
+  &, &:not(:first-child) { // specificity
+    border-top: 0;
+  }
+  &, &:not(:last-child) { // specificity
+    padding-top: 0;
+  }
+}
+
+.OverviewSectionPaddingV {
+  padding-bottom: $OverviewSection-paddingV;
+  padding-top: $OverviewSection-paddingV;
+}
+
+.OverviewSectionPaddingH {
+  padding-left: $OverviewSection-offsetPaddingH;
+  padding-right: $OverviewSection-offsetPaddingH;
+}
+
+// -- OverviewSection Header -- //
+
+// $OverviewSection-heading-paddingV: 18px;
+$OverviewSection-header-item-paddingV: 12px;
+$OverviewSection-header-paddingV: $OverviewSection-header-item-paddingV - 2px; // Slightly shorter, for header-items other than the heading (buttons, etc)
+$OverviewSection-header-item-marginH: 14px;
+$OverviewSection-header-item-marginH--sibling: 6px;
+
+$OverviewSection-header-separatorWidth: 2px;
+$OverviewSection-header-separatorColor: hsla(221, 61%, 20%, .15);
+$OverviewSection-header-separatorColor: #61b4d1;
+
+
+
+.OverviewSection-header {
+  display: flex;
+  align-items: center;
+  border-bottom: $OverviewSection-header-separatorWidth solid $OverviewSection-header-separatorColor;
+  border-bottom-color: #9dadb7
+}
+
+.OverviewSection-header--noSeparator {
+  border-bottom: 0;
+}
+
+.OverviewSection-header-split {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.OverviewSection-header-item {
+  margin-top: $OverviewSection-header-paddingV;
+  margin-bottom: $OverviewSection-header-paddingV;
+  &:not(:last-child) {
+    margin-right: $OverviewSection-header-item-marginH;
+  }
+}
+.OverviewSection-header-item--sibling {
+  &:not(:last-child) {
+    margin-right: $OverviewSection-header-item-marginH--sibling;
+  }
+}
+
+.OverviewSection-heading {
+  font-size: 21px;
+  margin: 0;
+  margin: $OverviewSection-header-item-paddingV 0;
+}
+.OverviewSection-heading--small {
+  font-size: 18px;
+}
+
+.OverviewSection-subHeading {
+    margin: 0;
+    font-size: 13px;
+    text-transform: uppercase;
+    margin-bottom: .5em;
+}
+
+// New
+
+.OverviewSection-body-item--flushTop {
+    padding-top: 0;
+}

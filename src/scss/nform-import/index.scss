@@ -1,0 +1,72 @@
+@import "compatibility/compatibility.scss";
+
+@import "confirmation.scss";
+
+@import "temp-index.scss"; // stuff that was here in 'index' but doesn't belong
+
+@import "Slab.scss";
+@import "PanelHeaderStrip.scss";
+@import "SmallPanel.scss";
+@import "FieldMessage.scss";
+@import "panel-list-stuff.scss";
+@import "notation-components.scss";
+@import "NotationHintMenu.scss";
+@import "review.scss";
+@import "review2.scss";
+
+// // --- Migrated from Submission View --- //
+
+// // Config
+// @import 'backfill-config.scss';
+@import "CommonMeta.config.scss";
+@import "UtilityItems.config.scss";
+
+// // Mixins
+@import "common.mixins.scss";
+@import "ButtonStyle.mixin.scss";
+@import "linkStyle.mixin.scss";
+
+@import "CenterColumnWrap.scss";
+@import "CollapseContainer.scss";
+@import "ActionButtonRow.scss";
+@import "Pane.scss";
+@import "Submission.scss";
+@import "OverviewSection.scss";
+@import "Chip.scss";
+@import "Card.scss";
+@import "WhitePanel.scss";
+@import "BoxFrame.scss";
+@import "Slab.scss";
+@import "SlabButton.scss";
+@import "SlabButtonCover.scss";
+@import "SlabCell.scss";
+@import "SsnField.scss";
+@import "IconAlignedCount.scss";
+@import "LinkBlock.scss";
+@import "SplitContent.scss";
+@import "OverviewMeta.scss";
+@import "OverviewButton.scss";
+@import "Pillbox.scss";
+@import "Text.scss";
+@import "PillTabs.scss";
+@import "FlatList.scss";
+@import "TabStrip.scss";
+@import "VerticalTabs.scss";
+@import "StepSegments.scss";
+@import "StepHeader.scss";
+@import "DataTable.scss";
+@import "BigToast.scss";
+@import "Ssn.scss";
+@import "Notations.scss";
+
+// Composable / utility styles
+@import "UtilityItems.scss";
+
+// add-ons to library styles
+@import "material-additions.scss";
+@import "material-mdDialog.scss";
+
+// Disgusting hacks that should be reworked ASAP
+
+@import "temp.scss";
+@import "HACKS.scss";

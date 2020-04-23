@@ -1,0 +1,67 @@
+// -- PillTabs -- //
+
+$PillTab-paddingV: .5em;
+$PillTab-paddingH: 1em;
+$PillTab-childMarginV: .125em;
+$PillTab-childMarginH: .25em;
+$PillTab-weight: $Chip-weight;
+$PillTab-fontSize-normal: $Chip-fontSize-normal;
+$PillTab-fontSize-small: $Chip-fontSize-small;
+$PillTab-fontSize-smaller: $Chip-fontSize-smaller;
+$PillTab-color-default: inherit;
+$PillTab-letterSpacing: $Chip-letterSpacing;
+$PillTab-borderRadius: $Chip-borderRadius;
+
+$PillTab-bgColor-active: gray;
+$PillTab-color-active: white;
+
+
+.PillTabs {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  margin-bottom: -$PillTab-childMarginV;
+}
+.PillTab {
+  display: inline-flex;
+  flex: 0 1 auto;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: $PillTab-fontSize-normal;
+  font-weight: $PillTab-weight;
+  padding: $PillTab-paddingV $PillTab-paddingH;
+  letter-spacing: $PillTab-letterSpacing;
+  border-radius: $PillTab-borderRadius;
+  color: $PillTab-color-default;
+  cursor: pointer;
+  margin-bottom: $PillTab-childMarginV;
+  &:not(:last-child) {
+    margin-right: $PillTab-childMarginH;
+  }
+  &:not(.PillTab--is-active) {
+    &:hover, &:focus {
+      background-color: rgba($PillTab-bgColor-active, .1);
+    }
+    &:active {
+      background-color: rgba($PillTab-bgColor-active, .15);
+    }
+  }
+}
+.PillTab--is-active {
+  background-color: $PillTab-bgColor-active;
+  color: $PillTab-color-active;
+}
+.PillTabs--small {
+  .PillTab {
+    font-size: $PillTab-fontSize-small
+  }
+}
+.PillTabs--smaller {
+  .PillTab {
+    font-size: $PillTab-fontSize-smaller
+  }
+}

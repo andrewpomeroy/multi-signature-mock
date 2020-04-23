@@ -1,0 +1,128 @@
+$OverviewButton-paddingV: .66em;
+$OverviewButton-paddingH: 1.125em;
+
+$OverviewButton-bgColor-default: #61b4d1;  //TODO: Config
+$OverviewButton-color-default: #004257; //TODO: Config
+
+// $OverviewButton-fontSize-default: 14px;
+$OverviewButton-fontSize-default: 13px;
+$OverviewButton-fontSize-large: 15px;
+$OverviewButton-fontSize-small: 12px;
+
+.OverviewButton {
+  @include ButtonStyle-base;
+  @include ButtonStyle-default;
+  &:hover, &:focus {
+    @include ButtonStyle-default-hover;
+  }
+  &:active {
+    @include ButtonStyle-default-active; 
+  }
+  padding: $OverviewButton-paddingV $OverviewButton-paddingH;
+  border-radius: 5px;
+  font-size: $OverviewButton-fontSize-default;
+  font-weight: 600;
+}
+
+.OverviewButton--small {
+  font-size: $OverviewButton-fontSize-small;
+}
+.OverviewButton--large {
+  font-size: $OverviewButton-fontSize-large;
+}
+
+.OverviewButton--green {
+  background-color: $color-brightGreen;
+  color: rgba(0,0,0,.65);
+}
+
+.OverviewButton--primary {
+  @include ButtonStyle-primary;
+  &:hover, &:focus {
+    @include ButtonStyle-primary-hover;
+  }
+  &:active {
+    @include ButtonStyle-primary-active; 
+  }
+}
+
+.OverviewButton--addNew {
+  @include ButtonStyle-addNew;
+  &:hover, &:focus {
+    @include ButtonStyle-addNew-hover;
+  }
+  &:active {
+    @include ButtonStyle-addNew-active; 
+  }
+}
+
+.OverviewButton--solidGreen {
+  @include ButtonStyle-solidGreen;
+  &:hover, &:focus {
+    @include ButtonStyle-solidGreen-hover;
+  }
+  &:active {
+    @include ButtonStyle-solidGreen-active;
+  }
+}
+
+.OverviewButton--neutralDark {
+  @include ButtonStyle-neutralDark;
+  &:hover, &:focus {
+    @include ButtonStyle-neutralDark-hover;
+  }
+  &:active {
+    @include ButtonStyle-neutralDark-active;
+  }
+}
+
+.OverviewButton--orange {
+  @include ButtonStyle-orange;
+  &:hover, &:focus {
+    @include ButtonStyle-orange-hover;
+  }
+  &:active {
+    @include ButtonStyle-orange-active;
+  }
+}
+
+
+.OverviewButton-icon {
+  width: 1.75em;
+  height: 1.75em;
+  margin-right: .5em;
+  margin-left: -.25em;
+  margin-top: -.875em;
+  margin-bottom: -.875em;
+}
+
+.OverviewButton-icon--small {
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.OverviewButton-subtext {
+  opacity: .7;
+}
+
+.OverviewButton--small {
+  .OverviewButton-icon {
+    width: 1.5em;
+    height: 1.5em;
+  }
+  .OverviewButton-icon--small {
+    width: 1.25em;
+    height: 1.25em;
+  }
+}
+
+.OverviewActionButtonColumn {
+  display: flex;
+  flex-direction: column;
+  > *:not(:last-child), {
+    margin-bottom: 10px;
+  }
+  .OverviewActionButtonColumn-itemMarginTop {
+    margin-top: 10px;
+  }
+}

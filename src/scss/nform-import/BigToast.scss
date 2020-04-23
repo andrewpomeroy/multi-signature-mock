@@ -1,0 +1,67 @@
+.BigToast {
+    max-width: 600px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+md-toast .md-toast-content.md-toast-content--bigToast {
+    max-height: none;
+}
+
+.BigToast-header {
+    display: flex;
+    align-items: center;
+    // justify-content: center;
+    position: relative;
+    margin-top: 20px;
+    border-bottom: 1px solid rgba(255,255,255,.5);
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+}
+
+.BigToast-header-icon {
+    height: 30px;
+    width: 30px;
+    color: #78dddd;
+    margin-left: -15px;
+}
+
+.BigToast-header-item:not(:last-child) {
+    margin-right: 10px;
+}
+
+.BigToast-heading {
+    font-size: 22px;
+}
+
+.BigToast-footer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.BigToast-body {
+    margin-bottom: 30px;
+    font-size: 16px;
+}
+
+.BigToast-header-item--close {
+    position: absolute;
+    right: 0;
+    right: -20px; // temp. positioning out of the way of the heading
+    top: -12px; // temp. positioning out of the way of the heading
+}
+
+.BigToast-closeButton {
+    font-size: 24px;
+    line-height: 32px;
+    min-width: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.BigToast-closeButton:hover, .BigToast-closeButton:focus {
+    outline: 0;
+    background: rgba(255,255,255,.1);
+}

@@ -1,0 +1,47 @@
+.LinkBlock {
+    @include u-unstyleButton();
+    display: flex;
+    align-items: center;
+    border: 0;
+    background: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    padding: .5em;
+    @include linkStyle();
+    &:not(.LinkBlock--inactive) {
+        &:hover, &:focus {
+            background-color: rgba($color-electricBlue, .1);
+        }
+        &:active {
+            background-color: rgba($color-electricBlue, .15);
+        }
+    }
+}
+.LinkBlock--inactive {
+    cursor: default;
+    &, &:hover, &:focus, &:active {
+        color: $theme-text;
+    }
+}
+
+.LinkBlock--centered {
+    justify-content: center;
+}
+
+.LinkBlock--small {
+    font-size: 14px;
+}
+
+.LinkBlock-element:not(:last-child) {
+    margin-right: .5em;
+}
+
+.LinkBlock-element {
+    padding: 5px 0;
+}
+
+.LinkBlock-icon {
+    margin-top: -5px;
+    margin-bottom: -5px;
+}

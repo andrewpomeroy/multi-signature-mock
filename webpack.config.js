@@ -1,11 +1,11 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
 	mode: "development",
 	devtool: "inline-source-map",
-
 	entry: {
 		main: "./src/index.js"
 	},
@@ -27,13 +27,40 @@ module.exports = {
 					loader: "babel-loader" // transpiling our JavaScript files using Babel and webpack
 				}
 			},
+			// {
+			// 	test: /\.(sa|sc|c)ss$/,
+			// 	use: [
+			// 		"style-loader", // creates style nodes from JS strings
+			// 		"css-loader", // translates CSS into CommonJS
+			// 		// "postcss-loader", // Loader for webpack to process CSS with PostCSS
+			// 		"sass-loader" // compiles Sass to CSS, using Node Sass by default
+			// 	]
+			// },
 			{
-				test: /\.(sa|sc|c)ss$/,
+				test: /\.scss$/,
 				use: [
-					"style-loader", // creates style nodes from JS strings
-					"css-loader", // translates CSS into CommonJS
-					// "postcss-loader", // Loader for webpack to process CSS with PostCSS
-					"sass-loader" // compiles Sass to CSS, using Node Sass by default
+					{
+						"loader": MiniCssExtractPlugin.loader
+					},
+					{
+						"loader": "css-loader",
+						options: {
+							"sourceMap": true
+						}
+					},
+					{
+						loader: "resolve-url-loader",
+						options: {
+							engine: "postcss",
+							sourceMap: true
+						}
+					},
+					{
+						loader: "sass-loader",
+						options: {
+							sourceMap: true
+						}
+					}
 				]
 			},
 			{
@@ -52,6 +79,17 @@ module.exports = {
 						options: {
 							name: "[name].[ext]",
 							outputPath: "assets/"
+						}
+					}
+				]
+			},
+			{
+				test: /\.(woff|woff2|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
+				use: [
+					{
+						loader: "url-loader",
+						options: {
+							limit: Infinity
 						}
 					}
 				]
@@ -77,7 +115,10 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			hash: true,
 			template: "./index.html", // Load a custom template (ejs by default see the FAQ for details)
-		})
+		}),
+		new MiniCssExtractPlugin({
+			filename: "[name].css"
+		}),
 	],
 	devServer: {
 		// contentBase: path.join(__dirname, 'dist'),

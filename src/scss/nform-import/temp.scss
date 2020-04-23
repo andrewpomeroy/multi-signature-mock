@@ -1,0 +1,169 @@
+// New stuff
+
+.HorizontalLayoutWrap {
+  display: flex;
+  flex-direction: column; // undone w media query at min width
+}
+
+.l-LargeColumnLayout-paddingH {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+.l-LargeColumnLayout-paddingRight {
+  padding-right: 20px;
+}
+.l-LargeColumnLayout-paddingLeft {
+  padding-left: 20px;
+}
+
+@media screen and (min-width: 800px) { // TODO: config
+  .HorizontalLayoutWrap {
+    flex-direction: row;
+  }
+
+  .l-LargeColumnLayout-paddingH {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+  .l-LargeColumnLayout-paddingRight {
+    padding-right: 40px;
+  }
+  .l-LargeColumnLayout-paddingLeft {
+    padding-left: 40px;
+  }
+  
+  .FloatedSidebar--widthMedium {
+    max-width: 360px;
+  }
+
+  .FloatedSidebar--widthSmall {
+    max-width: 240px;
+  }
+}
+
+.mq-submission-breakSmall, .mq-submission-breakSmaller {
+  flex-direction: row;
+}
+
+@media screen and (max-width: 999px) {
+  .mq-submission-breakSmall {
+    flex-direction: column;
+  }
+  .mq-submission-breakSmall-widthDependent {
+    max-width: none;
+  }
+  .mq-submission-hideSmall {
+    display: none !important;
+  }
+}
+@media screen and (max-width: 699px) {
+  .mq-submission-breakSmaller {
+    flex-direction: column;
+  }
+  .mq-submission-breakSmaller-widthDependent {
+    max-width: none;
+  }
+  .mq-submission-hideSmaller {
+    display: none !important;
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .mq-submission-showSmaller {
+    display: none !important;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .mq-submission-showSmall {
+    display: none !important;
+  }
+}
+
+
+.CenterContentWrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.l-mediumPageMaxWidth {
+  flex: 0 1 1040px;
+  /* max-width: 100%; */
+  width: 100%;
+  max-width: 1040px;
+}
+
+// Deprecated?
+.u-FloatedSidebar-style {
+  background-color: white;
+  box-shadow: 0px 0px 6px rgba(0,0,0,.13);
+}
+.FloatedSidebar--widthMedium {
+  width: 100%;
+  min-width: 18rem;
+}
+
+.Banner {
+    background: #fa9821;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.Banner-icon {
+    width: 1em;
+    height: 1em;
+    &:not(:last-child) {
+      margin-right: .5em;
+    }
+}
+
+.u-color-success {
+  color: $color-brightGreen; // TODO: Expand these classes, map to correct color vars
+}
+
+.BlockButton-warningMessages {
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+   // width: 100%;
+    margin: .5em;
+    width: calc(100% - 1em);
+    background: $color-red;
+    color: white;
+}
+
+wnd-section-control-nav-buttons {
+    position: relative;
+}
+
+.BlockButton-warningMessages:after {
+    content: '';
+    width: 0;
+    height: 0;
+    border: .5em solid rgba(0,0,0,0);
+    border-top-color: $color-red;
+    position: absolute;
+    top: 100%;
+    left: 1em;
+}
+
+.BlockButton-warningMessage {
+  margin: 1em 1.25em;
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+}
+
+.BlockButton-warningMessage:hover {
+    overflow: visible;
+    white-space: normal;
+    height: auto;
+}
+
+// Upload progress indicator (wnd-upload)
+.FileUploadIndicatorWrapper {
+    color: $app-color-validation-success;
+}

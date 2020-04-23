@@ -1,0 +1,80 @@
+$NotationComponent-listItem-paddingV: 0.5em;
+$NotationComponent-listItem-innerPaddingH: 0.33em;
+
+$NotationComponent-listItem-fontSize: 14px;
+
+$NotationComponent-listItem-text-gray: $PanelList-item-text-gray;
+
+// Generic component-list (attachments, comments)
+
+.NotationComponentList {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.NotationComponentList-item {
+  font-size: 14px;
+  display: block;
+}
+.NotationComponentList-item:not(:last-child) {
+  margin-bottom: $NotationComponent-listItem-paddingV;
+}
+
+// Comment lists
+
+.NotationComment {
+  font-size: 14px;
+  color: $NotationComponent-listItem-text-gray;
+  clear: both;
+  // @extend .u-clearfix;
+}
+
+.NotationComment-message {
+  font-style: italic;
+}
+
+.NotationComment-author {
+  color: #444;
+  font-weight: 600;
+}
+
+.NotationComment:not(:last-child) {
+}
+
+.NotationComment-inlineActions {
+  float: right;
+  & > :not(:last-child) {
+    margin-right: 0.25em;
+  }
+}
+
+.NotationComment-actionButton {
+  padding: 0.5em;
+  margin-top: -0.5em;
+  color: gray;
+}
+
+// Attachment lists
+
+.NotationAttachment {
+  display: flex;
+}
+.NotationAttachment-icon {
+  height: 1em;
+  width: 1em;
+  margin-right: $NotationComponent-listItem-innerPaddingH;
+  color: $color-brightblue;
+}
+.NotationAttachment-title {
+  flex: 1;
+}
+
+.NotationAttachment-anchor {
+  text-decoration: none;
+  &:hover,
+  &:focus:not([clicked]) {
+    .NotationAttachment-title {
+      text-decoration: underline;
+    }
+  }
+}

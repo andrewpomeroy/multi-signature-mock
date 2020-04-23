@@ -1,0 +1,53 @@
+.PaneContainer {
+  position: relative;
+  overflow-x: hidden;
+}
+
+.Pane {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    min-height: 100%;
+
+    transition: 340ms ease;
+    transform: translateX(0);
+}
+
+.Pane--is-hidden {
+    // display: none !important;
+    display: none;
+    &-remove, &-add, &-remove-active,&-add-active {
+        display: flex !important;
+    }
+    &-remove {
+        transform: translateX(100%);    
+    }
+    &-remove-active {
+        transform: translateX(0);    
+    }
+    &-add {
+        transform: translateX(0);    
+    }
+    &-add-active {
+        transform: translateX(-100%);    
+    }
+}
+
+.PaneContainer--is-reverseTransition {
+    .Pane--is-hidden-remove {
+        transform: translateX(-100%);
+    }
+    .Pane--is-hidden-remove-active {
+        transform: translateX(0);    
+    }
+    .Pane--is-hidden-add {
+        transform: translateX(0);    
+    }
+    .Pane--is-hidden-add-active {
+        transform: translateX(100%);    
+    }
+}

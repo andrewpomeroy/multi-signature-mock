@@ -1,0 +1,24 @@
+$app-color-panel-top: #fff; // Replace
+$app-color-panel-b1: #f8fafa; // Replace
+$app-color-panel-b2: #eeeff0; // Replace
+
+$app-color-blueGreen: #0092BF;
+$app-color-electricBlue: hsl(215, 84%, 49%);
+$app-color-neutralBlue: #4868AB;
+$app-color-neutralGreen: #649498;
+$app-color-brightGreen: #78DDDD;
+
+$app-color-correctionRequest: #f09d43; // redundant
+
+// -- Utility generics -- //
+
+$UtilityItems-paddingV: 14px;
+$UtilityItems-paddingH: 18px;
+
+// -- Elsewhere -- //
+
+// $CenterColumnWrap-baseWidth: 1200px;
+$CenterColumnWrap-minWidth: 800px;
+$CenterColumnWrap-maxWidth: 1200px;
+$CenterColumnWrap-paddingH: 48px;
+$CenterColumnWrap-gutter: 40px;

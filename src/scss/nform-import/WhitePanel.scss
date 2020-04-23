@@ -1,0 +1,5 @@
+.WhitePanel {
+  background-color: white; // TODO: Config
+  @include commonPanelBoxShadow;
+  border-radius: 2px;
+}

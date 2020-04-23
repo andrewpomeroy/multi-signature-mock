@@ -1,0 +1,5 @@
+// This file is intentionally isolated from the rest of the scss partials.
+// It allows the lower-level styles to be easily ported to a "sandbox" that doesn't rely on the use of JSPM (paths with the "sys:" prefixes that have to be resolved by a plugin)
+
+@import "@windsor/angular-material/dist/angular-material.scss";
+@import "@windsor/static-assets/lib/sass/app.scss";

@@ -1,0 +1,113 @@
+// -- SlabButton -- //  
+
+$SlabButton-paddingV: .5em;
+$SlabButton-paddingH: 1.5em;
+
+// $SlabButton-fontSize-default: 14px;
+$SlabButton-fontSize-default: 15px;
+$SlabButton-fontSize-small: 13px;
+
+$SlabButton-minHeight: 64px;
+
+.SlabButton {
+  @include ButtonStyle-base;
+  @include ButtonStyle-default;
+  &:hover, &:focus {
+    @include ButtonStyle-default-hover;
+  }
+  &:active {
+    @include ButtonStyle-default-active;
+  }
+  width: 100%;
+  padding: $SlabButton-paddingV $SlabButton-paddingH;
+  min-height: $SlabButton-minHeight;
+  border-radius: 5px;
+  font-size: $SlabButton-fontSize-default;
+  text-align: center; // TODO: Possibly add to base button styles, can't regression test right now
+  &:first-child {
+  // border-top: 2px solid darken($SlabButton-color-default, 5%);    
+  }
+}
+
+.SlabButton--primary {
+  @include ButtonStyle-primary;
+  &:hover, &:focus {
+    @include ButtonStyle-primary-hover;
+  }
+  &:active {
+    @include ButtonStyle-primary-active;
+  }
+}
+
+.SlabButton--solidGreen {
+  @include ButtonStyle-solidGreen;
+  &:hover, &:focus {
+    @include ButtonStyle-solidGreen-hover;
+  }
+  &:active {
+    @include ButtonStyle-solidGreen-active;
+  }
+}
+
+.SlabButton--neutralDark {
+  @include ButtonStyle-neutralDark;
+  &:hover, &:focus {
+    @include ButtonStyle-neutralDark-hover;
+  }
+  &:active {
+    @include ButtonStyle-neutralDark-active;
+  }
+}
+
+.SlabButton--warning {
+  @include ButtonStyle-orange;
+  &:hover, &:focus {
+    @include ButtonStyle-orange-hover;
+  }
+  &:active {
+    @include ButtonStyle-orange-active;
+  }
+}
+
+.SlabButton--leftAligned {
+  justify-content: flex-start;
+  text-align: left;
+}
+
+@mixin SlabButton-icon {
+  flex: 0 0 auto;
+  height: 1.5em;
+  width: 1.5em;
+  &:not(:last-child) {
+    margin-right: 1em;
+  }
+}
+.SlabButton-icon {
+  @include SlabButton-icon;
+}
+
+.SlabButton-icon--faded {
+  opacity: .5;
+}
+
+.SlabButton--iconOnly {
+  width: $SlabButton-minHeight;
+  height: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.SlabButton--iconOnly .SlabButton-icon {
+  /* height: 1.75em; */
+  /* width: 1.75em; */
+}
+
+.SlabButton-mainText {
+  flex: 1 1 auto;
+}
+
+.SlabButton-subText {
+  font-size: 12px;
+  font-weight: 500;
+  opacity: .7;
+}

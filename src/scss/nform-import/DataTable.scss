@@ -1,0 +1,55 @@
+.DataTable {
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+.DataTable--small {
+    font-size: 13px;
+}
+
+.DataTable--fillWidth {
+    width: 100%;
+}
+
+.DataTable-body-cell {
+  border-top: 1px solid hsl(0,0%,79%);
+  border-left: 0;
+  border-right: 0;
+}
+
+.DataTable-cell {
+  border-bottom: 1px solid hsl(0,0%,79%);
+  padding: 4px;
+}
+
+.DataTable-header-cell {
+  font-weight: 500;
+  text-align: left;
+}
+
+.DataTable-cell--alignRight {
+  text-align: right;
+}
+
+.DataTable-row--strong,
+.DataTable-cell--strong {
+  font-weight: bold;
+}
+
+.DataTable-cell--addendum {
+  text-align: center;
+  padding: 0;
+}
+.DataTable-addendumLink {
+  display: block;
+  padding: 4px;
+  background-color: rgba(0,0,0,.05);
+  color: $color-electricBlue;
+  &:hover, &:focus {
+    background-color: $color-lightblue-highlight;
+    color: lighten($color-electricBlue, 10%);
+  }
+  &:active {
+    color: darken($color-electricBlue, 10%);
+  }
+}

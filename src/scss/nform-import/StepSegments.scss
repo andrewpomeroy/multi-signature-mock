@@ -1,0 +1,100 @@
+$StepSegment-color-complete: lighten($color-brightGreen, 10%);
+$StepSegment-color-active: hsl(0,0%,75%);
+$StepSegment-color-activeComplete: $color-brightGreen;
+$StepSegment-color-default: hsl(0,0%,90%);
+
+$StepSegment-barHeight: 14px;
+$StepSegment-bottomMargin: 12px;
+$StepSegment-arrowOverlap: 4px;
+$StepSegment-arrowSize: $StepSegment-arrowOverlap + $StepSegment-bottomMargin;
+$StepSegment-borderWidth: 1px;
+$StepSegment-arrowBottomOffset: -1 * ($StepSegment-barHeight + $StepSegment-bottomMargin + $StepSegment-borderWidth);
+
+$StepSegment-contentFrame-borderColor: gainsboro;
+$StepSegment-contentFrame-backgroundColor: white;
+$StepSegment-contentFrame-borderRadius: 5px;
+
+.StepSegments {
+  list-style-type: none;
+  margin: 0;
+  display: flex;
+  padding: 0;
+  cursor: pointer;
+}
+
+.StepSegment {
+  flex: 1;
+  padding-bottom: 10px;
+  border-bottom: 14px solid $StepSegment-color-default;
+  padding: 6px 0;
+  margin-bottom: $StepSegment-bottomMargin;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  &:focus {
+    outline: 0;
+  }
+}
+.StepSegment:not(:last-child) {
+  margin-right: 2px;
+}
+
+.StepSegment--is-complete {
+  border-bottom-color: $StepSegment-color-complete;
+}
+.StepSegment--is-active {
+  border-bottom-color: $StepSegment-color-active;
+}
+.StepSegment--is-active.StepSegment--is-complete {
+  border-bottom-color: $StepSegment-color-activeComplete;
+}
+.StepSegment--is-hovered:not(.StepSegment--is-active) {
+  opacity: .6;
+}
+
+.StepSegment--is-active {
+  position: relative;
+}
+.StepSegment--is-active:after, .StepSegment--is-active:before {
+  left: 50%;
+  border: solid transparent;
+  content: '';
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  bottom: -1 * ($StepSegment-barHeight - $StepSegment-arrowOverlap);
+  bottom: $StepSegment-arrowBottomOffset;
+}
+.StepSegment--is-active:after {
+	border-color: rgba(255, 255, 255, 0);
+	border-bottom-color: $StepSegment-contentFrame-backgroundColor;
+	border-width: $StepSegment-arrowSize;
+  margin-left: -$StepSegment-arrowSize;
+}
+.StepSegment--is-active:before {
+	border-color: rgba(222, 222, 222, 0);
+	border-bottom-color: $StepSegment-contentFrame-borderColor;
+	border-width: ($StepSegment-arrowSize + $StepSegment-borderWidth);
+	margin-left: -($StepSegment-arrowSize + $StepSegment-borderWidth);
+}
+
+.StepSegments-contentFrame {
+  padding: 10px;
+  border: $StepSegment-borderWidth solid $StepSegment-contentFrame-borderColor;
+  border-radius: 5px;
+}
+.StepSegments-contentFrame--noPadding {
+  padding: 0;
+}
+
+// Unused -- using .Chip instead
+.StepSegment-marker {
+  padding: 4px;
+  line-height: 1em;
+  white-space: nowrap;
+  text-align: center;
+  background: white;
+  box-shadow: 0px 2px 2px rgba(0,0,0,.2);
+  border-radius: 3px;
+}

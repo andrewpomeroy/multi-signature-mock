@@ -1,0 +1,269 @@
+// Complete overhaul of Review-context form-control styles. Will need to be heavily refactored, and consolidated with review.scss
+
+.AppForm-section-content--review {
+
+    padding: 1rem;
+    border: 1px solid gainsboro;
+    padding: 0;
+
+    .AppForm-section {
+        margin-top: 1rem;
+    }
+
+    section-field-nform .AppForm-sectionViewport {
+        margin-bottom: 1rem;
+    }
+
+    .AppForm-PageHeader {
+        padding-left: 1rem;
+        background: #d5dbe1;
+        margin-bottom: 1rem;
+        margin-bottom: .25rem;
+    }
+    
+    .AppForm-PageHeader .PageHeader-heading {
+        border: 0;
+        padding: .75em 0 .5em 0;
+        text-transform: uppercase;
+        font-size: 16px;
+        letter-spacing: .03em;
+    }
+
+
+    // ----- Control layout ----- 
+
+    .FieldBlock, .FieldBlockGroup {
+        margin-bottom: 1rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-right: 2rem; // Override to make space for the .SectionControlSwitchLayout-aside and its controls (absolute-positioned, see below)
+        margin-bottom: .25rem;
+        padding-bottom: .25rem;
+        padding-top: .25rem;
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+
+    // ----- Borders to separate each field group ----- 
+
+    .FieldBlock {
+        border-bottom: 1px solid gainsboro;
+    }
+
+    // Hack (normal border-bottom doesn't span full width since it has horizontal padding)
+    .FieldBlockGroup:after {
+        content: '';
+        width: 100%;
+        border-bottom: 1px solid gainsboro;
+        display: block;
+        margin-left: calc(-1em - 2px);
+        margin-right: -2rem;
+        width: calc(100% + 1em + 2px + 2rem);
+        margin-bottom: -.25rem;
+    }
+
+    // Keep bottom-borders from crowding the following field group
+    .FieldBlockGroup wnd-field-block:last-child .FieldBlock {
+        margin-bottom: .25rem;
+    }
+
+
+    // ----- Dot-dot-dot menu button display (Adding notations) ----- 
+
+    .SectionControlSwitchLayout {
+        position: relative;
+    }
+    
+    // Absolute-positioning as a temporary fix; too difficult to extend the FieldBlock's bottom-border if this is contained within the document flow
+    .SectionControlSwitchLayout-aside {
+        position: absolute;
+        right: 0;
+    }
+
+    // Negative-margin + padding to expand the "highlighted background" bit in normal field display breaks on the compact review display, so we gotta cancel it out here
+    .SectionControlSwitchLayout--is-highlighted {
+        margin: 0;
+        padding: 0;
+    }
+    
+
+    //  ----- Nesting/indendation of field/control groupings  ----- 
+    
+    .FieldBlock-row > wnd-field {
+        flex: 0 1 auto;
+        max-width: 100%;
+    }
+    
+    wnd-field-block.FieldBlockGroup > .FieldBlock > .FieldBlock-content > .FieldBlock-fields, // TODO: explain complex selector
+    div.FieldBlockGroup {
+        margin-left: 1em;
+        padding-left: 0;
+    }
+
+
+    //  ----- Fixing vertical spacing and separation between fields  ----- 
+
+    .FieldBlock--is-readOnly .FieldBlock-fields>:first-child:not(:last-child),
+    .FieldBlock--is-readOnly .FieldBlock-fields>:not(:last-child) ~ * {
+        padding-bottom: 0;
+        /* border-bottom: 1px solid gainsboro; */
+    }
+
+    wnd-section-control-switch > * > wnd-field-block-group {
+        border-bottom: 1px solid gainsboro;
+        display: block;
+    }
+
+    .FieldBlockGroup wnd-field-block:last-child .FieldBlock {
+        border-bottom: 0;
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+
+    .FieldBlockGroup {
+        border-bottom: 0;
+    }
+
+    .FieldBlockGroup > wnd-field-block {
+        .FieldBlock-content, .SectionControlSwitchLayout-aside {
+            border-bottom: 0 !important;
+        }
+    }
+
+    wnd-select wnd-read-only-value:not(:last-child) {
+        border-bottom: 1px solid gainsboro;
+        display: block;
+    }
+
+    // Certain field-block-group structures didn't provide the correct bottom margins
+    wnd-section-control-switch:not(:last-child) {
+        display: block;
+        margin-bottom: .25rem;
+    }
+
+    
+    //  ----- Field row layout  ----- 
+
+    .FieldBlock-row,
+    .c-FieldBlock-split {
+        @include makeOffsetGroup($margin: 24px, $maxWidth: $Field-maxWidth);
+    }
+    .FieldBlock-row .Field,
+    .c-FieldBlock-split-item {
+        @include makeOffsetGroupItem($margin: 24px);
+    }
+    
+    .FieldBlock-row {
+        flex-wrap: wrap;
+    }
+    
+
+    //  ----- Field block column layout (validation)  ----- 
+
+    .FieldBlock-validation {
+        // flex: 0 1 auto; // Breaks in IE11
+        
+    }
+
+
+    .FieldBlock-content {
+        max-width: none;
+        @media screen and (min-width: $mq-Form-collapse-max + 1px) {
+            width: 66%;
+        }
+    }
+
+
+    //  ----- Control labels  ----- 
+
+    .Field-label,
+    .FieldBlock-label,
+    .FieldBlockGroup-label,
+    .FieldBlockGroup .FieldBlock .FieldBlock-label,
+    .FieldBlockGroup .FieldBlock .Field-label,
+    .FieldBlockGroup .FieldBlock-label
+    .Field-Table .Table-header-cell {
+        color: #1e1e1e;
+        font-size: 14px;
+        font-weight: 700;
+        text-transform: none;
+        letter-spacing: 0;
+    }
+    
+    .FieldBlockGroup .FieldBlock .FieldBlock-label,
+    .FieldBlockGroup .FieldBlock .Field-label,
+    .FieldBlockGroup .FieldBlock-label,
+    .Field-Table .Table-header-cell {
+        font-size: .8em;
+        color: #353535;
+
+    }
+
+    wnd-field-block-group > .FieldBlockGroup-label,
+    .FieldBlockGroup > .FieldBlock-label,
+    wnd-section-control-switch > * > .FieldBlock-label {
+        padding-left: 1rem;
+    }
+
+
+    // ----- Control values ----- 
+
+    .TextInput,
+    .Select,
+    .Field-input--select,
+    .Field-input,
+    .GridSearch-field-input,
+    .GridSearch-field--advanced .GridSearch-field-input,
+    .GridSearch-field-input--select,
+    .AppForm-text {
+        font-size: 14px;
+        color: #585858;
+    }
+
+
+    // ----- Table controls ----- 
+
+    .Field-Table .Table-header-cell {
+        opacity: 1;
+        text-transform: none;
+        letter-spacing: 0;
+    }
+    .Field-Table .FieldBlock, .Field-Table .FieldBlockGroup {
+        border: 0 !important
+    }
+    grid-field-nform .Field-Table .FieldBlock {
+        padding-left: 7px; // from gross grid control styles' header cell area, index.scss        
+    }
+
+
+    // ----- Instruction control ----- 
+
+    .AppForm-instructions {
+        margin-bottom: 0;
+    }
+
+
+    // ----- Repeater layout ----- 
+
+    .CardRepeater-contentContainer {
+        background-color: #f8f8f8;
+    }
+
+    .CardRepeater-row.CardRepeater-row--content {
+        /* padding: 2em 1em; */
+        margin-left: 1em;
+        margin-right: 1em;
+        border: 1px solid gainsboro;
+        padding-left: 0;
+        padding-right: 0;
+        padding-bottom: 0;
+        border-bottom: 0;
+    }
+
+    .CardRepeater-item--is-expanded {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+
+}

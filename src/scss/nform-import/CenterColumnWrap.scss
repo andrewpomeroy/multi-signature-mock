@@ -1,0 +1,47 @@
+// $CenterColumnWrap-baseWidth: 1200px;
+$CenterColumnWrap-minWidth: 800px;
+$CenterColumnWrap-maxWidth: 1400px;
+$CenterColumnWrap-paddingH: 48px;
+$CenterColumnWrap-gutter: 40px;
+$CenterColumnWrap-asideMinWidth: 18rem;
+
+.CenterColumnWrap {
+  display: flex;
+  justify-content: center;
+}
+.CenterColumnWrap-content {
+  // flex: 1;
+  // Using `flex-grow: 1` doesn't work in IE:
+  // https://github.com/philipwalton/flexbugs/issues/128
+  flex: 0 1 $CenterColumnWrap-maxWidth;
+  padding-left: $CenterColumnWrap-paddingH;
+  padding-right: $CenterColumnWrap-paddingH;
+}
+.CenterColumnWrap-split {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+@media screen and (min-width: $CenterColumnWrap-minWidth) {
+  .CenterColumnWrap-columns {
+    display: flex;
+    padding-left: $CenterColumnWrap-paddingH - ($CenterColumnWrap-gutter / 2);
+    padding-right: $CenterColumnWrap-paddingH - ($CenterColumnWrap-gutter / 2);
+  }
+  .CenterColumnWrap-column {
+    padding-left: $CenterColumnWrap-gutter / 2;
+    padding-right: $CenterColumnWrap-gutter / 2;
+  }
+  // .CenterColumnWrap-column.SubmissionBody-column--main {
+  //   margin-left: -($CenterColumnWrap-gutter / 2);
+  // }
+}
+
+.CenterColumnWrap-column--main {
+  flex: 3;
+}
+.CenterColumnWrap-column--aside {
+  flex: 1;
+  min-width: $CenterColumnWrap-asideMinWidth;
+}

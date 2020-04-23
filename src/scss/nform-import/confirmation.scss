@@ -1,0 +1,459 @@
+/* * {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0; 
+  padding: 0;
+}
+
+body {
+  font-family: "DIN Next LT Pro";
+  font-family: "Fakt Pro";
+  color: #323333;
+} */
+
+@mixin u-undoButtonStyles () {
+  border: 0;
+  padding: 0;
+  background: none;
+  font-family: inherit;
+  color: inherit;
+}
+.u-undoButtonStyles {
+  @include u-undoButtonStyles;
+}
+
+
+.StdHeading--modal {
+  font-size: 32px;
+} 
+
+.Dialog {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+}
+.Dialog-mask {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0, .3);
+}
+.Dialog-contents {
+  position: relative;
+  overflow-y: auto;
+  width: 100%;
+}
+.Dialog-modal {
+  // min-height: 120vh;
+/*   width: 100%; */
+  margin: 5rem;
+  background-color: white;
+}
+
+.DialogContent--medWidth {
+  width: $screen-md;
+  max-width: 100%;
+}
+
+.DialogContent--padded {
+  // padding: 40px 0;
+  .DialogContent-segment--padded {
+    padding-left: 38px;
+    padding-right: 38px;
+    &:first-child {
+      padding-top: 40px;
+    }
+    // padding-bottom: 0 38px;
+  }
+}
+
+.DialogContent-header + .DialogContent-body {
+  margin-top: 36px;
+}
+
+.DialogContent-footer--actions {
+  padding: 20px 38px;
+  background-color: #f0f9ff;
+}
+
+.DialogContent-footer--centered {
+  .FlatActionsRow {
+    justify-content: center;
+  }
+}
+
+.DialogContent-close {
+  @include u-undoButtonStyles();
+  @include GenericCloseX();
+}
+
+.SummaryCard {
+  padding: 20px 24px;
+  border: 1px solid;
+  border-color: hsl(0,0%, 88%);
+  background-color: hsl(0,0%, 97%);
+}
+.SummaryCard--split {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: stretch;
+}
+.SummaryCard-mainIdentifier {
+  > *:not(:last-child) {
+    margin-bottom: 6px;
+  }
+}
+.SummaryCard-left {
+  flex: 1;
+}
+.SummaryCard-right {
+  margin-left: 12px;
+}
+
+.SummaryCard-title {
+  // font-size: 21px;
+  // color: #5c788a;
+
+  // display: flex;
+  // align-items: center;
+  font-size: 21px;
+  font-weight: 500;
+}
+.SummaryCard-meta {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 14px;
+  & > *:not(last-child) {
+    margin-right: 1.125em;
+  }
+}
+.SummaryCard-meta-item {
+  font-weight: 500;
+  // text-transform: uppercase;
+  // letter-spacing: .03em;
+}
+.SummaryCard-meta-item--muted {
+  color: #5c788a;
+}
+  
+.StatusLabel {
+  display: inline-flex;
+  padding: .5em .5em;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  // letter-spacing: .03em;
+  color: #5c788a;
+}
+.StatusLabel--attention {
+  background-color: #ffde7f;
+}
+
+.FlatButton {
+  @include u-undoButtonStyles();
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 24px;
+  border-radius: 4px;
+  background-color: hsl(204, 81%, 75%);
+  // TODO: actual psuedo-state styles
+  &:hover:not(:active):not([disabled="disabled"]) {
+    opacity: .85;
+  }
+  &:active:not([disabled="disabled"]) {
+    transform: translateY(1px);
+  }
+  &:active, &:focus {
+    outline: 0;
+    box-shadow: none;
+    background-color: darken(hsl(204, 81%, 75%), 35%);
+    color:white;
+  }
+  &[disabled="disabled"] {
+    &, &:hover, &:focus, &:active {
+      opacity: .3;
+    }
+  }
+}
+.FlatButton--small {
+  font-size: 14px;
+  padding: 14px 18px; 
+}
+.FlatButton--medium {
+  font-size: 18px;
+  padding: 22px 38px; 
+}
+.FlatButton--large {
+  font-size: 22px;
+  padding: 28px 42px; 
+}
+.FlatButton--primary {
+  // background-color: #b8e0ff;
+  background-color: hsl(204, 81%, 75%);   
+}
+.FlatButton--green {
+  background-color: #90eff0;
+   &:active, &:focus {
+    background-color: darken(#90eff0, 35%);
+    color:white;
+  }
+}
+.FlatButton--neutral {
+  background-color: hsl(204, 54%, 84%);
+   &:active, &:focus {
+    background-color: darken(hsl(204, 54%, 84%), 35%);
+  }
+}
+
+.FlatButton--block {
+  width: 100%;
+}
+
+.FormSummary-block {
+  // margin: 20px 0;
+  margin: 24px 0;
+}
+
+.FormSummary-paragraph {
+  line-height: 1.4;
+}
+
+.AlertBlock {
+  border: 2px solid hsl(204, 41%, 85%);
+  background-color: hsl(204, 94%, 97%);
+}
+.AlertBlock--attention {
+  border-color: #ffde7f;
+  background-color: #fffdf7;
+}
+.AlertBlock--success {
+  background-color: hsl(181, 76%, 98%);
+  border-color: hsl(181, 54%, 75%);
+}
+
+.AlertBlock-element {
+  margin-top: 24px;
+  // &:not(:last-child) {
+    margin-bottom: 24px;
+  // }
+}
+
+.AlertBlock-element--padded {
+  // padding-left: 85px;
+  // padding-right: 85px;
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+
+.AlertBlock-header {
+  margin-top: 44px;
+}
+
+.AlertBlock-header--imageSplit,
+.AlertBlock-element--imageSplit {
+  padding-left: 0;
+  display: flex;
+  align-items: center;
+}
+// .AlertBlock-header-imageColumn,
+// .AlertBlock-element-imageColumn {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   width: 85px;
+//   height: 25px;
+// }
+// .AlertBlock-header-image,
+// .AlertBlock-element-image {
+//   height: 37px;
+//   width: 37px;
+// }
+.AlertBlock-heading {
+  font-size: 25px;
+}
+
+.AlertBlock-subHeading {
+  font-size: 19px;
+}
+
+.AlertBlock-body-element {
+  margin: 20px 0;
+}
+
+
+
+.AlertBlock-footer {
+  // display: flex;
+}
+.AlertBlock-footer--actions {
+  > *:not(:last-child) {
+    margin-bottom: 12px;
+  }
+}
+.FlatActionsRow {
+  display: flex;
+  align-items: center;
+  > *:not(:last-child) {
+    margin-right: 16px;
+  }
+}
+.AlertBlock-footer--centered {
+  .FlatActionsRow {
+    justify-content: center;
+  }
+}
+
+.SvgWrap--fill {
+  height: 100%;
+  width: 100%;
+}
+
+.PaymentTable-title {
+  font-size: 21px;
+  margin-bottom: .3em;
+}
+.PaymentTable-items {
+  display: table;
+}
+.PaymentTable-row {
+  display: table-row;
+}
+.PaymentTable-cell {
+  display: table-cell;
+  padding: .3em 0;
+  color: hsl(204, 53%, 34%);
+}
+.PaymentTable-cell--stretch {
+  width: 100%;
+}
+.PaymentTable-number {
+  text-align: right;
+}
+.PaymentTable-item-identifier {
+  position: relative;
+  display: flex;
+  font-weight: 500;
+  // Dotdotdotdotdot
+  &:after {
+    content: '';
+    height: 1em;
+    flex: 1;
+    margin: 0 .33em;
+    background-position: bottom .125em left 0;
+    background-size: 4px 1px;
+    background-repeat: repeat-x;
+    border-bottom-color: transparent;
+    background-image: linear-gradient(90deg,rgba(0,0,0,0.38) 0,rgba(0,0,0,0.38) 33%,transparent 0);
+  }
+}
+.PaymentTable-summary {
+  border-top: 1px solid hsl(0,0%,40%);
+  padding: .5em 0;
+  text-align: right;
+}
+.PaymentTable-total {
+  font-size: 21px;
+}
+.PaymentTable-total-amount {
+  font-weight: 600;
+}
+
+.RemittanceAddresses {
+  display: flex;
+  flex-wrap: wrap;
+}
+.RemittanceAddress {
+  flex: 0 0 calc(50% - 1em);
+  max-width: calc(50% - 1em);
+  background: white;
+  color: hsl(0,0%,40%);
+  border: 1px solid gray;
+  padding: 1em;
+  margin-right: 1em;
+  margin-bottom: .75em;
+}
+.RemittanceAddress-title {
+  font-weight: 600;
+  margin-bottom: .5em;
+}
+
+.StepList, .RemittanceAddresses {
+  @include undo-list-styles();
+}
+
+.StepList-step-header {
+    display: flex;
+    align-items: center;
+}
+
+.StepList-step-number {
+    display: inline-flex;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    // background: #b8e0ff;
+    background: white;
+    border: 2px solid #475e6d;
+    border-radius: 999px;
+    border-color: hsla(204, 90%, 74%, 1);
+    font-size: 14px;
+    font-weight: 700;
+    /* color: hsl(204, 30%, 44%); */
+    background: transparent;
+    margin-right: 1em;
+    /* margin-bottom: 1em; */
+}
+
+.StepList-step-header {
+    margin-bottom: 18px;
+}
+
+.StepList-step-body {
+    margin-bottom: 26px;
+    padding-left: calc(30px + 2px + 2px + 1em);
+}
+
+// --- Modular error message --- //
+// TODO: clean this up, consolidate validation-error-message stuff, replace variables
+
+.ErrorMessage {
+  display: inline-flex;
+  background: $Field-error;
+  align-items: center;
+  padding: $FieldMessage-paddingV $FieldMessage-paddingH;
+  color: white;
+  // margin-left: $FieldMessage-marginH;
+  border-radius: $FieldInput-borderRadius;
+  position: relative;
+}
+.ErrorMessage-text {
+  font-size: .8em;
+}
+.ErrorMessage-image, .ErrorMessage-icon {
+  flex: 0 0 auto;
+}
+.ErrorMessage-image {
+  height: $FieldMessage-iconSize;
+  width: $FieldMessage-iconSize;
+  margin-right: $FieldMessage-paddingH * .66;
+  margin-left: $FieldMessage-iconOffsetH;
+}
+.ErrorMessage-icon {
+  fill: white;
+}
+
+/* md-input-container {
+    width: 100%;
+} */

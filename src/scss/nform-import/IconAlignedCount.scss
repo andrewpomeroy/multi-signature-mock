@@ -1,0 +1,29 @@
+.IconAlignedCount {
+  // Duplicated from IconButton-count
+  // TODO: Should be reconciled
+  font-size: 0.65em;
+  background-color: #d83b50;
+  display: inline-block;
+  width: 1.35em;
+  height: 1.35em;
+  text-align: center;
+  color: white;
+  border-radius: 999px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: .25em;
+  bottom: .25em;
+}
+
+.IconAlignedCountContainer {
+  position: relative;
+}
+
+.IconAlignedCount {
+  font-size: .75em;
+  right: 0;
+  bottom: 0;
+  transform: translate(50%, 50%);
+}

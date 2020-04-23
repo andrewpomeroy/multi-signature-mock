@@ -1,0 +1,29 @@
+.SlabButtonCover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: $SlabButton-paddingV $SlabButton-paddingH;
+  font-size: $SlabButton-fontSize-default;
+  min-height: $SlabButton-minHeight;
+  border-radius: 2px;
+}
+.SlabButtonCover--small {
+  font-size: $SlabButton-fontSize-small;
+}
+.SlabButtonCover--warning {
+  background-color: #fa9821;
+  color: white;
+}
+
+.SlabButtonCover--leftAligned {
+  justify-content: flex-start;
+}
+
+.SlabButtonCover-icon {
+  @include SlabButton-icon;
+}
+
+.SlabButtonCover-mainText {
+  padding-top: .5em;
+  padding-bottom: .5em;
+}
