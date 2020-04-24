@@ -1,11 +1,16 @@
 <component-wizard model="model">
-  <component-wizard-page index="0">
-    <signing-setup-page-initial></signing-setup-page-initial>
+  <component-wizard-page is-navigable="true">
+    <signing-setup-page-methods
+      siging-methods="model.signingMethods"
+    ></signing-setup-page-methods>
   </component-wizard-page>
-  <component-wizard-page index="1">
+  <component-wizard-page is-navigable="true">
     second page
   </component-wizard-page>
-  <component-wizard-page index="2" is-navigable="false">
+  <component-wizard-page is-navigable="$ctrl.letItHappen">
     third page
+  </component-wizard-page>
+  <component-wizard-page is-navigable="false">
+    non navigable page
   </component-wizard-page>
 </component-wizard>

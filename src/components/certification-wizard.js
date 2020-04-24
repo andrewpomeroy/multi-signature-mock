@@ -10,9 +10,14 @@ export default {
 	transclude: true,
 };
 
-CertificationWizardController.$inject = [];
-function CertificationWizardController() {
+CertificationWizardController.$inject = ["$timeout"];
+function CertificationWizardController($timeout) {
 	const $ctrl = this;
-
 	
+	$ctrl.letItHappen = true;
+
+	$timeout(() => {
+		$ctrl.letItHappen = false;
+	}, 500);
+
 }

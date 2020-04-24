@@ -3,7 +3,7 @@ import "@uirouter/angularjs";
 import AppModule from "./bootstrapper";
 import "./module";
 import "./scss/index.scss";
-import WizardShimTemplate from "./wizard-shim.html";
+import WizardShimTemplate from "./components/wizard-shim.html";
 
 angular.module(AppModule).config(["$locationProvider",
 	function ($locationProvider) {
@@ -20,7 +20,7 @@ angular.module(AppModule).config(["$stateProvider",
 		$stateProvider.state({
 			name: "root",
 			url: "/",
-			template: WizardShimTemplate
+			template: "<wizard-shim class=\"FlexView\"></wizard-shim>"
 		});
 
 	}

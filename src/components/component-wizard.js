@@ -26,14 +26,13 @@ function ComponentWizardController($element) {
 					return registeredPageId === id;
 				});
 			});
+		console.log($ctrl.pages);
 		$ctrl.navigablePages = $ctrl.pages.filter(pageId => {
 			const page = $ctrl.registeredPages.get(pageId);
+			console.log(page, page.isNavigable);
 			return page && page.isNavigable;
 		});
-		// $ctrl.pages = Array.from($ctrl.registeredPages.keys()).sort((a, b) => {
-		// 	if (a.index < b.index) return -1;
-		// 	else return 1;
-		// });
+		console.log("navigable pages", $ctrl.navigablePages);
 	}
 
 	$ctrl.getIndex = page => $ctrl.pages.findIndex(x => x === page); 
@@ -47,6 +46,10 @@ function ComponentWizardController($element) {
 		updatePages();
 	};
 	
+	$ctrl.updatePage = page => {
+		updatePages();
+	};
+
 	$ctrl.deregisterPage = page => {
 		$ctrl.registeredPages.delete(page.uuid);
 		updatePages();
@@ -58,11 +61,21 @@ function ComponentWizardController($element) {
 	$ctrl.next = () => $ctrl.increment(1);
 	$ctrl.previous = () => $ctrl.increment(-1);
 
+	function initializeActivePage() {
+		// if (!$ctrl.activePage || !$ctrl.navigablePages.find(page => page === $ctrl.activePage)) {
+		$ctrl.activePage = $ctrl.navigablePages[$ctrl.navigablePages.length - 1];
+		// }
+	}
+
 	$ctrl.$onInit = () => {
 	};
-	
+
+
 	$ctrl.$postLink = () => {
-		$ctrl.activePage = $ctrl.navigablePages[$ctrl.navigablePages.length - 1];
+		console.log("wizard postlink");
+
+		initializeActivePage();
+		// console.log($ctrl.registeredPages);
 	};
 
 }
