@@ -1,6 +1,8 @@
 <div class="ComponentWizard-nav">
   <button
     class="ComponentWizard-nav-button ComponentWizard-nav-button--previous"
+    ng-if="$ctrl.isPreviousAvailable"
+    ng-disabled="!$ctrl.isPreviousNavigable"
     ng-click="$ctrl.previous($event)"
   >
     Previous
@@ -8,6 +10,8 @@
   <span>{{$ctrl.componentWizard.currentPageIndex}}</span>
   <button
     class="ComponentWizard-nav-button ComponentWizard-nav-button--next"
+    ng-if="$ctrl.isNextAvailable"
+    ng-disabled="!$ctrl.isNextNavigable"
     ng-click="$ctrl.next($event)"
   >
     Next

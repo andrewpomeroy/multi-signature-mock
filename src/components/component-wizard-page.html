@@ -1,4 +1,6 @@
-<div class="ComponentWizard-page">
+<!-- <div class="ComponentWizard-page"> -->
+<div class="ComponentWizard-page" ng-if="$ctrl.isActive">
+  <!-- <div>{{$ctrl.uuid}} {{$ctrl.isActive ? 'yes' : 'no'}}</div> -->
   <div class="ComponentWizard-page-content" ng-transclude></div>
   <component-wizard-nav></component-wizard-nav>
 </div>
