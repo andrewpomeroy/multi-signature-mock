@@ -18,22 +18,21 @@
       Select signing method
     </div>
   </div>
-  <radio-block-set model="signingMethods">
+  <radio-block-group model="model.signingMethod">
     <radio-block value="digital">
       <heading>Digital Signature</heading>
-      <description
-        >Users you specify will be invited by email, and given a link to
-        digitally sign the form</description
-      >
+      <description>
+        Users you specify will be invited by email, and given a link to
+        digitally sign the form
+      </description>
     </radio-block>
     <radio-block value="hardCopy">
       <heading>Hard Copy Signature</heading>
-      <description
-        >You will print a PDF copy of the form, and gather the appropariate
+      <description>
+        You will print a PDF copy of the form, and gather the appropariate
         signatures. You will then upload a scanned copy of the signed document
-        to complete the submission process.</description
-      >
+        to complete the submission process.
+      </description>
     </radio-block>
-  </radio-block-set>
-  <div class="AppForm-radioBlocks"></div>
+  </radio-block-group>
 </div>

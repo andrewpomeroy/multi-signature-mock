@@ -1,9 +1,13 @@
 import angular from "angular";
 import "@uirouter/angularjs";
+import "@windsor/angular-material";
+import "angular-aria";
+import "angular-sanitize";
+import "angular-animate";
+
 import AppModule from "./bootstrapper";
 import "./module";
 import "./scss/index.scss";
-import WizardShimTemplate from "./components/wizard-shim.html";
 
 angular.module(AppModule).config(["$locationProvider",
 	function ($locationProvider) {

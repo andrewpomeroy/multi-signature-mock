@@ -3,7 +3,7 @@ import template from "./signing-setup-page-methods.html";
 
 export default {
 	bindings: {
-		signingMethods: "<",
+		model: "<",
 	},
 	template: template,
 	controller: SigningSetupPageMethodsCtrl,

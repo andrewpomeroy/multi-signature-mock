@@ -1,0 +1,30 @@
+<div
+  class="RadioBlock"
+  tabindex="0"
+  role="radio"
+  ng-class="{'RadioBlock--isActive': $ctrl.isActive}"
+  aria-labelledby="{{$ctrl.uuid}}-label"
+  aria-describedby="{{$ctrl.uuid}}-description"
+  aria-checked="{{$ctrl.isActive}}"
+  ng-click="$ctrl.activate($event)"
+>
+  <div class="RadioBlock-column RadioBlock-column--indicator">
+    <md-radio-button
+      aria-hidden="true"
+      ng-value="$ctrl.value"
+      tabindex="-1"
+    ></md-radio-button>
+  </div>
+  <div class="RadioBlock-column RadioBlock-column--body" aria-hidden="true">
+    <div
+      id="{{$ctrl.uuid}}-label"
+      class="RadioBlock-heading"
+      ng-transclude="heading"
+    ></div>
+    <div
+      id="{{$ctrl.uuid}}-description"
+      class="RadioBlock-description"
+      ng-transclude="description"
+    ></div>
+  </div>
+</div>

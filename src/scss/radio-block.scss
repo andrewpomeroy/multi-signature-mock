@@ -1,0 +1,86 @@
+$RadioBlock-gutter: 20px;
+$RadioBlock-paddingV: 20px;
+$RadioBlock-paddingH: 24px;
+$RadioBlock-outline: #d4d4d4;
+$RadioBlock-activeColor: #485e6d;
+$RadioBlock-hoverColor: hsl(hue($RadioBlock-activeColor), 100%, 97%);
+
+.RadioBlockGroup {
+  display: flex;
+  align-items: stretch;
+  margin-left: -$RadioBlock-gutter / 2;
+  margin-right: -$RadioBlock-gutter / 2;
+  > radio-block {
+    flex: 1;
+    max-width: 50%;
+    margin-left: $RadioBlock-gutter / 2;
+    margin-right: $RadioBlock-gutter / 2;
+  }
+}
+
+.RadioBlock {
+  border: 1px solid $RadioBlock-outline;
+  display: flex;
+  height: 100%;
+  padding-top: $RadioBlock-paddingV;
+  padding-bottom: $RadioBlock-paddingV;
+  border-radius: 5px;
+  &:not(.RadioBlock--isActive) {
+    cursor: pointer;
+    &:hover,
+    &:focus {
+      background-color: $RadioBlock-hoverColor;
+    }
+  }
+  &:focus {
+    outline: 0;
+    box-shadow: 0px 0px 2px $app-color-highlightBlue;
+  }
+}
+
+.RadioBlock--isActive {
+  border-color: $RadioBlock-activeColor;
+  background-color: $RadioBlock-activeColor;
+  color: white;
+}
+
+// color radio buttons white when active, to contrast against solid blue background
+.RadioBlock--isActive md-radio-button {
+  &,
+  &.md-checked {
+    .md-off {
+      border-color: white;
+    }
+    .md-on {
+      background: white;
+    }
+  }
+}
+
+.RadioBlock-column {
+  flex: 1;
+}
+
+.RadioBlock-column--indicator {
+  flex: 0 0 auto;
+  flex-basis: $RadioBlock-paddingH * 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.RadioBlock-column--body {
+  padding-right: $RadioBlock-paddingH;
+}
+
+.RadioBlock-heading {
+  font-size: 16px;
+  margin-bottom: 0.5em;
+  font-weight: 500;
+}
+
+.RadioBlock-column--indicator > md-radio-button > .md-container {
+  left: 50%;
+  transform: translate(-50%);
+  top: -3px;
+}
