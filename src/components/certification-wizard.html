@@ -1,10 +1,21 @@
 <component-wizard model="model">
+  <div class="PageHeader AppForm-PageHeader">
+    <div flex="fill">
+      <h3
+        class="PageHeader-heading PageHeader-heading--noMargin"
+        section-title-autofocus="true"
+        tabindex="-1"
+      >
+        Signing
+      </h3>
+    </div>
+  </div>
   <component-wizard-page is-navigable="true">
     <signing-setup-page-methods
       siging-methods="model.signingMethods"
     ></signing-setup-page-methods>
   </component-wizard-page>
-  <component-wizard-page is-navigable="true">
+  <!-- <component-wizard-page is-navigable="true">
     second page
   </component-wizard-page>
   <component-wizard-page is-navigable="$ctrl.letItHappen">
@@ -12,5 +23,5 @@
   </component-wizard-page>
   <component-wizard-page is-navigable="false">
     non navigable page
-  </component-wizard-page>
+  </component-wizard-page> -->
 </component-wizard>

@@ -1,3 +1,39 @@
-<div class="AppForm-copy-heading">
-  <h3 class="u-headingInherit">Prepare for Signing</h3>
+<div class="AppForm-copy-block AppForm-copy-block--first">
+  <div class="AppForm-copy-heading">
+    <h3 class="u-headingInherit">Prepare for Signing</h3>
+  </div>
+
+  <div class="AppForm-text">
+    To finish submitting this form,
+    <strong>the form will need to be signed,</strong> potentially by multiple
+    different people. There are several options to configure how this signing
+    process will work.
+  </div>
+</div>
+
+<div class="AppForm-copy-block">
+  <div class="AppForm-copy-step-header">
+    <div class="AppForm-copy-step-number">1</div>
+    <div class="AppForm-copy-step-heading">
+      Select signing method
+    </div>
+  </div>
+  <radio-block-set model="signingMethods">
+    <radio-block value="digital">
+      <heading>Digital Signature</heading>
+      <description
+        >Users you specify will be invited by email, and given a link to
+        digitally sign the form</description
+      >
+    </radio-block>
+    <radio-block value="hardCopy">
+      <heading>Hard Copy Signature</heading>
+      <description
+        >You will print a PDF copy of the form, and gather the appropariate
+        signatures. You will then upload a scanned copy of the signed document
+        to complete the submission process.</description
+      >
+    </radio-block>
+  </radio-block-set>
+  <div class="AppForm-radioBlocks"></div>
 </div>
