@@ -9,8 +9,9 @@
 >
   <div class="RadioBlock-column RadioBlock-column--indicator">
     <md-radio-button
-      aria-hidden="true"
-      ng-value="$ctrl.value"
+      ng-focus="$ctrl.onRadioFocus($event)"
+      ng-blur="$ctrl.onRadioBlur($event)"
+      ng-value="$ctrl._value"
       tabindex="-1"
     ></md-radio-button>
   </div>

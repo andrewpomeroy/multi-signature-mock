@@ -26,12 +26,24 @@ function RadioBlockCtrl($scope, $parse, $attrs, $element, $timeout) {
 
 	Object.defineProperties($ctrl, {
 		isActive: {
-			get: () => $ctrl.radioBlockGroup.model === $ctrl.value
+			get: () => $ctrl.radioBlockGroup.model === $ctrl._value
+		},
+		_value: {
+			get: () => 	
+				$ctrl.value === "true"
+					? true
+					: $ctrl.value === "false"
+						? false
+						: $ctrl.value
 		}
 	});
 
+	$ctrl.onRadioFocus = $event => {
+		console.log($event);
+	};
+
 	$ctrl.activate = $event => {
-		if ($event.isTrusted && $ctrl.radioBlockGroup.modelValue !== $ctrl.value) {
+		if ($event.isTrusted && $ctrl.radioBlockGroup.modelValue !== $ctrl._value) {
 			$timeout(() => {
 				angular.element(radioBtn)[0].click();
 			});
