@@ -1,8 +1,20 @@
 <div class="DebugSplit">
-  <div class="DebugSplit-controlPanel"></div>
+  <div class="DebugSplit-controlPanel">
+    <h2>Form options</h2>
+    <h4>Certification Methods</h4>
+    <label><input type="checkbox" ng-model="$ctrl.useDigital" />Digital</label>
+    <label
+      ><input type="checkbox" ng-model="$ctrl.useHardCopy" />Hard Copy</label
+    >
+    <h2>Model</h2>
+    <pre>{{$ctrl.model.data | json}}</pre>
+  </div>
   <div class="DebugSplit-mainPanel">
     <div class="shim AppForm-section-content">
-      <certification-wizard model="model"></certification-wizard>
+      <certification-wizard
+        wnd-model="$ctrl.model"
+        options="$ctrl.certificationOptions"
+      ></certification-wizard>
     </div>
   </div>
 </div>

@@ -26,13 +26,11 @@ function ComponentWizardController($element) {
 					return registeredPageId === id;
 				});
 			});
-		console.log($ctrl.pages);
 		$ctrl.navigablePages = $ctrl.pages.filter(pageId => {
 			const page = $ctrl.registeredPages.get(pageId);
-			console.log(page, page.isNavigable);
 			return page && page.isNavigable;
 		});
-		console.log("navigable pages", $ctrl.navigablePages);
+		// console.log("navigable pages", $ctrl.navigablePages);
 	}
 
 	$ctrl.getIndex = page => $ctrl.pages.findIndex(x => x === page); 
@@ -70,12 +68,8 @@ function ComponentWizardController($element) {
 	$ctrl.$onInit = () => {
 	};
 
-
 	$ctrl.$postLink = () => {
-		console.log("wizard postlink");
-
 		initializeActivePage();
-		// console.log($ctrl.registeredPages);
 	};
 
 }

@@ -10,8 +10,10 @@
       </h3>
     </div>
   </div>
-  <component-wizard-page is-navigable="true">
-    <signing-setup-page-methods model="model"></signing-setup-page-methods>
+  <component-wizard-page>
+    <signing-setup-page-methods
+      options="$ctrl.options"
+    ></signing-setup-page-methods>
   </component-wizard-page>
   <!-- <component-wizard-page is-navigable="true">
     second page

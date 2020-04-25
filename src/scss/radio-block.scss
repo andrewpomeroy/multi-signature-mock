@@ -51,6 +51,11 @@ $RadioBlock-hoverColor: hsl(hue($RadioBlock-activeColor), 100%, 97%);
     .md-off {
       border-color: white;
     }
+  }
+}
+.RadioBlock md-radio-button {
+  &,
+  &.md-checked {
     .md-on {
       background: white;
     }

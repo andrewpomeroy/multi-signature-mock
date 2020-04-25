@@ -18,7 +18,6 @@ export default {
 ComponentWizardPageController.$inject = ["$element", "$attrs"];
 function ComponentWizardPageController ($element, $attrs) {
 	const $ctrl = this;
-	console.log("wtf is attrs", $attrs.isNavigable);
 
 	$ctrl.uuid = `page-${uuid()}`;
 	$element[0].setAttribute("id", $ctrl.uuid);
@@ -38,7 +37,6 @@ function ComponentWizardPageController ($element, $attrs) {
 	};
 
 	$ctrl.$onChanges = (changes) => {
-		console.log(changes);
 		if (changes._isNavigable) {
 			$ctrl.componentWizard.updatePage(this);
 		}

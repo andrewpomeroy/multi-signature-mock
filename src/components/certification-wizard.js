@@ -4,6 +4,7 @@ import template from "./certification-wizard.html";
 export default {
 	bindings: {
 		model: "<",
+		options: "<"
 	},
 	template: template,
 	controller: CertificationWizardController,

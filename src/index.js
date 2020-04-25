@@ -1,6 +1,7 @@
 import angular from "angular";
 import "@uirouter/angularjs";
 import "@windsor/angular-material";
+import "@windsor/form-ng";
 import "angular-aria";
 import "angular-sanitize";
 import "angular-animate";

@@ -7,7 +7,8 @@ angular.module(AppModule, [
 	"ngSanitize",
 	"ngAria",
 	"ngAnimate",
-	"ngMaterial"
+	"ngMaterial",
+	"wnd.form"
 ]).controller("HelloController", function ($scope) {
 
 });
