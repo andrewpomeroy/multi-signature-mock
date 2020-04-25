@@ -6,6 +6,9 @@ export default {
 		model: "<",
 		options: "<"
 	},
+	require: {
+		wndModel: ""
+	},
 	template: template,
 	controller: CertificationWizardController,
 	transclude: true,

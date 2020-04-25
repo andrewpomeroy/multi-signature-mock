@@ -19,16 +19,19 @@ ComponentWizardPageController.$inject = ["$element", "$attrs"];
 function ComponentWizardPageController ($element, $attrs) {
 	const $ctrl = this;
 
-	$ctrl.uuid = `page-${uuid()}`;
-	$element[0].setAttribute("id", $ctrl.uuid);
+	$ctrl.id = `page-${uuid()}`;
+	$element[0].setAttribute("id", $ctrl.id);
 
-	Object.defineProperties(this, {
+	Object.defineProperties($ctrl, {
 		isActive: {
-			get: () => $ctrl.componentWizard.activePage === this.uuid
+			get: () => $ctrl.componentWizard.activePage === $ctrl.id
 		},
 		// proxying isNavigable so it defaults to true
 		isNavigable: {
-			get: () => $ctrl._isNavigable === undefined ? true : $ctrl._isNavigable
+			get: () => {
+				console.log($attrs.isNavigable, $ctrl._isNavigable);
+				return $attrs.isNavigable === undefined ? true : $ctrl._isNavigable;
+			}
 		}
 	});
 
@@ -38,7 +41,8 @@ function ComponentWizardPageController ($element, $attrs) {
 
 	$ctrl.$onChanges = (changes) => {
 		if (changes._isNavigable) {
-			$ctrl.componentWizard.updatePage(this);
+			console.log("changes yo", changes._isNavigable);
+			$ctrl.componentWizard.onPageUpdate(this);
 		}
 	};
 

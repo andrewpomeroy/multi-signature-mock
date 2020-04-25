@@ -1,10 +1,9 @@
 <div
   class="RadioBlock"
-  tabindex="0"
   role="radio"
   ng-class="{'RadioBlock--isActive': $ctrl.isActive}"
-  aria-labelledby="{{$ctrl.uuid}}-label"
-  aria-describedby="{{$ctrl.uuid}}-description"
+  aria-labelledby="{{$ctrl.id}}-label"
+  aria-describedby="{{$ctrl.id}}-description"
   aria-checked="{{$ctrl.isActive}}"
   ng-click="$ctrl.activate($event)"
 >
@@ -17,12 +16,12 @@
   </div>
   <div class="RadioBlock-column RadioBlock-column--body" aria-hidden="true">
     <div
-      id="{{$ctrl.uuid}}-label"
+      id="{{$ctrl.id}}-label"
       class="RadioBlock-heading"
       ng-transclude="heading"
     ></div>
     <div
-      id="{{$ctrl.uuid}}-description"
+      id="{{$ctrl.id}}-description"
       class="RadioBlock-description"
       ng-transclude="description"
     ></div>

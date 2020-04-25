@@ -36,7 +36,6 @@ function WizardShimCtrl() {
 	};
 	const data = {
 		signingMethod: undefined,
-		// signingMethod: "hardCopy",
 		signatureRoles: [
 			{
 				name: "Owner",

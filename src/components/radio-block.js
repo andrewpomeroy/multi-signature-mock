@@ -13,7 +13,7 @@ export default {
 	controller: RadioBlockCtrl,
 	transclude: {
 		heading: "heading",
-		description: "description"
+		description: "?description"
 	}
 };
 
@@ -21,10 +21,10 @@ RadioBlockCtrl.$inject = ["$scope", "$parse", "$attrs", "$element", "$timeout"];
 function RadioBlockCtrl($scope, $parse, $attrs, $element, $timeout) {
 	const $ctrl = this;
 
-	$ctrl.uuid = uuid();
+	$ctrl.id = uuid();
 	const radioBtn = $element.find("md-radio-button");
 
-	Object.defineProperties(this, {
+	Object.defineProperties($ctrl, {
 		isActive: {
 			get: () => $ctrl.radioBlockGroup.model === $ctrl.value
 		}

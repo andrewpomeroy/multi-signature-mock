@@ -32,8 +32,8 @@ function ComponentWizardNavController () {
 	});
 
 	function getNeighbor(int) {
-		// console.log("id", $ctrl.page.uuid, "index", $ctrl.componentWizard.getIndex($ctrl.page.uuid), "int", int, "w pages", $ctrl.componentWizard.pages);
-		return $ctrl.componentWizard.pages[$ctrl.componentWizard.getIndex($ctrl.page.uuid) + int];
+		// console.log("id", $ctrl.page.id, "index", $ctrl.componentWizard.getIndex($ctrl.page.id), "int", int, "w pages", $ctrl.componentWizard.pages);
+		return $ctrl.componentWizard.pages[$ctrl.componentWizard.getIndex($ctrl.page.id) + int];
 	}
 	function isNeighborNavigable(int) {
 		const neighbor = getNeighbor(int);

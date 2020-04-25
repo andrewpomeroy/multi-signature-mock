@@ -37,19 +37,21 @@ function ComponentWizardController($element) {
 
 	function updatePages() {
 		buildPageList();
+		// In an initalization scenario, or if our current page becomes inaccessible due to model changes, fallback to last viewable page
+		if (!$ctrl.activePage || $ctrl.pages.indexOf($ctrl.activePage) === -1) initializeActivePage();
 	}
 
 	$ctrl.registerPage = page => {
-		$ctrl.registeredPages.set(page.uuid, page);
+		$ctrl.registeredPages.set(page.id, page);
 		updatePages();
 	};
 	
-	$ctrl.updatePage = page => {
+	$ctrl.onPageUpdate = page => {
 		updatePages();
 	};
 
 	$ctrl.deregisterPage = page => {
-		$ctrl.registeredPages.delete(page.uuid);
+		$ctrl.registeredPages.delete(page.id);
 		updatePages();
 	};
 
@@ -69,6 +71,7 @@ function ComponentWizardController($element) {
 	};
 
 	$ctrl.$postLink = () => {
+		console.log("postlink", $ctrl.pages, $ctrl.navigablePages);
 		initializeActivePage();
 	};
 
