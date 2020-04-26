@@ -35,8 +35,10 @@ function WizardShimCtrl() {
 
 	};
 	const data = {
-		signingMethod: undefined,
-		signatureRoles: [
+		// signingMethod: undefined,
+		signingMethod: "digital",
+		selfSignedOnly: undefined,
+		signingRoles: [
 			{
 				name: "Owner",
 				isRepeatable: false,

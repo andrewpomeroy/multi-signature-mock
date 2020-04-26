@@ -1,0 +1,56 @@
+<div class="AppForm-copy-block AppForm-copy-block--first">
+  <div class="AppForm-copy-step-header">
+    <div class="AppForm-copy-step-number">
+      {{$ctrl.certificationWizard.options.signingMethods.length > 1 ? "2" :
+      "1"}}
+    </div>
+    <div class="AppForm-copy-step-heading">
+      Choose signers
+    </div>
+  </div>
+</div>
+<div class="AppForm-copy-block">
+  <p class="AppForm-text">
+    Will you need any others to sign this form?
+  </p>
+  <radio-block-group wnd-property="data.selfSignedOnly">
+    <radio-block value="true">
+      <heading>
+        No
+      </heading>
+      <description>
+        I will be the only signer.
+      </description>
+    </radio-block>
+    <radio-block value="false">
+      <heading>
+        Yes
+      </heading>
+      <description>
+        I need to invite other users to sign.
+      </description>
+    </radio-block>
+  </radio-block-group>
+</div>
+<div
+  class="ComponentWizard-fadeIn"
+  ng-if="$ctrl.wndModel.model.data.selfSignedOnly == false"
+>
+  <div class="AppForm-copy-block">
+    <p class="AppForm-text">
+      Please <strong>fill in information for any users</strong> who will need to
+      sign the form. When you finish this process, they will each be
+      <strong>sent an email invitation to sign the form.</strong>
+    </p>
+    <p class="AppForm-text">
+      Please make sure you use the correct email address for each user.
+    </p>
+  </div>
+  <div class="AppForm-copy-block">
+    <div class="FormCard" ng-repeat="role in $ctrl.roles">
+      <div>{{role.name}}</div>
+      <div>{{role.isRepeatable}}</div>
+      <div>{{role.isReadOnly}}</div>
+    </div>
+  </div>
+</div>

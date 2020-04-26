@@ -14,14 +14,12 @@
   <div>{{$ctrl.options.signingMethods}}</div>
   <div>{{$ctrl.options.signingMethods.length}}</div> -->
   <component-wizard-page ng-if="$ctrl.options.signingMethods.length > 1">
-    <signing-setup-page-methods
-      options="$ctrl.options"
-    ></signing-setup-page-methods>
+    <signing-setup-page-methods></signing-setup-page-methods>
   </component-wizard-page>
   <component-wizard-page
     is-navigable="$ctrl.wndModel.model.data.signingMethod || $ctrl.options.signingMethods.length < 2"
   >
-    boop
+    <signing-setup-page-signers></signing-setup-page-signers>
   </component-wizard-page>
   <!-- <component-wizard-page is-navigable="true">
     second page

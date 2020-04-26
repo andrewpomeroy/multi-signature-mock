@@ -1,0 +1,12 @@
+.ComponentWizard-fadeIn {
+  &.ng-enter {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: 360ms ease-out;
+    transition-delay: 180ms;
+  }
+  &.ng-enter.ng-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
