@@ -29,7 +29,7 @@ function ComponentWizardPageController ($element, $attrs) {
 		// proxying isNavigable so it defaults to true
 		isNavigable: {
 			get: () => {
-				console.log($attrs.isNavigable, $ctrl._isNavigable);
+				// console.log($attrs.isNavigable, $ctrl._isNavigable);
 				return $attrs.isNavigable === undefined ? true : $ctrl._isNavigable;
 			}
 		}
@@ -41,7 +41,6 @@ function ComponentWizardPageController ($element, $attrs) {
 
 	$ctrl.$onChanges = (changes) => {
 		if (changes._isNavigable) {
-			console.log("changes yo", changes._isNavigable);
 			$ctrl.componentWizard.onPageUpdate(this);
 		}
 	};

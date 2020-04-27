@@ -1,7 +1,8 @@
-$RadioBlock-gutter: 20px;
-$RadioBlock-paddingV: 20px;
-$RadioBlock-paddingH: 24px;
-$RadioBlock-outline: #d4d4d4;
+$RadioBlock-gutter: $cell-gutter;
+$RadioBlock-paddingV: $cell-paddingV;
+$RadioBlock-paddingH: $cell-paddingH;
+$RadioBlock-outline: $cell-borderColor;
+$RadioBlock-borderRadius: $cell-borderRadius;
 $RadioBlock-activeColor: #485e6d;
 $RadioBlock-hoverColor: hsl(hue($RadioBlock-activeColor), 100%, 97%);
 
@@ -24,7 +25,7 @@ $RadioBlock-hoverColor: hsl(hue($RadioBlock-activeColor), 100%, 97%);
   height: 100%;
   padding-top: $RadioBlock-paddingV;
   padding-bottom: $RadioBlock-paddingV;
-  border-radius: 5px;
+  border-radius: $RadioBlock-borderRadius;
   &:not(.RadioBlock--isActive) {
     cursor: pointer;
     &:hover,

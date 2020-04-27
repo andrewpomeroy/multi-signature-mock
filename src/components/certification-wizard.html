@@ -19,7 +19,15 @@
   <component-wizard-page
     is-navigable="$ctrl.wndModel.model.data.signingMethod || $ctrl.options.signingMethods.length < 2"
   >
-    <signing-setup-page-signers></signing-setup-page-signers>
+    <signing-setup-page-signers
+      roles="$ctrl.wndModel.model.data.signingRoles"
+      original-roles="$ctrl.wndModel.model.data.signingRolesOriginal"
+    ></signing-setup-page-signers>
+  </component-wizard-page>
+  <component-wizard-page
+    is-navigable="$ctrl.wndModel.model.data.selfSignedOnly != null"
+  >
+    wooooooof
   </component-wizard-page>
   <!-- <component-wizard-page is-navigable="true">
     second page

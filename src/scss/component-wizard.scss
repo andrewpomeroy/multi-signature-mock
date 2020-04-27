@@ -1,7 +1,7 @@
-.ComponentWizard-fadeIn {
+@mixin ComponentWizard-largeFadeIn() {
   &.ng-enter {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(16px);
     transition: 360ms ease-out;
     transition-delay: 180ms;
   }
@@ -9,4 +9,32 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+.ComponentWizard-largeFadeIn {
+  @include ComponentWizard-largeFadeIn();
+}
+
+.ComponentWizard-fadeIn {
+  @include ComponentWizard-largeFadeIn();
+  &.ng-enter {
+    transition: 280ms;
+    transition-delay: 60ms;
+    transform: translateY(8px);
+  }
+}
+
+$ComponentWizard-nav-gutter: 16px;
+$ComponentWizard-navButton-paddingV: 12px;
+$ComponentWizard-navButton-paddingH: 8px;
+
+.ComponentWizard-nav {
+  display: flex;
+  & > :not(:last-child) {
+    margin-right: $ComponentWizard-nav-gutter;
+  }
+}
+.ComponentWizard-nav-button {
+  @include BlockButton-behaviors();
+  padding: $ComponentWizard-navButton-paddingV
+    $ComponentWizard-navButton-paddingH;
 }

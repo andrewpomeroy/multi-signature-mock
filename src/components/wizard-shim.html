@@ -6,6 +6,17 @@
     <label
       ><input type="checkbox" ng-model="$ctrl.useHardCopy" />Hard Copy</label
     >
+    <h4>
+      Roles
+    </h4>
+    <select
+      ng-model="$ctrl.roleSet"
+      ng-options="roleSet.name for roleSet in $ctrl.roleSets"
+    >
+      <!-- <option ng-repeat="roleSet as roleSet in roleSets"
+        >{{$ctrl.roleSets[roleSet]}}</option
+      > -->
+    </select>
     <h2>Model</h2>
     <pre>{{$ctrl.model.data | json}}</pre>
   </div>

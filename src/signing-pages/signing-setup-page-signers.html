@@ -33,7 +33,7 @@
   </radio-block-group>
 </div>
 <div
-  class="ComponentWizard-fadeIn"
+  class="ComponentWizard-largeFadeIn"
   ng-if="$ctrl.wndModel.model.data.selfSignedOnly == false"
 >
   <div class="AppForm-copy-block">
@@ -45,12 +45,49 @@
     <p class="AppForm-text">
       Please make sure you use the correct email address for each user.
     </p>
-  </div>
-  <div class="AppForm-copy-block">
-    <div class="FormCard" ng-repeat="role in $ctrl.roles">
-      <div>{{role.name}}</div>
-      <div>{{role.isRepeatable}}</div>
-      <div>{{role.isReadOnly}}</div>
+    <!-- <pre>{{$ctrl.roles}}</pre> -->
+    <!-- <pre>{{$ctrl.originalRoles}}</pre> -->
+    <div class="FormCards" ng-if="$ctrl.roles.length">
+      <div
+        class="FormCard FormCard--split ComponentWizard-fadeIn"
+        ng-repeat="role in $ctrl.roles"
+      >
+        <div
+          class="FormCard-main FormCard--split-item FormCard--split-item--fill"
+        >
+          <div class="FormCard-heading">
+            {{role.name}}
+          </div>
+          <div>
+            {{role.description}}
+          </div>
+        </div>
+        <div
+          class="FormCard-actions FormCard--split-item"
+          ng-if="!role.isReadOnly"
+        >
+          <button
+            class="FormCard-action IconButton IconButton--remove SvgWrap SvgWrap SvgWrap--fillDimensions"
+            ng-if="role.isRepeatable"
+            ng-click="$ctrl.copyRole($index)"
+          >
+            <md-tooltip>Duplicate<span class="sr-only"> Role</span></md-tooltip>
+            ${require('@windsor/static-assets/lib/svg/copy.svg')}
+          </button>
+          <button
+            class="FormCard-action IconButton IconButton--remove SvgWrap SvgWrap SvgWrap--fillDimensions"
+            ng-click="$ctrl.removeRole($index)"
+          >
+            <md-tooltip>Remove<span class="sr-only"> Role</span></md-tooltip>
+            ${require('@windsor/static-assets/lib/svg/x.svg')}
+          </button>
+        </div>
+      </div>
+      <!-- <div class="FormCards-item">
+        <button class="FormCards-addNew" ng-click="$ctrl.cloneRole()">
+          Add New Signature Role
+        </button>
+      </div> -->
     </div>
   </div>
 </div>
