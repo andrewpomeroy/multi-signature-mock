@@ -1,16 +1,23 @@
+wizard-shim {
+  overflow: hidden;
+}
+
 .DebugSplit {
+  overflow: hidden;
   flex: 1;
   display: flex;
   justify-content: center;
   background-color: hsl(0, 0%, 60%);
 }
 .DebugSplit-controlPanel {
+  overflow-y: auto;
   max-width: 320px;
   flex: 1;
   background-color: hsl(0, 0%, 80%);
   padding: 1rem;
 }
 .DebugSplit-mainPanel {
+  overflow-y: auto;
   max-width: 1120px;
   flex: 1;
   background-color: white;

@@ -25,7 +25,10 @@
 
 $ComponentWizard-nav-gutter: 16px;
 $ComponentWizard-navButton-paddingV: 12px;
-$ComponentWizard-navButton-paddingH: 8px;
+$ComponentWizard-navButton-paddingH: 20px;
+
+$ComponentWizard-navButton-background: #8f8f8f;
+$ComponentWizard-navButton-background--primary: #128484;
 
 .ComponentWizard-nav {
   display: flex;
@@ -33,8 +36,38 @@ $ComponentWizard-navButton-paddingH: 8px;
     margin-right: $ComponentWizard-nav-gutter;
   }
 }
+
 .ComponentWizard-nav-button {
   @include BlockButton-behaviors();
+  border: 0;
   padding: $ComponentWizard-navButton-paddingV
     $ComponentWizard-navButton-paddingH;
+  background-color: $ComponentWizard-navButton-background;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  font-weight: 500;
+  border-radius: 3px;
+  &:not([disabled="disabled"]) {
+    &:hover,
+    &:focus {
+      background-color: lighten($ComponentWizard-navButton-background, 10%);
+    }
+  }
+  &[disabled="disabled"] {
+    opacity: 0.4;
+  }
+}
+
+.ComponentWizard-nav-button--next {
+  background-color: $ComponentWizard-navButton-background--primary;
+  &:not([disabled="disabled"]) {
+    &:hover,
+    &:focus {
+      background-color: lighten(
+        $ComponentWizard-navButton-background--primary,
+        10%
+      );
+    }
+  }
 }
