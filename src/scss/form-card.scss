@@ -19,6 +19,7 @@ $FormCard-action-iconSize: 16px;
   @include FormCardShape();
   border: 1px solid $cell-borderColor;
   box-shadow: $FormCard-shadow;
+  @include cell-fadeIn();
 }
 .FormCard-split,
 .FormCard--split {

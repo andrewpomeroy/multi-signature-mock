@@ -1,5 +1,5 @@
 import angular from "angular";
-import template from "./signing-setup-page-signers.html";
+import template from "./signing-setup-page-roles.html";
 
 export default {
 	bindings: {
@@ -11,13 +11,17 @@ export default {
 		certificationWizard: "^"
 	},
 	template: template,
-	controller: SigningSetupPageSignersCtrl,
+	controller: SigningSetupPageRolesCtrl,
 	transclude: true,
 };
 
-SigningSetupPageSignersCtrl.$inject = [];
-function SigningSetupPageSignersCtrl() {
+SigningSetupPageRolesCtrl.$inject = [];
+function SigningSetupPageRolesCtrl() {
 	const $ctrl = this;
+
+	// Object.defineProperties($ctrl, {
+	// });
+
 	
 	$ctrl.$onInit = function () {
 	};
@@ -28,6 +32,10 @@ function SigningSetupPageSignersCtrl() {
 
 	$ctrl.cloneRole = function () {
 		$ctrl.roles.push(angular.copy($ctrl.roles[$ctrl.roles.length - 1]));
+	};
+
+	$ctrl.hasEditableRole = function () {
+		$ctrl.roles.find(x => !x.isReadOnly);
 	};
 	
 }

@@ -8,7 +8,7 @@ export default {
 		_isNavigable: "<isNavigable"
 	},
 	require: {
-		componentWizard: "^",
+		componentWizard: "^",	 	
 	},
 	template: template,
 	controller: ComponentWizardPageController,

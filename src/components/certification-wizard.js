@@ -3,11 +3,10 @@ import template from "./certification-wizard.html";
 
 export default {
 	bindings: {
-		model: "<",
 		options: "<"
 	},
 	require: {
-		wndModel: ""
+		wndModel: "?^"
 	},
 	template: template,
 	controller: CertificationWizardController,
@@ -17,11 +16,25 @@ export default {
 CertificationWizardController.$inject = ["$timeout"];
 function CertificationWizardController($timeout) {
 	const $ctrl = this;
-	
-	$ctrl.letItHappen = true;
 
-	$timeout(() => {
-		$ctrl.letItHappen = false;
-	}, 500);
+	Object.defineProperties($ctrl, {
+		isSingleSigner: {
+			get: () => $ctrl.wndModel.model.data.signingRoles && $ctrl.wndModel.model.data.signingRoles.length === 1 && !$ctrl.wndModel.model.data.signingRoles.find(x => x.isRepeatable)
+		},
+		hasRepeatableRoles: {
+			get: () => $ctrl.wndModel.model.data.signingRoles && $ctrl.wndModel.model.data.signingRoles.find(x => x.isRepeatable && !x.isReadOnly)
+		},
+		hasMultipleRoles: {
+			get: () => $ctrl.wndModel.model.data.signingRoles && $ctrl.wndModel.model.data.signingRoles.length > 1
+		},
+		hasMultipleSigningMethods: {
+			get: () => $ctrl.options.signingMethods.length > 1
+		},
+	});
+
+	
+	$ctrl.$onInit = function () {
+		// console.log($ctrl.wndModel);
+	};
 
 }

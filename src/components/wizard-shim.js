@@ -54,7 +54,16 @@ function WizardShimCtrl() {
 			],
 		},
 		{
-			name: "nonRepeatable",
+			name: "singleRepeating",
+			roles: [
+				{
+					name: "Signer",
+					isRepeatable: true,
+				}
+			],
+		},
+		{
+			name: "multiNonRepeatable",
 			roles: [
 				{
 					name: "Owner",
@@ -75,7 +84,7 @@ function WizardShimCtrl() {
 			],
 		},
 		{
-			name: "repeatable",
+			name: "multiRepeatable",
 			roles: [
 				{
 					name: "Owner",
@@ -111,7 +120,7 @@ function WizardShimCtrl() {
 	
 	$ctrl.model.validate();
 
-	$ctrl.roleSet = $ctrl.roleSets.find(x => x.name === "nonRepeatable");
+	$ctrl.roleSet = $ctrl.roleSets.find(x => x.name === "single");
 
 }
 

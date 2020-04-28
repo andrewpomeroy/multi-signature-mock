@@ -1,4 +1,4 @@
-<component-wizard model="model">
+<component-wizard>
   <div class="PageHeader AppForm-PageHeader">
     <div flex="fill">
       <h3
@@ -19,21 +19,18 @@
   <component-wizard-page
     is-navigable="$ctrl.wndModel.model.data.signingMethod || $ctrl.options.signingMethods.length < 2"
   >
-    <signing-setup-page-signers
+    <signing-setup-page-roles
       roles="$ctrl.wndModel.model.data.signingRoles"
       original-roles="$ctrl.wndModel.model.data.signingRolesOriginal"
-    ></signing-setup-page-signers>
+    ></signing-setup-page-roles>
   </component-wizard-page>
   <component-wizard-page
     is-navigable="$ctrl.wndModel.model.data.selfSignedOnly != null"
   >
-    wooooooof
+    <signing-setup-page-invites></signing-setup-page-invites>
   </component-wizard-page>
   <!-- <component-wizard-page is-navigable="true">
     second page
-  </component-wizard-page>
-  <component-wizard-page is-navigable="$ctrl.letItHappen">
-    third page
   </component-wizard-page>
   <component-wizard-page is-navigable="false">
     non navigable page

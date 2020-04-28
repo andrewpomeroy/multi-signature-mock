@@ -3,7 +3,6 @@ import template from "./component-wizard.html";
 
 export default {
 	bindings: {
-		model: "<",
 	},
 	template: template,
 	controller: ComponentWizardController,

@@ -4,10 +4,17 @@
   </div>
 
   <div class="AppForm-text">
-    To finish submitting this form,
-    <strong>the form will need to be signed,</strong> potentially by multiple
-    different people. There are several options to configure how this signing
-    process will work.
+    <span ng-if="!$ctrl.certificationWizard.isSingleSigner">
+      To finish submitting this form,
+      <strong>the form will need to be signed,</strong> potentially by multiple
+      different people. There are several options to configure how this signing
+      process will work.
+    </span>
+    <span ng-if="$ctrl.certificationWizard.isSingleSigner">
+      To finish submitting this form,
+      <strong>the form will need to be signed,</strong> by you or another person
+      if you choose.
+    </span>
   </div>
 </div>
 
