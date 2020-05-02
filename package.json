@@ -12,7 +12,7 @@
     "@windsor/form-ng": "^5.4.0",
     "@windsor/static-assets": "^5.2.18",
     "@windsor/validate-model-js": "^7.0.0",
-    "angular": "1.7.2",
+    "angular": "1.7.9",
     "angular-animate": "^1.7.9",
     "angular-aria": "^1.7.9",
     "angular-sanitize": "^1.7.9",
