@@ -7,6 +7,13 @@
       ><input type="checkbox" ng-model="$ctrl.useHardCopy" />Hard Copy</label
     >
     <h4>
+      Invitations
+    </h4>
+    <label
+      ><input type="checkbox" ng-model="$ctrl.invitationsEnabled" />Invitations
+      Enabled</label
+    >
+    <h4>
       Roles
     </h4>
     <select
@@ -22,10 +29,10 @@
   </div>
   <div class="DebugSplit-mainPanel">
     <div class="shim AppForm-section-content">
-      <certification-wizard
+      <signing-wizard
         wnd-model="$ctrl.model"
         options="$ctrl.certificationOptions"
-      ></certification-wizard>
+      ></signing-wizard>
     </div>
   </div>
 </div>

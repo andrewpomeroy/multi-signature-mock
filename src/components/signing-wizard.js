@@ -1,5 +1,5 @@
 import angular from "angular";
-import template from "./certification-wizard.html";
+import template from "./signing-wizard.html";
 
 export default {
 	bindings: {
@@ -9,17 +9,24 @@ export default {
 		wndModel: "?^"
 	},
 	template: template,
-	controller: CertificationWizardController,
+	controller: SigningWizardController,
 	transclude: true,
 };
 
-CertificationWizardController.$inject = ["$timeout"];
-function CertificationWizardController($timeout) {
+SigningWizardController.$inject = ["$timeout"];
+function SigningWizardController($timeout) {
 	const $ctrl = this;
 
 	Object.defineProperties($ctrl, {
 		isSingleSigner: {
 			get: () => $ctrl.wndModel.model.data.signingRoles && $ctrl.wndModel.model.data.signingRoles.length === 1 && !$ctrl.wndModel.model.data.signingRoles.find(x => x.isRepeatable)
+		},
+		canInviteSigners: {
+			get: () => $ctrl.wndModel.model.data.invitationsEnabled
+		},	
+		// It isn't helpful to ask 
+		willAskWhoSigns: {
+			get: () => $ctrl.canInviteSigners && $ctrl.hasRepeatableRoles
 		},
 		hasRepeatableRoles: {
 			get: () => $ctrl.wndModel.model.data.signingRoles && $ctrl.wndModel.model.data.signingRoles.find(x => x.isRepeatable && !x.isReadOnly)

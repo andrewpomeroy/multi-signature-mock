@@ -1,43 +1,42 @@
 <div class="AppForm-copy-block AppForm-copy-block--first">
   <div class="AppForm-copy-step-header">
     <div class="AppForm-copy-step-number">
-      {{$ctrl.certificationWizard.options.signingMethods.length > 1 ? "2" :
-      "1"}}
+      {{$ctrl.signingWizard.options.signingMethods.length > 1 ? "2" : "1"}}
     </div>
     <div class="AppForm-copy-step-heading">
-      {{$ctrl.certificationWizard.isSingleSigner ? "Choose signer" :
-      $ctrl.certificationWizard.hasRepeatableRoles ? "Configure signing
-      requirements" : "Choose signers"}}
+      {{$ctrl.signingWizard.isSingleSigner ? "Choose signer" :
+      $ctrl.signingWizard.hasRepeatableRoles ? "Configure signing requirements"
+      : "Choose signers"}}
     </div>
   </div>
 </div>
 <div class="AppForm-copy-block">
-  <p class="AppForm-text" ng-if="!$ctrl.certificationWizard.isSingleSigner">
+  <p class="AppForm-text" ng-if="!$ctrl.signingWizard.isSingleSigner">
     Will you need any others to sign this form?
   </p>
-  <p class="AppForm-text" ng-if="$ctrl.certificationWizard.isSingleSigner">
+  <p class="AppForm-text" ng-if="$ctrl.signingWizard.isSingleSigner">
     Who will be signing this form?
   </p>
   <radio-block-group wnd-property="data.selfSignedOnly">
     <radio-block value="true">
-      <heading ng-if="$ctrl.certificationWizard.isSingleSigner">
+      <heading ng-if="$ctrl.signingWizard.isSingleSigner">
         Me
       </heading>
-      <heading ng-if="!$ctrl.certificationWizard.isSingleSigner">
+      <heading ng-if="!$ctrl.signingWizard.isSingleSigner">
         No
       </heading>
-      <description ng-if="!$ctrl.certificationWizard.isSingleSigner">
+      <description ng-if="!$ctrl.signingWizard.isSingleSigner">
         I will be the only signer.
       </description>
     </radio-block>
     <radio-block value="false">
-      <heading ng-if="$ctrl.certificationWizard.isSingleSigner">
+      <heading ng-if="$ctrl.signingWizard.isSingleSigner">
         Someone else
       </heading>
-      <heading ng-if="!$ctrl.certificationWizard.isSingleSigner">
+      <heading ng-if="!$ctrl.signingWizard.isSingleSigner">
         Yes
       </heading>
-      <description ng-if="!$ctrl.certificationWizard.isSingleSigner">
+      <description ng-if="!$ctrl.signingWizard.isSingleSigner">
         I need to invite other users to sign.
       </description>
     </radio-block>
@@ -48,7 +47,7 @@
 
 <div
   class="ComponentWizard-largeFadeIn"
-  ng-if="$ctrl.certificationWizard.hasMultipleRoles && $ctrl.wndModel.model.data.selfSignedOnly === false"
+  ng-if="$ctrl.signingWizard.hasMultipleRoles && $ctrl.hasEditableRole && $ctrl.wndModel.model.data.selfSignedOnly === false"
 >
   <div class="AppForm-copy-block">
     <p class="AppForm-text">
@@ -67,10 +66,8 @@
     </div>
     <p class="AppForm-text">
       The form will only be considered complete when
-      <strong>all the following roles have been signed for. </strong>
-      <span ng-if="$ctrl.hasEditableRole"
-        >You may adjust the roles as needed.</span
-      >
+      <strong>all the following roles have been signed for. </strong>You may
+      adjust the roles as needed.
     </p>
   </div>
   <div class="AppForm-copy-block">
@@ -125,21 +122,20 @@
 
 <div
   class="ComponentWizard-largeFadeIn"
-  ng-if="!$ctrl.certificationWizard.hasMultipleRoles && $ctrl.wndModel.model.data.selfSignedOnly === false"
+  ng-if="(!$ctrl.signingWizard.hasMultipleRoles || !$ctrl.hasEditableRole) && $ctrl.wndModel.model.data.selfSignedOnly === false"
 >
   <div class="AppForm-copy-block AppForm-copy-block--first">
     <div class="AppForm-copy-step-header">
       <div class="AppForm-copy-step-number">
-        {{$ctrl.certificationWizard.options.signingMethods.length > 1 ? "3" :
-        "2"}}
+        {{$ctrl.signingWizard.options.signingMethods.length > 1 ? "3" : "2"}}
       </div>
       <div class="AppForm-copy-step-heading">
-        {{$ctrl.certificationWizard.isSingleSigner ? "Invite a Signer" : "Invite
+        {{$ctrl.signingWizard.isSingleSigner ? "Invite a Signer" : "Invite
         Signers"}}
       </div>
     </div>
   </div>
   <signing-invitation-form
-    is-single="$ctrl.certificationWizard.isSingleSigner"
+    is-single="$ctrl.signingWizard.isSingleSigner"
   ></signing-invitation-form>
 </div>

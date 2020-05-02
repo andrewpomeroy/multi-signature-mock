@@ -29,6 +29,30 @@ function WizardShimCtrl() {
 		},
 	});
 	Object.defineProperties($ctrl, {
+		// invitationsEnabled: {
+		// 	get: () => $ctrl._invitationsEnabled === undefined ? true : $ctrl._invitationsEnabled,
+		// 	set: value => {
+		// 		$ctrl._invitationsEnabled = value;
+		// 		if (value) {
+		// 			initOptions();
+		// 		}
+		// 		else {
+		// 			$ctrl.roleSet = {};
+		// 		}
+		// 	}
+		// },
+		invitationsEnabled: {
+			get: () => $ctrl.model.data.invitationsEnabled === undefined ? true : $ctrl.model.data.invitationsEnabled,
+			set: value => {
+				$ctrl.model.data.invitationsEnabled = value;
+				if (value) {
+					initOptions();
+				}
+				else {
+					$ctrl.roleSet = {};
+				}
+			}
+		},
 		roleSet: {
 			get: () => $ctrl._roleSet,
 			set: value => {
@@ -103,11 +127,33 @@ function WizardShimCtrl() {
 					isReadOnly: false
 				},
 			]
+		},
+		{
+			name: "multiReadOnly",
+			roles: [
+				{
+					name: "Owner",
+					isRepeatable: false,
+					isReadOnly: true
+				},
+				{
+					name: "Operator",
+					isRepeatable: true,
+					isReadOnly: true
+				},
+				{
+					name: "Engineer",
+					description: "Id veniam tempor fugiat ipsum est dolore anim dolor nulla irure officia excepteur.",
+					isRepeatable: true,
+					isReadOnly: true
+				},
+			]
 		}
 	];
 
 	const data = {
 		// signingMethod: undefined,
+		invitationsEnabled: true,
 		signingMethod: "digital",
 		selfSignedOnly: undefined,
 		signingRoles: "",
@@ -120,7 +166,11 @@ function WizardShimCtrl() {
 	
 	$ctrl.model.validate();
 
-	$ctrl.roleSet = $ctrl.roleSets.find(x => x.name === "single");
+	function initOptions () {
+		$ctrl.roleSet = $ctrl.roleSets.find(x => x.name === "single");
+	}
+	initOptions();
+
 
 }
 

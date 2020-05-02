@@ -8,7 +8,7 @@ export default {
 	},
 	require: {
 		wndModel: "?^",
-		certificationWizard: "^"
+		signingWizard: "^"
 	},
 	template: template,
 	controller: SigningSetupPageRolesCtrl,
@@ -19,8 +19,11 @@ SigningSetupPageRolesCtrl.$inject = [];
 function SigningSetupPageRolesCtrl() {
 	const $ctrl = this;
 
-	// Object.defineProperties($ctrl, {
-	// });
+	Object.defineProperties($ctrl, {
+		hasEditableRole: {
+			get: () => $ctrl.roles.find(x => !x.isReadOnly)
+		}
+	});
 
 	
 	$ctrl.$onInit = function () {
@@ -34,8 +37,4 @@ function SigningSetupPageRolesCtrl() {
 		$ctrl.roles.push(angular.copy($ctrl.roles[$ctrl.roles.length - 1]));
 	};
 
-	$ctrl.hasEditableRole = function () {
-		$ctrl.roles.find(x => !x.isReadOnly);
-	};
-	
 }

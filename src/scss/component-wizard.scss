@@ -14,15 +14,6 @@
   @include ComponentWizard-largeFadeIn();
 }
 
-.ComponentWizard-fadeIn {
-  @include ComponentWizard-largeFadeIn();
-  &.ng-enter {
-    transition: 280ms;
-    transition-delay: 60ms;
-    transform: translateY(8px);
-  }
-}
-
 $ComponentWizard-nav-gutter: 16px;
 $ComponentWizard-navButton-paddingV: 12px;
 $ComponentWizard-navButton-paddingH: 20px;

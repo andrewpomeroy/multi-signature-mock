@@ -9,7 +9,7 @@ export default {
 	},
 	require: {
 		wndModel: "?^",
-		certificationWizard: "^"
+		signingWizard: "^"
 	},
 	template: template,
 	controller: SigningInvitationFormCtrl,
