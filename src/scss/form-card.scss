@@ -21,17 +21,18 @@ $FormCard-action-iconSize: 16px;
   box-shadow: $FormCard-shadow;
   @include cell-fadeIn();
 }
-.FormCard-split,
-.FormCard--split {
+.FormCard-split {
   display: flex;
   align-items: flex-start;
+  margin-left: -($FormCard-paddingH / 2);
+  margin-right: -($FormCard-paddingH / 2);
 }
-.FormCard-split-item,
-.FormCard--split-item {
+.FormCard-split-item {
   flex: 0 0 auto;
+  margin-left: $FormCard-paddingH / 2;
+  margin-right: $FormCard-paddingH / 2;
 }
-.FormCard-split-item--fill,
-.FormCard--split-item--fill {
+.FormCard-split-item--fill {
   flex: 1;
 }
 .FormCard-actions {

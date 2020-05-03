@@ -43,10 +43,11 @@ function RadioBlockCtrl($scope, $parse, $attrs, $element, $timeout) {
 	};
 
 	$ctrl.activate = $event => {
-		if ($event.isTrusted && $ctrl.radioBlockGroup.modelValue !== $ctrl._value) {
+		const isTrusted = $event.isTrusted != null ? $event.isTrusted : $event.originalEvent.isTrusted;
+		if (isTrusted && $ctrl.radioBlockGroup.modelValue !== $ctrl._value) {
 			$timeout(() => {
 				angular.element(radioBtn)[0].click();
 			});
 		}
 	};
-}
+} 

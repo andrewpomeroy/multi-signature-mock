@@ -5,7 +5,8 @@ export default {
 	bindings: {
 		// roles: "<",
 		// originalRoles: "<",
-		isSingle: "<"
+		isSingle: "<",
+		invites: "<"
 	},
 	require: {
 		wndModel: "?^",
@@ -22,7 +23,7 @@ function SigningInvitationFormCtrl() {
 
 	Object.defineProperties($ctrl, {
 		oneInviteLeft: {
-			get: () => $ctrl.$ctrl.invites.length === 1
+			get: () => $ctrl.invites.length === 1
 		}
 	});
 
@@ -36,7 +37,10 @@ function SigningInvitationFormCtrl() {
 	};
 
 	$ctrl.addNew = function () {
-		$ctrl.invites.push({});
+		$ctrl.invites.push({
+			email: "",
+			notes: ""
+		});
 	};
 	
 }

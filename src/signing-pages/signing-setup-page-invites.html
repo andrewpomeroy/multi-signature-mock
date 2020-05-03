@@ -9,81 +9,29 @@
   </div>
 </div>
 <div class="AppForm-copy-block">
-  <p class="AppForm-text">
-    Will you need any others to sign this form?
-  </p>
-  <radio-block-group wnd-property="data.selfSignedOnly">
-    <radio-block value="true">
-      <heading>
-        No
-      </heading>
-      <description>
-        I will be the only signer.
-      </description>
-    </radio-block>
-    <radio-block value="false">
-      <heading>
-        Yes
-      </heading>
-      <description>
-        I need to invite other users to sign.
-      </description>
-    </radio-block>
-  </radio-block-group>
+  <self-signing-selection></self-signing-selection>
 </div>
 <div
   class="ComponentWizard-largeFadeIn"
   ng-if="$ctrl.wndModel.model.data.selfSignedOnly == false"
 >
   <div class="AppForm-copy-block">
-    <p class="AppForm-text">
-      Please <strong>fill in information for any users</strong> who will need to
-      sign the form. When you finish this process, they will each be
-      <strong>sent an email invitation to sign the form.</strong>
-    </p>
-    <p class="AppForm-text">
-      Please make sure you use the correct email address for each user.
-    </p>
-    <!-- <pre>{{$ctrl.roles}}</pre> -->
-    <!-- <pre>{{$ctrl.originalRoles}}</pre> -->
-    <div class="FormCards" ng-if="$ctrl.roles.length">
-      <div class="FormCard FormCard--split" ng-repeat="role in $ctrl.roles">
-        <div
-          class="FormCard-main FormCard--split-item FormCard--split-item--fill"
-        >
-          <div class="FormCard-heading">
-            {{role.name}}
-          </div>
-          <div>
-            {{role.description}}
-          </div>
-        </div>
-        <div
-          class="FormCard-actions FormCard--split-item"
-          ng-if="!role.isReadOnly"
-        >
-          <button
-            class="FormCard-action IconButton IconButton--remove SvgWrap SvgWrap SvgWrap--fillDimensions"
-            ng-if="role.isRepeatable"
-            ng-click="$ctrl.copyRole($index)"
-          >
-            <md-tooltip>Duplicate<span class="sr-only"> Role</span></md-tooltip>
-            ${require('@windsor/static-assets/lib/svg/copy.svg')}
-          </button>
-          <button
-            class="FormCard-action IconButton IconButton--remove SvgWrap SvgWrap SvgWrap--fillDimensions"
-            ng-click="$ctrl.removeRole($index)"
-          >
-            <md-tooltip>Remove<span class="sr-only"> Role</span></md-tooltip>
-            ${require('@windsor/static-assets/lib/svg/x.svg')}
-          </button>
-        </div>
+    <div class="AppForm-copy-step-header">
+      <div class="AppForm-copy-step-number">
+        {{$ctrl.signingWizard.options.signingMethods.length > 1 ? "3" : "2"}}
       </div>
-      <!-- <div class="FormCards-item">
-        <button class="FormCards-addNew" ng-click="$ctrl.cloneRole()">
-          Add New Signature Role
-        </button>
-      </div> -->
+      <div class="AppForm-copy-step-heading">
+        {{$ctrl.signingWizard.isSingleSigner ? "Invite a Signer" : "Invite
+        Signers"}}
+      </div>
     </div>
   </div>
+  {{$ctrl.signingWizard.isSingleSigner}}
+  <signing-invitation-form
+    is-single="$ctrl.signingWizard.isSingleSigner"
+  ></signing-invitation-form>
+</div>
+
+  </div>
+
 </div>

@@ -11,36 +11,7 @@
   </div>
 </div>
 <div class="AppForm-copy-block">
-  <p class="AppForm-text" ng-if="!$ctrl.signingWizard.isSingleSigner">
-    Will you need any others to sign this form?
-  </p>
-  <p class="AppForm-text" ng-if="$ctrl.signingWizard.isSingleSigner">
-    Who will be signing this form?
-  </p>
-  <radio-block-group wnd-property="data.selfSignedOnly">
-    <radio-block value="true">
-      <heading ng-if="$ctrl.signingWizard.isSingleSigner">
-        Me
-      </heading>
-      <heading ng-if="!$ctrl.signingWizard.isSingleSigner">
-        No
-      </heading>
-      <description ng-if="!$ctrl.signingWizard.isSingleSigner">
-        I will be the only signer.
-      </description>
-    </radio-block>
-    <radio-block value="false">
-      <heading ng-if="$ctrl.signingWizard.isSingleSigner">
-        Someone else
-      </heading>
-      <heading ng-if="!$ctrl.signingWizard.isSingleSigner">
-        Yes
-      </heading>
-      <description ng-if="!$ctrl.signingWizard.isSingleSigner">
-        I need to invite other users to sign.
-      </description>
-    </radio-block>
-  </radio-block-group>
+  <self-signing-selection>
 </div>
 
 <!-- Role setup -->
@@ -77,36 +48,38 @@
     <!-- <pre>{{$ctrl.roles}}</pre> -->
     <!-- <pre>{{$ctrl.originalRoles}}</pre> -->
     <div class="FormCards" ng-if="$ctrl.roles.length">
-      <div class="FormCard FormCard--split" ng-repeat="role in $ctrl.roles">
-        <div
-          class="FormCard-main FormCard--split-item FormCard--split-item--fill"
-        >
-          <div class="FormCard-heading">
-            {{role.name}}
-          </div>
-          <div>
-            {{role.description}}
-          </div>
-        </div>
-        <div
-          class="FormCard-actions FormCard--split-item"
-          ng-if="!role.isReadOnly"
-        >
-          <button
-            class="FormCard-action IconButton IconButton--remove SvgWrap SvgWrap SvgWrap--fillDimensions"
-            ng-if="role.isRepeatable"
-            ng-click="$ctrl.copyRole($index)"
+      <div class="FormCard" ng-repeat="role in $ctrl.roles">
+        <div class="FormCard-split">
+          <div
+            class="FormCard-main FormCard-split-item FormCard-split-item--fill"
           >
-            <md-tooltip>Duplicate<span class="sr-only"> Role</span></md-tooltip>
-            ${require('@windsor/static-assets/lib/svg/copy.svg')}
-          </button>
-          <button
-            class="FormCard-action IconButton IconButton--remove SvgWrap SvgWrap SvgWrap--fillDimensions"
-            ng-click="$ctrl.removeRole($index)"
+            <div class="FormCard-heading">
+              {{role.name}}
+            </div>
+            <div>
+              {{role.description}}
+            </div>
+          </div>
+          <div
+            class="FormCard-actions FormCard-split-item"
+            ng-if="!role.isReadOnly"
           >
-            <md-tooltip>Remove<span class="sr-only"> Role</span></md-tooltip>
-            ${require('@windsor/static-assets/lib/svg/x.svg')}
-          </button>
+            <button
+              class="FormCard-action IconButton IconButton--remove SvgWrap SvgWrap SvgWrap--fillDimensions"
+              ng-if="role.isRepeatable"
+              ng-click="$ctrl.copyRole($index)"
+            >
+              <md-tooltip>Duplicate<span class="sr-only"> Role</span></md-tooltip>
+              ${require('@windsor/static-assets/lib/svg/copy.svg')}
+            </button>
+            <button
+              class="FormCard-action IconButton IconButton--remove SvgWrap SvgWrap SvgWrap--fillDimensions"
+              ng-click="$ctrl.removeRole($index)"
+            >
+              <md-tooltip>Remove<span class="sr-only"> Role</span></md-tooltip>
+              ${require('@windsor/static-assets/lib/svg/x.svg')}
+            </button>
+          </div>
         </div>
       </div>
       <!-- <div class="FormCards-item">
@@ -116,26 +89,4 @@
       </div> -->
     </div>
   </div>
-</div>
-
-<!-- Single-role -->
-
-<div
-  class="ComponentWizard-largeFadeIn"
-  ng-if="(!$ctrl.signingWizard.hasMultipleRoles || !$ctrl.hasEditableRole) && $ctrl.wndModel.model.data.selfSignedOnly === false"
->
-  <div class="AppForm-copy-block AppForm-copy-block--first">
-    <div class="AppForm-copy-step-header">
-      <div class="AppForm-copy-step-number">
-        {{$ctrl.signingWizard.options.signingMethods.length > 1 ? "3" : "2"}}
-      </div>
-      <div class="AppForm-copy-step-heading">
-        {{$ctrl.signingWizard.isSingleSigner ? "Invite a Signer" : "Invite
-        Signers"}}
-      </div>
-    </div>
-  </div>
-  <signing-invitation-form
-    is-single="$ctrl.signingWizard.isSingleSigner"
-  ></signing-invitation-form>
 </div>

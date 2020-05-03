@@ -1,47 +1,69 @@
 <div class="AppForm-copy-block" ng-if="!$ctrl.isSingle">
   <p class="AppForm-text">
     Please <strong>fill in information for any users</strong> who will need to
-    sign the form. When you finish this process, they will each be
+    sign. When you finish this process, they will each be
     <strong>sent an email invitation to sign the form.</strong>
   </p>
   <p class="AppForm-text">
-    Please make sure you use the correct email address for each user.
+    Please make sure you specify the correct email address for each user.
   </p>
 </div>
 <div class="AppForm-copy-block" ng-if="$ctrl.isSingle">
   <p class="AppForm-text">
-    Please <strong>fill in information for any users</strong> who will need to
-    sign the form. When you finish this process, they will each be
+    Please <strong>fill in information for the user</strong> who will need to
+    sign. When you finish this process, they will each be
     <strong>sent an email invitation to sign the form.</strong>
   </p>
   <p class="AppForm-text">
-    Please make sure you use the correct email address for each user.
+    Please make sure you specify the correct email address.
   </p>
 </div>
 <div class="AppForm-copy-block">
   <div class="FormCards">
-    <div class="FormCard FormCard--split" ng-repeat="role in $ctrl.invites">
-      <div
-        class="FormCard-main FormCard--split-item FormCard--split-item--fill"
-      >
-        field
-      </div>
-      <div
-        class="FormCard-main FormCard--split-item FormCard--split-item--fill"
-      >
-        field
-      </div>
-      <div
-        class="FormCard-actions FormCard--split-item"
-        ng-if="!role.isReadOnly && !$ctrl.isSingle && !$ctrl.oneInviteLeft"
-      >
-        <button
-          class="FormCard-action IconButton IconButton--remove SvgWrap SvgWrap SvgWrap--fillDimensions"
-          ng-click="$ctrl.removeInvite($index)"
+    <div class="FormCard" ng-repeat="invite in $ctrl.invites track by $index">
+      <div class="FormCard-split">
+        <div
+          class="FormCard-main FormCard-split-item FormCard-split-item--fill"
         >
-          <md-tooltip>Remove<span class="sr-only"> Invite</span></md-tooltip>
-          ${require('@windsor/static-assets/lib/svg/x.svg')}
-        </button>
+          <wnd-field-block
+            wnd-model="$ctrl.wndModel.model.data.invites[$index]"
+            wnd-label="Email"
+            margin="none"
+            full-width="true"
+          >
+            <wnd-field wnd-property="email">
+              <wnd-text></wnd-text>
+            </wnd-field>
+          </wnd-field-block>
+        </div>
+        <div
+          class="FormCard-main FormCard-split-item FormCard-split-item--fill"
+        >
+          <wnd-field-block
+            wnd-model="$ctrl.wndModel.model.data.invites[$index]"
+            wnd-label="Notes (optional)"
+            margin="none"
+            full-width="true"
+          >
+            <wnd-field wnd-property="notes">
+              <wnd-textarea
+                placeholder="Enter any information that will help this user correctly sign the form. i.e. suggesting the correct role to sign under."
+              ></wnd-textarea>
+            </wnd-field>
+          </wnd-field-block>
+        </div>
+        <div
+          class="FormCard-actions FormCard-split-item"
+          ng-if="!role.isReadOnly && !$ctrl.isSingle && !$ctrl.oneInviteLeft"
+        >
+          <button
+            class="FormCard-action IconButton IconButton--remove SvgWrap SvgWrap SvgWrap--fillDimensions"
+            ng-click="$ctrl.removeInvite($index)"
+          >
+            <md-tooltip>Remove<span class="sr-only"> Invite</span></md-tooltip>
+            ${require('@windsor/static-assets/lib/svg/x.svg')}
+          </button>
+        </div>
       </div>
     </div>
     <div class="FormCards-item" ng-if="!$ctrl.isSingle">

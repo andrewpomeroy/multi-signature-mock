@@ -1,3 +1,4 @@
+import "jquery";
 import angular from "angular";
 import "@uirouter/angularjs";
 import "@windsor/angular-material";

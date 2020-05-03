@@ -1,5 +1,5 @@
 import angular from "angular";
-import template from "./signing-setup-page-roles.html";
+import template from "./signing-setup-page-invites.html";
 
 export default {
 	bindings: {

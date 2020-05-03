@@ -62,7 +62,7 @@ function ComponentWizardController($element) {
 
 	function initializeActivePage() {
 		// if (!$ctrl.activePage || !$ctrl.navigablePages.find(page => page === $ctrl.activePage)) {
-		$ctrl.activePage = $ctrl.navigablePages[$ctrl.navigablePages.length - 1];
+		$ctrl.activePage = $ctrl.navigablePages && $ctrl.navigablePages[$ctrl.navigablePages.length - 1];
 		// }
 	}
 

@@ -1,4 +1,5 @@
 const path = require("path");
+const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
@@ -16,6 +17,17 @@ module.exports = {
 	optimization: {
 		splitChunks: {
 			chunks: "all"
+		}
+	},
+	resolve: {
+		alias: {
+			"angular$": path.resolve(__dirname, "node_modules/angular"),
+			"angular-animate$": path.resolve(__dirname, "node_modules/angular-animate"),
+			"angular-aria$": path.resolve(__dirname, "node_modules/angular-aria"),
+			"angular-cookies$": path.resolve(__dirname, "node_modules/angular-cookies"),
+			"angular-mocks$": path.resolve(__dirname, "node_modules/angular-mocks"),
+			"angular-moment$": path.resolve(__dirname, "node_modules/angular-moment"),
+			"angular-sanitize$": path.resolve(__dirname, "node_modules/angular-sanitize"),
 		}
 	},
 	module: {
@@ -119,6 +131,9 @@ module.exports = {
 		new MiniCssExtractPlugin({
 			filename: "[name].css"
 		}),
+		new webpack.ProvidePlugin({
+			"window.jQuery": "jquery"
+		})
 	],
 	devServer: {
 		// contentBase: path.join(__dirname, 'dist'),

@@ -78,11 +78,12 @@ function WizardShimCtrl() {
 			],
 		},
 		{
-			name: "singleRepeating",
+			name: "singleRepeatable",
 			roles: [
 				{
 					name: "Signer",
 					isRepeatable: true,
+					isReadOnly: false
 				}
 			],
 		},
@@ -151,6 +152,13 @@ function WizardShimCtrl() {
 		}
 	];
 
+	function Invite () {
+		return {
+			email: "",
+			notes: "",
+		};
+	}
+
 	const data = {
 		// signingMethod: undefined,
 		invitationsEnabled: true,
@@ -158,6 +166,9 @@ function WizardShimCtrl() {
 		selfSignedOnly: undefined,
 		signingRoles: "",
 		signingRolesOriginal: "",
+		invites: [
+			new Invite()
+		]
 	};
 	
 	$ctrl.model = new (ValidateModel())()
@@ -167,7 +178,8 @@ function WizardShimCtrl() {
 	$ctrl.model.validate();
 
 	function initOptions () {
-		$ctrl.roleSet = $ctrl.roleSets.find(x => x.name === "single");
+		// $ctrl.roleSet = $ctrl.roleSets.find(x => x.name === "singleRepeatable");
+		$ctrl.roleSet = $ctrl.roleSets.find(x => x.name === "multiRepeatable");
 	}
 	initOptions();
 
