@@ -37,14 +37,21 @@ function SigningWizardController($timeout) {
 		hasMultipleSigningMethods: {
 			get: () => $ctrl.options.signingMethods.length > 1
 		},
-		// requiresInvites: {
-		// 	get: () => $ctrl.wndModel.model.data.signingMethod || $ctrl.options.signingMethods.length < 2
-		// },
+		requiresInvites: {
+			get: () => $ctrl.wndModel.model.data.invitationsEnabled && !$ctrl.wndModel.model.data.selfSignedOnly
+		},
 		isReadyForInvites: {
-			get: () => 
-				!$ctrl.hasMultipleRoles || 
+			get: () => (!$ctrl.hasMultipleSigningMethods || $ctrl.wndModel.model.data.signingMethod) 
+				&& !$ctrl.hasMultipleRoles || 
 					($ctrl.hasMultipleRoles && $ctrl.wndModel.model.data.selfSignedOnly !== true)
-
+		},
+		isReadyForSummary: {
+			// substitute for "is valid" on each of the invites
+			get: () => {
+				return (!$ctrl.requiresInvites || 
+				($ctrl.wndModel.model.data.invites && $ctrl.wndModel.model.data.invites.length && $ctrl.wndModel.model.data.invites.every(x => x.email.length)) 
+					|| ($ctrl.wndModel.model.data.invites && $ctrl.wndModel.model.data.invites.length === 1 && $ctrl.wndModel.model.data.isSelfSigned));
+			}
 		},
 
 	});

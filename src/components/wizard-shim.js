@@ -160,12 +160,13 @@ function WizardShimCtrl() {
 	}
 
 	const data = {
-		// signingMethod: undefined,
 		invitationsEnabled: true,
+		// signingMethod: undefined,
 		signingMethod: "digital",
 		selfSignedOnly: undefined,
 		signingRoles: "",
 		signingRolesOriginal: "",
+		isSelfSigned: undefined,
 		invites: [
 			new Invite()
 		]

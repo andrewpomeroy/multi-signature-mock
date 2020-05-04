@@ -1,0 +1,27 @@
+<div class="AppForm-copy-block">
+  <div class="Alert Alert--success">
+    {{$ctrl.invites.length}} signing {{$ctrl.invites.length > 1 ? "invites" :
+    "invite"}} sent.
+    <span ng-if="$ctrl.isSelfSigned"> You may also sign now if you wish.</span>
+  </div>
+</div>
+<div class="AppForm-copy-block" ng-if="$ctrl.isSelfSigned">
+  <div class="FormCards">
+    <div
+      class="FormCard"
+      ng-repeat="role in $ctrl.wndModel.model.data.signingRoles"
+    >
+      <div class="FormCard-split">
+        <div class="FormCard-split-item FormCard-split-item--fill">
+          <div class="FormCard-heading">{{role.name}}</div>
+        </div>
+        <div class="FormCard-split-item">
+          <div class="FormCard-actions">
+            <div class="Button">button</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<component-wizard-nav></component-wizard-nav>

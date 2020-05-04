@@ -10,6 +10,8 @@ import componentWizardNav from "./components/component-wizard-nav";
 import signingSetupPageMethods from "./signing-pages/signing-setup-page-methods";
 import signingSetupPageRoles from "./signing-pages/signing-setup-page-roles";
 import signingSetupPageInvites from "./signing-pages/signing-setup-page-invites";
+import signingSetupPageSummary from "./signing-pages/signing-setup-page-summary";
+
 import signingInvitationForm from "./signing-pages/signing-invitation-form";
 import selfSigningSelection from "./signing-pages/self-signing-selection";
 
@@ -25,6 +27,7 @@ angular.module("app").component("componentWizardNav", componentWizardNav);
 angular.module("app").component("signingSetupPageMethods", signingSetupPageMethods);
 angular.module("app").component("signingSetupPageRoles", signingSetupPageRoles);
 angular.module("app").component("signingSetupPageInvites", signingSetupPageInvites);
+angular.module("app").component("signingSetupPageSummary", signingSetupPageSummary);
 
 angular.module("app").component("signingInvitationForm", signingInvitationForm);
 angular.module("app").component("selfSigningSelection", selfSigningSelection);

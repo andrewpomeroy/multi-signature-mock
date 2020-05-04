@@ -10,9 +10,6 @@
       </h3>
     </div>
   </div>
-  <!-- <div>{{$ctrl.wndModel}}</div>
-  <div>{{$ctrl.options.signingMethods}}</div>
-  <div>{{$ctrl.options.signingMethods.length}}</div> -->
   <component-wizard-page ng-if="$ctrl.options.signingMethods.length > 1">
     <signing-setup-page-methods></signing-setup-page-methods>
   </component-wizard-page>
@@ -31,9 +28,12 @@
   >
     <signing-setup-page-invites></signing-setup-page-invites>
   </component-wizard-page>
-  <!-- <component-wizard-page is-navigable="$ctrl.isReadyForSummary">
-    <signing-setup-page-invites></signing-setup-page-invites>
-  </component-wizard-page> -->
+  <component-wizard-page
+    ng-if="$ctrl.wndModel.model.data.invitationsEnabled"
+    is-navigable="$ctrl.isReadyForSummary"
+  >
+    <signing-setup-page-summary></signing-setup-page-summary>
+  </component-wizard-page>
   <!-- <component-wizard-page is-navigable="true">
     second page
   </component-wizard-page>
@@ -41,3 +41,6 @@
     non navigable page
   </component-wizard-page> -->
 </component-wizard>
+<md-dialog id="signatureModal">
+  hello
+</md-dialog>

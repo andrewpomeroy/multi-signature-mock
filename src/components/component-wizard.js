@@ -9,8 +9,8 @@ export default {
 	transclude: true,
 };
 
-ComponentWizardController.$inject = ["$element"];
-function ComponentWizardController($element) {
+ComponentWizardController.$inject = ["$element", "$timeout"];
+function ComponentWizardController($element, $timeout) {
 	const $ctrl = this;
 
 	$ctrl.registeredPages = new Map;
@@ -61,17 +61,19 @@ function ComponentWizardController($element) {
 	$ctrl.previous = () => $ctrl.increment(-1);
 
 	function initializeActivePage() {
-		// if (!$ctrl.activePage || !$ctrl.navigablePages.find(page => page === $ctrl.activePage)) {
-		$ctrl.activePage = $ctrl.navigablePages && $ctrl.navigablePages[$ctrl.navigablePages.length - 1];
-		// }
+		// $ctrl.activePage = $ctrl.navigablePages && $ctrl.navigablePages[$ctrl.navigablePages.length - 1];
+		$ctrl.activePage = $ctrl.navigablePages[0];
 	}
 
 	$ctrl.$onInit = () => {
 	};
 
 	$ctrl.$postLink = () => {
-		console.log("postlink", $ctrl.pages, $ctrl.navigablePages);
-		initializeActivePage();
+		$timeout(() => {
+			console.log("postlink", $ctrl.pages, $ctrl.navigablePages);
+			initializeActivePage();
+		});
+		
 	};
 
 }
