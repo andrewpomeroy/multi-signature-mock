@@ -37,6 +37,11 @@ function SigningWizardController($timeout) {
 		hasMultipleSigningMethods: {
 			get: () => $ctrl.options.signingMethods.length > 1
 		},
+		readyForInvites: {
+			get: () => $ctrl.wndModel.model.data.invitationsEnabled && 
+				(!$ctrl.hasMultipleRoles || 
+					($ctrl.hasMultipleRoles && $ctrl.wndModel.model.data.selfSignedOnly !== true))
+		},
 	});
 
 	

@@ -27,7 +27,7 @@
   </component-wizard-page>
   <component-wizard-page
     is-navigable="$ctrl.wndModel.model.data.signingMethod || $ctrl.options.signingMethods.length < 2"
-    ng-if="$ctrl.wndModel.model.data.invitationsEnabled && !$ctrl.hasMultipleRoles"
+    ng-if="$ctrl.readyForInvites"
   >
     <signing-setup-page-invites></signing-setup-page-invites>
   </component-wizard-page>
