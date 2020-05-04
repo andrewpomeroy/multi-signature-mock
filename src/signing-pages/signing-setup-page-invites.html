@@ -1,46 +1,55 @@
 <div class="AppForm-copy-block">
   <div class="AppForm-copy-step-header">
     <div class="AppForm-copy-step-number">
-      {{$ctrl.signingWizard.options.signingMethods.length > 1 
-        ? ($ctrl.signingWizard.hasMultipleRoles 
-          ? "3" 
-          : "2") 
-        : "1"}}
+      {{$ctrl.signingWizard.options.signingMethods.length > 1 ?
+      ($ctrl.signingWizard.hasMultipleRoles ? "3" : "2") : "1"}}
     </div>
     <div class="AppForm-copy-step-heading">
-      {{$ctrl.signingWizard.hasMultipleRoles ? "Invite Signers" : "Choose Signers"}}
+      {{$ctrl.signingWizard.hasMultipleRoles ? "Invite Signers" : "Choose
+      Signers"}}
     </div>
   </div>
 </div>
 <div class="AppForm-copy-block" ng-if="$ctrl.signingWizard.hasMultipleRoles">
   <p class="AppForm-text">
-    To help you determine who needs to sign, the form included the following instructions:
+    To help you determine who needs to sign, the form included the following
+    instructions:
   </p>
   <div class="AppForm-instructions">
     <p class="AppForm-text">
       Eu ad sunt sunt voluptate cupidatat eiusmod laborum aute ex non nostrud
-      nulla eu esse. Ex do cillum nulla mollit qui ut. Sunt consectetur
-      pariatur occaecat nulla anim laboris commodo eu nostrud magna ipsum.
-      Commodo labore duis consectetur sunt in fugiat minim nulla. Laborum
-      reprehenderit et pariatur excepteur occaecat labore excepteur. Dolor
-      nulla anim exercitation reprehenderit nostrud.
+      nulla eu esse. Ex do cillum nulla mollit qui ut. Sunt consectetur pariatur
+      occaecat nulla anim laboris commodo eu nostrud magna ipsum. Commodo labore
+      duis consectetur sunt in fugiat minim nulla. Laborum reprehenderit et
+      pariatur excepteur occaecat labore excepteur. Dolor nulla anim
+      exercitation reprehenderit nostrud.
     </p>
   </div>
   <p class="AppForm-text">
     You will need to gather signatures for each of the following roles:
   </p>
   <ul class="SigningRoleSummary">
-    <li class="SigningRoleSummary-item" ng-repeat="role in $ctrl.wndModel.model.data.signingRoles">{{role.name}}</li>
+    <li
+      class="SigningRoleSummary-item"
+      ng-repeat="role in $ctrl.wndModel.model.data.signingRoles"
+    >
+      {{role.name}}
+    </li>
   </ul>
 </div>
 <!-- We've already made this selection on the previous screen, if multiple roles are on the table -->
 <div class="AppForm-copy-block" ng-if="!$ctrl.signingWizard.hasMultipleRoles">
   <self-signing-selection></self-signing-selection>
 </div>
-<div class="ComponentWizard-largeFadeIn">
+<div
+  class="ComponentWizard-largeFadeIn"
+  ng-if="$ctrl.signingWizard.hasMultipleRoles || $ctrl.wndModel.model.data.selfSignedOnly != null"
+>
   <div class="AppForm-copy-block">
-    <!--  -->
-    <div class="AppForm-copy-step-header" ng-if="!$ctrl.signingWizard.hasMultipleRoles">
+    <div
+      class="AppForm-copy-step-header"
+      ng-if="!$ctrl.signingWizard.hasMultipleRoles"
+    >
       <div class="AppForm-copy-step-number">
         {{$ctrl.signingWizard.options.signingMethods.length > 1 ? "3" : "2"}}
       </div>
@@ -55,6 +64,4 @@
   ></signing-invitation-form>
 </div>
 
-  </div>
-
-</div>
+<component-wizard-nav></component-wizard-nav>

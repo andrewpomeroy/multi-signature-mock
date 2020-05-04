@@ -26,11 +26,14 @@
     ></signing-setup-page-roles>
   </component-wizard-page>
   <component-wizard-page
-    is-navigable="$ctrl.wndModel.model.data.signingMethod || $ctrl.options.signingMethods.length < 2"
-    ng-if="$ctrl.readyForInvites"
+    is-navigable="$ctrl.isReadyForInvites"
+    ng-if="$ctrl.wndModel.model.data.invitationsEnabled"
   >
     <signing-setup-page-invites></signing-setup-page-invites>
   </component-wizard-page>
+  <!-- <component-wizard-page is-navigable="$ctrl.isReadyForSummary">
+    <signing-setup-page-invites></signing-setup-page-invites>
+  </component-wizard-page> -->
   <!-- <component-wizard-page is-navigable="true">
     second page
   </component-wizard-page>

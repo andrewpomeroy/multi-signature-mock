@@ -10,7 +10,7 @@
     </div>
   </div>
 </div>
-<div class="AppForm-copy-block">
+<div class="AppForm-copy-block" ng-if="!$ctrl.signingWizard.hasMultipleRoles">
   <self-signing-selection>
 </div>
 
@@ -18,7 +18,7 @@
 
 <div
   class="ComponentWizard-largeFadeIn"
-  ng-if="$ctrl.signingWizard.hasMultipleRoles && $ctrl.hasEditableRole && $ctrl.wndModel.model.data.selfSignedOnly === false"
+  ng-if="$ctrl.signingWizard.hasMultipleRoles && $ctrl.hasEditableRole"
 >
   <div class="AppForm-copy-block">
     <p class="AppForm-text">
@@ -90,3 +90,15 @@
     </div>
   </div>
 </div>
+<component-wizard-nav
+  show-complete-button="$ctrl.wndModel.model.data.selfSignedOnly"
+>
+  <complete-button>
+    <button
+      class="ComponentWizard-nav-button ComponentWizard-nav-button--next"
+      ng-click="$parent.$parent.$parent.$ctrl.signingWizard.openSigningModal($event)"
+    >
+      Sign
+    </button>
+  </complete-button>
+</component-wizard-nav>

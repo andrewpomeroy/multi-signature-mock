@@ -3,13 +3,17 @@ import template from "./component-wizard-nav.html";
 
 export default {
 	bindings: {
+		showCompleteButton: "<"
 	},
 	require: {
 		componentWizard: "^",
 		page: "^componentWizardPage",
 	},
 	template: template,
-	controller: ComponentWizardNavController
+	controller: ComponentWizardNavController,
+	transclude: {
+		completeButton: "?completeButton"
+	}
 };
 
 ComponentWizardNavController.$inject = [];

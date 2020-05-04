@@ -43,3 +43,16 @@
     </radio-block>
   </radio-block-group>
 </div>
+<component-wizard-nav
+  show-complete-button="!$ctrl.wndModel.model.data.invitationsEnabled"
+>
+  <complete-button>
+    <button
+      class="ComponentWizard-nav-button ComponentWizard-nav-button--next"
+      ng-click="$parent.$parent.$parent.$ctrl.signingWizard.openSigningModal($event)"
+      ng-disabled="$parent.$ctrl.wndModel.model.data.signingMethod != null"
+    >
+      Sign
+    </button>
+  </complete-button>
+</component-wizard-nav>

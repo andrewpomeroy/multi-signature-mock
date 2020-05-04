@@ -6,7 +6,8 @@ export default {
 		model: "<",
 	},
 	require: {
-		wndModel: "?^"
+		wndModel: "?^",
+		signingWizard: "^"
 	},
 	template: template,
 	controller: SigningSetupPageMethodsCtrl,

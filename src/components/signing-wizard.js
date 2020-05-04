@@ -37,16 +37,26 @@ function SigningWizardController($timeout) {
 		hasMultipleSigningMethods: {
 			get: () => $ctrl.options.signingMethods.length > 1
 		},
-		readyForInvites: {
-			get: () => $ctrl.wndModel.model.data.invitationsEnabled && 
-				(!$ctrl.hasMultipleRoles || 
-					($ctrl.hasMultipleRoles && $ctrl.wndModel.model.data.selfSignedOnly !== true))
+		// requiresInvites: {
+		// 	get: () => $ctrl.wndModel.model.data.signingMethod || $ctrl.options.signingMethods.length < 2
+		// },
+		isReadyForInvites: {
+			get: () => 
+				!$ctrl.hasMultipleRoles || 
+					($ctrl.hasMultipleRoles && $ctrl.wndModel.model.data.selfSignedOnly !== true)
+
 		},
+
 	});
 
 	
 	$ctrl.$onInit = function () {
 		// console.log($ctrl.wndModel);
 	};
+
+	$ctrl.openSigningModal = function () {
+		alert("signing modal");
+	};
+
 
 }

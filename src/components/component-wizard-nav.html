@@ -8,12 +8,15 @@
     Previous
   </button>
   <!-- <span>{{$ctrl.componentWizard.currentPageIndex}}</span> -->
-  <button
-    class="ComponentWizard-nav-button ComponentWizard-nav-button--next"
-    ng-if="$ctrl.isNextAvailable"
-    ng-disabled="!$ctrl.isNextNavigable"
-    ng-click="$ctrl.next($event)"
-  >
-    Next
-  </button>
+  <div ng-if="!$ctrl.showCompleteButton">
+    <button
+      class="ComponentWizard-nav-button ComponentWizard-nav-button--next"
+      ng-if="$ctrl.isNextAvailable"
+      ng-disabled="!$ctrl.isNextNavigable"
+      ng-click="$ctrl.next($event)"
+    >
+      Next
+    </button>
+  </div>
+  <div ng-transclude="completeButton" ng-if="$ctrl.showCompleteButton"></div>
 </div>
