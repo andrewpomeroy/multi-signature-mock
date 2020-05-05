@@ -167,8 +167,28 @@ function WizardShimCtrl() {
 		signingRoles: "",
 		signingRolesOriginal: "",
 		isSelfSigned: undefined,
+		signingPassword: "",
+		signingChallengeQuestionAnswer: "",
 		invites: [
 			new Invite()
+		],
+		electronicSignatureAgreements: [
+			{
+				checked: undefined,
+				text: "I am the owner of the account used to perform the electronic submission and signature."
+			},
+			{
+				checked: undefined,
+				text: "I have the authority to submit the data on behalf of the facility I am representing."
+			},
+			{
+				checked: undefined,
+				text: "I agree that providing the account credentials to sign the submission document constitutes an electronic signature equivalent to my written signature."
+			},
+			{
+				checked: undefined,
+				text: "I have reviewed the electronic form being submitted in its entirety, and agree to the validity and accuracy of the information contained within it to the best of my knowledge."
+			},
 		]
 	};
 	

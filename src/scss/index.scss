@@ -1,5 +1,5 @@
-// @import "nform-import/index.scss";
-@import "@windsor/static-assets/index.scss";
+@import "nform-import/index.scss";
+// @import "@windsor/static-assets/index.scss";
 
 $lightGreen: #dfffff;
 $darkGreen: #128484;
@@ -12,3 +12,4 @@ $darkGreen: #128484;
 @import "component-wizard.scss";
 @import "submission-copy.scss";
 @import "SigningRoleSummary.scss";
+@import "SigningRoleTable.scss";

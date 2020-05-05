@@ -70,7 +70,7 @@ function ComponentWizardController($element, $timeout) {
 
 	$ctrl.$postLink = () => {
 		$timeout(() => {
-			console.log("postlink", $ctrl.pages, $ctrl.navigablePages);
+			// console.log("postlink", $ctrl.pages, $ctrl.navigablePages);
 			initializeActivePage();
 		});
 		

@@ -1,5 +1,7 @@
 import angular from "angular";
 import template from "./signing-wizard.html";
+import esignTemplate from "../signing-pages/esign-template.html";
+import { EsignCtrl } from "../signing-pages/esign-template";
 
 export default {
 	bindings: {
@@ -13,8 +15,8 @@ export default {
 	transclude: true,
 };
 
-SigningWizardController.$inject = ["$timeout"];
-function SigningWizardController($timeout) {
+SigningWizardController.$inject = ["$timeout", "$mdDialog", "$window"];
+function SigningWizardController($timeout, $mdDialog, $window) {
 	const $ctrl = this;
 
 	Object.defineProperties($ctrl, {
@@ -58,12 +60,41 @@ function SigningWizardController($timeout) {
 
 	
 	$ctrl.$onInit = function () {
-		// console.log($ctrl.wndModel);
+		$ctrl.doSigning().then((result) => {
+			console.log(result);
+		}).catch(() => {});
 	};
 
-	$ctrl.openSigningModal = function () {
-		alert("signing modal");
-	};
+	$ctrl.doSigning = ($event, role) => new Promise((resolve, reject) => {
+		$ctrl.openSigningModal($event, role).then(result => {
+			resolve(result);
+		}).catch(error => reject(error));
+	});
 
+	$ctrl.openSigningModal = ($event, role) => new Promise((resolve, reject) => {
+
+		$mdDialog.show({
+			parent: $window.angular.element(document.body),
+			template: "<div class=\"AppForm-section-content\"><esign-template outer-ctrl=\"outerCtrl\"></esign-template></div>",
+			controller: function ($scope, $mdDialog, outerCtrl) {
+				$scope.outerCtrl = outerCtrl;
+				$scope.outerCtrl.isModal = true;
+				$scope.outerCtrl.role = role;
+				$scope.outerCtrl.cancel = $mdDialog.cancel;
+				$scope.outerCtrl.submit = $mdDialog.hide;
+			},
+			targetEvent: $event,
+			focusOnOpen: true,
+			fullscreen: true,
+			multiple: true,
+			locals: {
+				outerCtrl: $ctrl
+			}
+		})
+			.then(result => {
+				resolve(result);
+			})
+			.catch(error => reject(error));
+	});
 
 }

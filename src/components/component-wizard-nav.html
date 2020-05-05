@@ -1,6 +1,6 @@
 <div class="ComponentWizard-nav">
   <button
-    class="ComponentWizard-nav-button ComponentWizard-nav-button--previous"
+    class="ComponentWizard-button ComponentWizard-button--previous"
     ng-if="$ctrl.isPreviousAvailable"
     ng-disabled="!$ctrl.isPreviousNavigable"
     ng-click="$ctrl.previous($event)"
@@ -10,7 +10,7 @@
   <!-- <span>{{$ctrl.componentWizard.currentPageIndex}}</span> -->
   <div ng-if="!$ctrl.showCompleteButton">
     <button
-      class="ComponentWizard-nav-button ComponentWizard-nav-button--next"
+      class="ComponentWizard-button ComponentWizard-button--next"
       ng-if="$ctrl.isNextAvailable"
       ng-disabled="!$ctrl.isNextNavigable"
       ng-click="$ctrl.next($event)"

@@ -1,27 +1,43 @@
 <div class="AppForm-copy-block">
   <div class="Alert Alert--success">
-    {{$ctrl.invites.length}} signing {{$ctrl.invites.length > 1 ? "invites" :
-    "invite"}} sent.
-    <span ng-if="$ctrl.isSelfSigned"> You may also sign now if you wish.</span>
+    <span>
+      {{$ctrl.invites.length}} signing {{$ctrl.invites.length > 1 ? "invites" :
+      "invite"}} sent.
+    </span>
+    <span>&nbsp;</span>
+    <span ng-if="$ctrl.isSelfSigned">
+      You may also sign now if you wish.
+    </span>
   </div>
 </div>
 <div class="AppForm-copy-block" ng-if="$ctrl.isSelfSigned">
-  <div class="FormCards">
-    <div
-      class="FormCard"
-      ng-repeat="role in $ctrl.wndModel.model.data.signingRoles"
-    >
-      <div class="FormCard-split">
-        <div class="FormCard-split-item FormCard-split-item--fill">
-          <div class="FormCard-heading">{{role.name}}</div>
-        </div>
-        <div class="FormCard-split-item">
-          <div class="FormCard-actions">
-            <div class="Button">button</div>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="AppForm-copy-heading">
+    <h3 class="u-headingInherit">Signatures Needed</h3>
   </div>
+  <table class="SigningRoleTable">
+    <tbody class="SigningRoleTable-body">
+      <tr
+        class="SigningRoleTable-row"
+        ng-repeat="role in $ctrl.roles"
+        ng-class="{'SigningTable-row--selected': role.isSelected, 'SigningTable-row--signed': role.isSigned}"
+      >
+        <td
+          class="SigningRoleTable-cell SigningRoleTable-body-cell SigningRoleTable-cell--stretch"
+        >
+          <strong>{{role.name}}</strong>
+        </td>
+        <td class="SigningRoleTable-cell SigningRoleTable-body-cell">
+          <div layout="horizontal" justify-content="flex-end">
+            <button
+              class="ComponentWizard-button ComponentWizard-button--small ComponentWizard-button--primary"
+              ng-click="$ctrl.openSigningDialog($event, role)"
+              style="white-space: nowrap;"
+            >
+              Sign as {{role.name}}
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
-<component-wizard-nav></component-wizard-nav>

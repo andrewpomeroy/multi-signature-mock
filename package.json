@@ -7,6 +7,7 @@
     "start": "npx webpack-dev-server --env=development"
   },
   "dependencies": {
+    "@babel/preset-env": "^7.9.6",
     "@uirouter/angularjs": "^1.0.24",
     "@windsor/angular-material": "^2.0.0",
     "@windsor/form-ng": "^5.4.0",

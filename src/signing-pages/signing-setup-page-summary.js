@@ -17,10 +17,11 @@ SigningSetupPageRolesCtrl.$inject = [];
 function SigningSetupPageRolesCtrl() {
 	const $ctrl = this;
 
+	$ctrl.$onInit = function () {
+		$ctrl.roles = angular.copy($ctrl.wndModel.model.data.signingRoles);
+	};
+
 	Object.defineProperties($ctrl, {
-		signingRoles: {
-			get: () => $ctrl.wndModel.model.data.signingRoles
-		},
 		invites: {
 			get: () => $ctrl.wndModel.model.data.invites
 		},
@@ -28,5 +29,11 @@ function SigningSetupPageRolesCtrl() {
 			get: () => $ctrl.wndModel.model.data.isSelfSigned
 		}
 	});
+
+	$ctrl.openSigningDialog = ($event, role) => {
+		$ctrl.signingWizard.doSigning($event, role).then(result => {
+			console.log(result);
+		});
+	};
 	
 }

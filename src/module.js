@@ -14,6 +14,7 @@ import signingSetupPageSummary from "./signing-pages/signing-setup-page-summary"
 
 import signingInvitationForm from "./signing-pages/signing-invitation-form";
 import selfSigningSelection from "./signing-pages/self-signing-selection";
+import esignTemplate from "./signing-pages/esign-template";
 
 import radioBlockGroup from "./components/radio-block-group";
 import radioBlock from "./components/radio-block";
@@ -31,6 +32,7 @@ angular.module("app").component("signingSetupPageSummary", signingSetupPageSumma
 
 angular.module("app").component("signingInvitationForm", signingInvitationForm);
 angular.module("app").component("selfSigningSelection", selfSigningSelection);
+angular.module("app").component("esignTemplate", esignTemplate);
 
 angular.module("app").component("radioBlockGroup", radioBlockGroup);
 angular.module("app").component("radioBlock", radioBlock);

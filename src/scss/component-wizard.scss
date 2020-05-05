@@ -28,8 +28,12 @@ $ComponentWizard-navButton-background--primary: #128484;
   }
 }
 
-.ComponentWizard-nav-button {
+.ComponentWizard-button {
   @include BlockButton-behaviors();
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   border: 0;
   padding: $ComponentWizard-navButton-paddingV
     $ComponentWizard-navButton-paddingH;
@@ -50,7 +54,13 @@ $ComponentWizard-navButton-background--primary: #128484;
   }
 }
 
-.ComponentWizard-nav-button--next {
+.ComponentWizard-button--small {
+  font-size: 14px;
+  padding: 10px 16px;
+}
+
+.ComponentWizard-button--next,
+.ComponentWizard-button--primary {
   background-color: $ComponentWizard-navButton-background--primary;
   &:not([disabled="disabled"]) {
     &:hover,

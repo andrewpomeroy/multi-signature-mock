@@ -1,0 +1,99 @@
+<div class="PageHeader AppForm-PageHeader">
+  <div flex="fill">
+    <h3
+      class="PageHeader-heading PageHeader-heading--noMargin"
+      section-title-autofocus="true"
+      tabindex="-1"
+    >
+      Sign Form
+    </h3>
+  </div>
+</div>
+
+<div class="AppForm-copy-block">
+  <p class="AppForm-text">
+    Please read the following signing statement carefully, and if you agree to
+    the terms, you may proceed with signing the document.
+  </p>
+</div>
+<div class="AppForm-copy-block">
+  <div class="AppForm-copy-heading">
+    <h3 class="u-headingInherit">
+      Certification Statement
+      <span ng-if="esignCtrl.role">
+        &nbsp;&mdash;&nbsp;
+      </span>
+      <strong ng-if="esignCtrl.role">
+        {{role.name}}
+      </strong>
+    </h3>
+  </div>
+  <div class="AppForm-instructions">
+    <p class="AppForm-text">
+      Eu ad sunt sunt voluptate cupidatat eiusmod laborum aute ex non nostrud
+      nulla eu esse. Ex do cillum nulla mollit qui ut. Sunt consectetur pariatur
+      occaecat nulla anim laboris commodo eu nostrud magna ipsum. Commodo labore
+      duis consectetur sunt in fugiat minim nulla. Laborum reprehenderit et
+      pariatur excepteur occaecat labore excepteur. Dolor nulla anim
+      exercitation reprehenderit nostrud.
+    </p>
+  </div>
+</div>
+
+<!-- <wnd-field-block
+  wnd-model="esignCtrl.wndModel.model.data"
+  ng-repeat="agreement in ::esignCtrl.wndModel.model.electronicSignatureAgreements track by agreement"
+>
+  <wnd-field wnd-property="isSelfSigned">
+    <wnd-checkbox
+      wnd-label="Include myself as a signer (andrew_pomeroy@windsorsolutions.com)"
+    ></wnd-checkbox>
+  </wnd-field>
+</wnd-field-block> -->
+<wnd-field-block wnd-model="esignCtrl.wndModel.model">
+  <wnd-field
+    wnd-property="data.electronicSignatureAgreements[$index].checked"
+    ng-repeat="agreement in ::esignCtrl.wndModel.model.data.electronicSignatureAgreements"
+  >
+    <wnd-checkbox
+      unchecked-value="undefined"
+      wnd-label="{{::agreement.text}}"
+    ></wnd-checkbox>
+  </wnd-field>
+</wnd-field-block>
+
+<div class="AppForm-copy-block">
+  <wnd-field-block wnd-model="esignCtrl.wndModel.model">
+    <wnd-field
+      wnd-property="data.signingPassword"
+      wnd-label="Enter your password"
+    >
+      <wnd-text input-type="password"></wnd-text>
+    </wnd-field>
+  </wnd-field-block>
+  <wnd-field-block wnd-model="esignCtrl.wndModel.model">
+    <wnd-field
+      wnd-property="data.signingChallengeQuestionAnswer"
+      wnd-label="What was your pet's first name?"
+    >
+      <wnd-text input-type="password"></wnd-text>
+    </wnd-field>
+  </wnd-field-block>
+</div>
+
+<div class="AppForm-copy-block" style="margin-bottom: 0;">
+  <div layout="horizontal"></div>
+  <button
+    class="ComponentWizard-button ComponentWizard-button--primary"
+    ng-click="esignCtrl.submit({$event: $event, role: esignCtrl.role})"
+  >
+    Sign
+  </button>
+  <button
+    class="ComponentWizard-button"
+    ng-click="esignCtrl.cancel()"
+    ng-if="esignCtrl.isModal"
+  >
+    Cancel
+  </button>
+</div>
