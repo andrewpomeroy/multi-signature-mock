@@ -13,3 +13,9 @@ $darkGreen: #128484;
 @import "submission-copy.scss";
 @import "SigningRoleSummary.scss";
 @import "SigningRoleTable.scss";
+
+.Alert--success {
+  color: #637785;
+  border-color: #77dcdc;
+  background-color: #ddffff;
+}
