@@ -10,7 +10,50 @@
     </span>
   </div>
 </div>
-<div class="AppForm-copy-block" ng-if="$ctrl.invites.length">
+
+<!-- Single role -- all invited signers -->
+<!-- NOTE: i didn't implement "role.hasSigned" -->
+
+<div class="AppForm-copy-block" ng-if="!$ctrl.signingWizard.hasMultipleRoles">
+  <div class="AppForm-copy-heading">
+    <h3 class="u-headingInherit">Invited Signers</h3>
+  </div>
+  <table class="SigningRoleTable">
+    <tbody class="SigningRoleTable-body">
+      <tr
+        class="SigningRoleTable-row"
+        ng-repeat="invite in $ctrl.invites"
+        ng-class="{'SigningRoleTable-row--isSigned': invite.hasSigned}"
+      >
+        <td
+          class="SigningRoleTable-cell SigningRoleTable-body-cell SigningRoleTable-cell--stretch"
+        >
+          <strong>{{invite.email}}</strong>
+        </td>
+        <td class="SigningRoleTable-cell SigningRoleTable-body-cell">
+          <div
+            layout="vertical"
+            align-items="flex-end"
+            ng-if="invite.hasSigned"
+            style="text-align: right;"
+          >
+            <div class="SigningRoleTable-statusText">Signed</div>
+            <div style="white-space: nowrap;">
+              <strong>Brett Peake,</strong> 39 minutes ago
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Multi-role -- pending invites -->
+
+<div
+  class="AppForm-copy-block"
+  ng-if="$ctrl.signingWizard.hasMultipleRoles && $ctrl.invites.length"
+>
   <div class="AppForm-copy-heading">
     <h3 class="u-headingInherit">Pending Invites Sent</h3>
   </div>
@@ -23,7 +66,7 @@
           <strong>{{invite.email}}</strong>
           <div ng-if="invite.description" ng-bind="invite.description"></div>
         </td>
-        <td class="SigningRoleTable-cell SigningRoleTable-body-cell">
+        <!-- <td class="SigningRoleTable-cell SigningRoleTable-body-cell">
           <div layout="horizontal" justify-content="flex-end">
             <button
               class="ComponentWizard-button ComponentWizard-button--small ComponentWizard-button--primary"
@@ -34,13 +77,15 @@
               Rescind
             </button>
           </div>
-        </td>
+        </td> -->
       </tr>
     </tbody>
   </table>
 </div>
 
-<div class="AppForm-copy-block">
+<!-- Multi role -- Signatures needed -->
+
+<div class="AppForm-copy-block" ng-if="$ctrl.signingWizard.hasMultipleRoles">
   <div class="AppForm-copy-heading">
     <h3 class="u-headingInherit">Signatures Needed</h3>
   </div>
@@ -98,14 +143,25 @@
 </div>
 <div class="AppForm-copy-block">
   <div class="ComponentWizard-buttonGroup">
+    <!-- role-specific signing button -->
     <button
       class="ComponentWizard-button ComponentWizard-button--primary"
       ng-click="$ctrl.openSigningDialog($event, $ctrl.selectedRoles)"
-      ng-if="$ctrl.selectedRoles.length"
+      ng-if="$ctrl.signingWizard.hasMultipleRoles && $ctrl.selectedRoles.length"
     >
       Sign as {{$ctrl.selectedRoles.length === 1 ? $ctrl.selectedRoles[0].name :
       ' ' + $ctrl.selectedRoles.length + ' roles'}}
     </button>
+
+    <!-- single-role signing button -->
+    <button
+      class="ComponentWizard-button ComponentWizard-button--primary"
+      ng-click="$ctrl.openSigningDialog($event, $ctrl.roles[0])"
+      ng-if="!$ctrl.signingWizard.hasMultipleRoles && $ctrl.wndModel.model.data.isSelfSigned"
+    >
+      Sign
+    </button>
+
     <button class="ComponentWizard-button">
       View Submission
     </button>
