@@ -4,7 +4,7 @@ import template from "./esign-template.html";
 export default {
 	bindings: {
 		outerCtrl: "<",
-		role: "<"
+		roles: "<"
 	},
 	require: {
 		wndModel: "?^",

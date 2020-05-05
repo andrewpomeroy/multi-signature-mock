@@ -19,7 +19,11 @@ function SigningSetupPageRolesCtrl() {
 
 	$ctrl.$onInit = function () {
 		$ctrl.roles = angular.copy($ctrl.wndModel.model.data.signingRoles);
+		// just for mockup purposes!
+		$ctrl.roles[$ctrl.roles.length - 1].isSigned = true;
 	};
+
+	$ctrl.selectedRoles = [];
 
 	Object.defineProperties($ctrl, {
 		invites: {
@@ -30,10 +34,24 @@ function SigningSetupPageRolesCtrl() {
 		}
 	});
 
+	$ctrl.selectRole = role => {
+		$ctrl.selectedRoles.push(role);
+	};
+
+	$ctrl.deselectRole = role => {
+		$ctrl.selectedRoles = $ctrl.selectedRoles.filter(x => x.name !== role.name);
+	};
+
+	$ctrl.isRoleSelected = role => $ctrl.selectedRoles.find(x => x.name === role.name);
+
 	$ctrl.openSigningDialog = ($event, role) => {
 		$ctrl.signingWizard.doSigning($event, role).then(result => {
 			console.log(result);
 		});
+	};
+
+	$ctrl.rescindInvite = (role) => {
+		alert("rescind invite placeholder", role);
 	};
 	
 }

@@ -13,7 +13,7 @@
 
 .SigningRoleTable-cell {
   border-bottom: 1px solid hsl(0, 0%, 79%);
-  padding: 4px;
+  padding: 8px 4px;
   min-height: 52px;
   &:not(:last-child) {
     padding-right: 12px;
@@ -21,6 +21,14 @@
   &:not(:first-child) {
     padding-left: 12px;
   }
+}
+
+.SigningRoleTable-row--isSelected {
+  background-color: aliceblue;
+}
+
+.SigningRoleTable-row--isSigned {
+  background-color: $lightGreen;
 }
 
 .SigningRoleTable-cell--stretch {
@@ -39,4 +47,10 @@
 .SigningRoleTable-row--strong,
 .SigningRoleTable-cell--strong {
   font-weight: bold;
+}
+
+.SigningRoleTable-statusText {
+  text-transform: uppercase;
+  color: #128484;
+  font-weight: 500;
 }

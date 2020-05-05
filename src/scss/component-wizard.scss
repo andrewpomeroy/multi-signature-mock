@@ -72,3 +72,14 @@ $ComponentWizard-navButton-background--primary: #128484;
     }
   }
 }
+
+.ComponentWizard-button--danger {
+  background-color: $app-color-danger;
+  color: white;
+  &:not([disabled="disabled"]) {
+    &:hover,
+    &:focus {
+      background-color: lighten($app-color-danger, 10%);
+    }
+  }
+}

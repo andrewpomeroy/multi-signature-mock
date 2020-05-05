@@ -60,18 +60,18 @@ function SigningWizardController($timeout, $mdDialog, $window) {
 
 	
 	$ctrl.$onInit = function () {
-		$ctrl.doSigning().then((result) => {
-			console.log(result);
-		}).catch(() => {});
+		// $ctrl.doSigning().then((result) => {
+		// 	console.log(result);
+		// }).catch(() => {});
 	};
 
-	$ctrl.doSigning = ($event, role) => new Promise((resolve, reject) => {
-		$ctrl.openSigningModal($event, role).then(result => {
+	$ctrl.doSigning = ($event, roles) => new Promise((resolve, reject) => {
+		$ctrl.openSigningModal($event, roles).then(result => {
 			resolve(result);
 		}).catch(error => reject(error));
 	});
 
-	$ctrl.openSigningModal = ($event, role) => new Promise((resolve, reject) => {
+	$ctrl.openSigningModal = ($event, roles) => new Promise((resolve, reject) => {
 
 		$mdDialog.show({
 			parent: $window.angular.element(document.body),
@@ -79,7 +79,7 @@ function SigningWizardController($timeout, $mdDialog, $window) {
 			controller: function ($scope, $mdDialog, outerCtrl) {
 				$scope.outerCtrl = outerCtrl;
 				$scope.outerCtrl.isModal = true;
-				$scope.outerCtrl.role = role;
+				$scope.outerCtrl.roles = roles;
 				$scope.outerCtrl.cancel = $mdDialog.cancel;
 				$scope.outerCtrl.submit = $mdDialog.hide;
 			},

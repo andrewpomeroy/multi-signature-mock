@@ -16,14 +16,14 @@
     the terms, you may proceed with signing the document.
   </p>
 </div>
-<div class="AppForm-copy-block">
+<div class="AppForm-copy-block" ng-repeat="role in esignCtrl.roles">
   <div class="AppForm-copy-heading">
     <h3 class="u-headingInherit">
       Certification Statement
-      <span ng-if="esignCtrl.role">
+      <span ng-if="role">
         &nbsp;&mdash;&nbsp;
       </span>
-      <strong ng-if="esignCtrl.role">
+      <strong ng-if="role">
         {{role.name}}
       </strong>
     </h3>
@@ -85,7 +85,7 @@
   <div layout="horizontal"></div>
   <button
     class="ComponentWizard-button ComponentWizard-button--primary"
-    ng-click="esignCtrl.submit({$event: $event, role: esignCtrl.role})"
+    ng-click="esignCtrl.submit({$event: $event, roles: esignCtrl.roles})"
   >
     Sign
   </button>
