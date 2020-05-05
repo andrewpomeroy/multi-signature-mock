@@ -152,17 +152,9 @@ function WizardShimCtrl() {
 		}
 	];
 
-	function Invite () {
-		return {
-			email: "",
-			notes: "",
-		};
-	}
-
 	const data = {
 		invitationsEnabled: true,
-		// signingMethod: undefined,
-		signingMethod: "digital",
+		signingMethod: undefined,
 		selfSignedOnly: undefined,
 		signingRoles: "",
 		signingRolesOriginal: "",
@@ -170,7 +162,10 @@ function WizardShimCtrl() {
 		signingPassword: "",
 		signingChallengeQuestionAnswer: "",
 		invites: [
-			new Invite()
+			{
+				email: "",
+				notes: "",
+			}
 		],
 		electronicSignatureAgreements: [
 			{
