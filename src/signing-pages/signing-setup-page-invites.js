@@ -22,6 +22,21 @@ function SigningSetupPageRolesCtrl() {
 	$ctrl.$onInit = function () {
 	};
 
+	Object.defineProperties($ctrl, {
+		invites: {
+			get: () => $ctrl.wndModel.model.data.invites
+		},
+		completeButtonText: {
+			get: () => ($ctrl.invites && $ctrl.invites.length > 1)
+				? "Send Invites"
+				// This is just a way to make it so it doesn't say "send invite" if you're the only one signing
+				// the logic will of course have to change here, cause checking email length is just a dumb hack
+				: $ctrl.invites.length === 1 && $ctrl.invites[0].email.length
+					? "Send Invite"
+					: "Next"
+		}
+	});
+
 	$ctrl.removeRole = function (index) {
 		$ctrl.roles.splice(index, 1);
 	};

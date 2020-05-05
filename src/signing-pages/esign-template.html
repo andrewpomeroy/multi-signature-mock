@@ -82,18 +82,19 @@
 </div>
 
 <div class="AppForm-copy-block" style="margin-bottom: 0;">
-  <div layout="horizontal"></div>
-  <button
-    class="ComponentWizard-button ComponentWizard-button--primary"
-    ng-click="esignCtrl.submit({$event: $event, roles: esignCtrl.roles})"
-  >
-    Sign
-  </button>
-  <button
-    class="ComponentWizard-button"
-    ng-click="esignCtrl.cancel()"
-    ng-if="esignCtrl.isModal"
-  >
-    Cancel
-  </button>
+  <div class="ComponentWizard-buttonGroup">
+    <button
+      class="ComponentWizard-button ComponentWizard-button--primary"
+      ng-click="esignCtrl.submit({$event: $event, roles: esignCtrl.roles})"
+    >
+      Sign
+    </button>
+    <button
+      class="ComponentWizard-button"
+      ng-click="esignCtrl.cancel()"
+      ng-if="esignCtrl.isModal"
+    >
+      Cancel
+    </button>
+  </div>
 </div>

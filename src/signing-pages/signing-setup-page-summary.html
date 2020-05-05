@@ -10,6 +10,36 @@
     </span>
   </div>
 </div>
+<div class="AppForm-copy-block" ng-if="$ctrl.invites.length">
+  <div class="AppForm-copy-heading">
+    <h3 class="u-headingInherit">Pending Invites Sent</h3>
+  </div>
+  <table class="SigningRoleTable">
+    <tbody class="SigningRoleTable-body">
+      <tr class="SigningRoleTable-row" ng-repeat="invite in $ctrl.invites">
+        <td
+          class="SigningRoleTable-cell SigningRoleTable-body-cell SigningRoleTable-cell--stretch"
+        >
+          <strong>{{invite.email}}</strong>
+          <div ng-if="invite.description" ng-bind="invite.description"></div>
+        </td>
+        <td class="SigningRoleTable-cell SigningRoleTable-body-cell">
+          <div layout="horizontal" justify-content="flex-end">
+            <button
+              class="ComponentWizard-button ComponentWizard-button--small ComponentWizard-button--primary"
+              ng-click="$ctrl.rescindInite(invite)"
+              style="white-space: nowrap;"
+              ng-if="!$ctrl.isRoleSelected(invite)"
+            >
+              Rescind
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 <div class="AppForm-copy-block">
   <div class="AppForm-copy-heading">
     <h3 class="u-headingInherit">Signatures Needed</h3>
@@ -31,7 +61,7 @@
           <div
             layout="horizontal"
             justify-content="flex-end"
-            ng-if="!role.isSigned"
+            ng-if="!role.isSigned && $ctrl.isSelfSigned"
           >
             <button
               class="ComponentWizard-button ComponentWizard-button--small ComponentWizard-button--primary"
@@ -66,41 +96,18 @@
     </tbody>
   </table>
 </div>
-<div class="AppForm-copy-block" ng-if="$ctrl.selectedRoles.length">
-  <button
-    class="ComponentWizard-button ComponentWizard-button--primary"
-    ng-click="$ctrl.openSigningDialog($event, $ctrl.selectedRoles)"
-  >
-    Sign as {{$ctrl.selectedRoles.length === 1 ? $ctrl.selectedRoles[0].name : '
-    ' + $ctrl.selectedRoles.length + ' roles'}}
-  </button>
-</div>
-<div class="AppForm-copy-block" ng-if="$ctrl.invites.length">
-  <div class="AppForm-copy-heading">
-    <h3 class="u-headingInherit">Pending Invites Sent</h3>
+<div class="AppForm-copy-block">
+  <div class="ComponentWizard-buttonGroup">
+    <button
+      class="ComponentWizard-button ComponentWizard-button--primary"
+      ng-click="$ctrl.openSigningDialog($event, $ctrl.selectedRoles)"
+      ng-if="$ctrl.selectedRoles.length"
+    >
+      Sign as {{$ctrl.selectedRoles.length === 1 ? $ctrl.selectedRoles[0].name :
+      ' ' + $ctrl.selectedRoles.length + ' roles'}}
+    </button>
+    <button class="ComponentWizard-button">
+      View Submission
+    </button>
   </div>
-  <table class="SigningRoleTable">
-    <tbody class="SigningRoleTable-body">
-      <tr class="SigningRoleTable-row" ng-repeat="invite in $ctrl.invites">
-        <td
-          class="SigningRoleTable-cell SigningRoleTable-body-cell SigningRoleTable-cell--stretch"
-        >
-          <strong>{{invite.email}}</strong>
-          <div ng-if="invite.description" ng-bind="invite.description"></div>
-        </td>
-        <td class="SigningRoleTable-cell SigningRoleTable-body-cell">
-          <div layout="horizontal" justify-content="flex-end">
-            <button
-              class="ComponentWizard-button ComponentWizard-button--small ComponentWizard-button--primary"
-              ng-click="$ctrl.rescindInite(invite)"
-              style="white-space: nowrap;"
-              ng-if="!$ctrl.isRoleSelected(invite)"
-            >
-              Rescind
-            </button>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
 </div>

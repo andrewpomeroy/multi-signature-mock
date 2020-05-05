@@ -1,4 +1,4 @@
-<component-wizard>
+<component-wizard ng-if="!$ctrl.areInvitesSent">
   <div class="PageHeader AppForm-PageHeader">
     <div flex="fill">
       <h3
@@ -28,23 +28,14 @@
   >
     <signing-setup-page-invites></signing-setup-page-invites>
   </component-wizard-page>
-  <component-wizard-page
+  <!-- <component-wizard-page
     ng-if="$ctrl.wndModel.model.data.invitationsEnabled"
     is-navigable="$ctrl.isReadyForSummary"
   >
     <signing-setup-page-summary></signing-setup-page-summary>
-  </component-wizard-page>
-  <!-- <component-wizard-page is-navigable="true">
-    second page
-  </component-wizard-page>
-  <component-wizard-page is-navigable="false">
-    non navigable page
   </component-wizard-page> -->
 </component-wizard>
-<!-- <div style="visibility: hidden;">
-  <div class="md-dialog-container" id="signingDialog">
-    <md-dialog>
-      <esign-template></esign-template>
-    </md-dialog>
-  </div>
-</div> -->
+<signing-setup-page-summary
+  ng-if="$ctrl.isReadyForSummary && $ctrl.areInvitesSent"
+  class="ComponentWizard-largeFadeIn"
+></signing-setup-page-summary>

@@ -58,7 +58,8 @@ function SigningWizardController($timeout, $mdDialog, $window) {
 
 	});
 
-	
+	$ctrl.sendInvites = () => $ctrl.areInvitesSent = true;
+
 	$ctrl.$onInit = function () {
 		// $ctrl.doSigning().then((result) => {
 		// 	console.log(result);

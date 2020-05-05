@@ -64,4 +64,14 @@
   ></signing-invitation-form>
 </div>
 
-<component-wizard-nav></component-wizard-nav>
+<component-wizard-nav show-complete-button="true">
+  <complete-button>
+    <button
+      class="ComponentWizard-button ComponentWizard-button--next"
+      ng-click="$ctrl.signingWizard.sendInvites()"
+      ng-disabled="!$ctrl.signingWizard.isReadyForSummary"
+    >
+      {{$ctrl.completeButtonText}}
+    </button>
+  </complete-button>
+</component-wizard-nav>

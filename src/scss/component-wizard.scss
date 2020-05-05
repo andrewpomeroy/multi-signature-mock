@@ -54,6 +54,14 @@ $ComponentWizard-navButton-background--primary: #128484;
   }
 }
 
+.ComponentWizard-buttonGroup {
+  display: flex;
+  align-items: center;
+  & > :not(:last-child) {
+    margin-right: $ComponentWizard-nav-gutter;
+  }
+}
+
 .ComponentWizard-button--small {
   font-size: 14px;
   padding: 10px 16px;
