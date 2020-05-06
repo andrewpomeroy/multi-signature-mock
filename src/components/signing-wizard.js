@@ -20,13 +20,26 @@ function SigningWizardController($timeout, $mdDialog, $window) {
 	const $ctrl = this;
 
 	Object.defineProperties($ctrl, {
+		isSimpleSigning: {
+			get: () => !$ctrl.canInviteSigners && !$ctrl.hasMultipleSigningMethods
+		},
+		isSimpleDigitalSigning: {
+			get: () => $ctrl.isSimpleSigning && $ctrl.options.signingMethods[0] === "digital"
+		},
+		isSimpleHardCopySigning: {
+			get: () => $ctrl.isSimpleSigning && $ctrl.options.signingMethods[0] === "hardCopy"
+		},
+		// convenience abstraction to clarify business rules
+		isOpenSigning: {
+			get: () => $ctrl.hasMultipleRoles
+		},
 		isSingleSigner: {
 			get: () => $ctrl.wndModel.model.data.signingRoles && $ctrl.wndModel.model.data.signingRoles.length === 1 && !$ctrl.wndModel.model.data.signingRoles.find(x => x.isRepeatable)
 		},
 		canInviteSigners: {
 			get: () => $ctrl.wndModel.model.data.invitationsEnabled
 		},	
-		// It isn't helpful to ask 
+		// It isn't super helpful to ask if it's "just me" signing for multiple-role scenarios
 		willAskWhoSigns: {
 			get: () => $ctrl.canInviteSigners && $ctrl.hasRepeatableRoles
 		},
@@ -76,7 +89,12 @@ function SigningWizardController($timeout, $mdDialog, $window) {
 
 		$mdDialog.show({
 			parent: $window.angular.element(document.body),
-			template: "<div class=\"AppForm-section-content\"><esign-template outer-ctrl=\"outerCtrl\"></esign-template></div>",
+			template: `
+				<md-dialog class="mdDialog mdDialog--small">
+					<div class="AppForm-section-content">
+						<esign-template outer-ctrl="outerCtrl"></esign-template>
+					</div>
+				</md-dialog>`,
 			controller: function ($scope, $mdDialog, outerCtrl) {
 				$scope.outerCtrl = outerCtrl;
 				$scope.outerCtrl.isModal = true;
