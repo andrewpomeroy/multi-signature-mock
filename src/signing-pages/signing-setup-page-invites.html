@@ -43,7 +43,7 @@
 </div>
 <div
   class="ComponentWizard-largeFadeIn"
-  ng-if="$ctrl.signingWizard.hasMultipleRoles || $ctrl.wndModel.model.data.selfSignedOnly != null"
+  ng-if="$ctrl.signingWizard.hasMultipleRoles || $ctrl.wndModel.model.data.selfSignedOnly === false"
 >
   <div class="AppForm-copy-block">
     <div
@@ -68,7 +68,7 @@
   <complete-button>
     <button
       class="ComponentWizard-button ComponentWizard-button--next"
-      ng-click="$ctrl.signingWizard.sendInvites()"
+      ng-click="$ctrl.onComplete($event)"
       ng-disabled="!$ctrl.signingWizard.isReadyForSummary"
     >
       {{$ctrl.completeButtonText}}
