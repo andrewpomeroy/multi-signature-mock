@@ -14,12 +14,22 @@
 .SigningRoleTable-cell {
   border-bottom: 1px solid hsl(0, 0%, 79%);
   padding: 8px 4px;
-  min-height: 52px;
+  height: 52px;
   &:not(:last-child) {
     padding-right: 12px;
   }
   &:not(:first-child) {
     padding-left: 12px;
+  }
+}
+
+.SigningRoleTable-cell-split {
+  display: flex;
+}
+
+.SigningRoleTable-cell-split-item {
+  &:not(:last-child) {
+    margin-right: 12px;
   }
 }
 
