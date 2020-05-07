@@ -10,7 +10,7 @@
     "@babel/preset-env": "^7.9.6",
     "@uirouter/angularjs": "^1.0.24",
     "@windsor/angular-material": "^2.0.0",
-    "@windsor/form-ng": "^5.4.0",
+    "@windsor/form-ng": "^5.5.0",
     "@windsor/static-assets": "^5.2.18",
     "@windsor/validate-model-js": "^7.0.0",
     "angular": "^1.7.2",
