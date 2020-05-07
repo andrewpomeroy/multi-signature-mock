@@ -43,6 +43,7 @@ function SigningSetupPageRolesCtrl() {
 
 	$ctrl.onComplete = ($event) => {
 		return $ctrl.wndModel.model.data.selfSignedOnly 
+			// TODO: handle signing completion
 			? $ctrl.signingWizard.doSigning($event)
 			: $ctrl.signingWizard.sendInvites();
 	};

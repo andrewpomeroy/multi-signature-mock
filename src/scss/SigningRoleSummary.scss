@@ -1,7 +1,21 @@
-.SigningRoleSummary-item:not(:last-child) {
-  margin-bottom: 8px;
+.SigningRoleSummary {
+  padding-left: 16px;
 }
 
 .SigningRoleSummary-item {
   font-weight: 500;
+  &:not(:last-child) {
+    margin-bottom: 8px;
+  }
+}
+
+.SigningRoleSummary-item-icon {
+  height: 1.25em;
+  width: 1.25em;
+  margin-right: 0.25em;
+}
+
+.SigningRoleSummary-item--flex {
+  display: flex;
+  align-items: center;
 }

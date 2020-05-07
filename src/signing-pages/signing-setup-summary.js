@@ -1,5 +1,5 @@
 import angular from "angular";
-import template from "./signing-setup-page-summary.html";
+import template from "./signing-setup-summary.html";
 
 export default {
 	bindings: {
@@ -9,20 +9,20 @@ export default {
 		signingWizard: "^"
 	},
 	template: template,
-	controller: SigningSetupPageRolesCtrl,
+	controller: SigningSetupSummaryCtrl,
 	transclude: true,
 };
 
-SigningSetupPageRolesCtrl.$inject = [];
-function SigningSetupPageRolesCtrl() {
+SigningSetupSummaryCtrl.$inject = [];
+function SigningSetupSummaryCtrl() {
 	const $ctrl = this;
 
 	$ctrl.$onInit = function () {
 		$ctrl.roles = angular.copy($ctrl.wndModel.model.data.signingRoles);
 		// just for mockup purposes!
-		if ($ctrl.roles.length > 2) {
-			$ctrl.roles[$ctrl.roles.length - 1].isSigned = true;
-		}
+		// if ($ctrl.roles.length > 2) {
+		$ctrl.roles[$ctrl.roles.length - 1].isSigned = true;
+		// }
 	};
 
 	$ctrl.selectedRoles = [];

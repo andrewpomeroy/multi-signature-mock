@@ -32,10 +32,10 @@
     ng-if="$ctrl.wndModel.model.data.invitationsEnabled"
     is-navigable="$ctrl.isReadyForSummary"
   >
-    <signing-setup-page-summary></signing-setup-page-summary>
+    <signing-setup-summary></signing-setup-summary>
   </component-wizard-page> -->
 </component-wizard>
-<signing-setup-page-summary
+<signing-setup-summary
   ng-if="$ctrl.isReadyForSummary && $ctrl.areInvitesSent"
   class="ComponentWizard-largeFadeIn"
-></signing-setup-page-summary>
+></signing-setup-summary>
