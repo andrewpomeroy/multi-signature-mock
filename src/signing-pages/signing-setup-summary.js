@@ -13,8 +13,8 @@ export default {
 	transclude: true,
 };
 
-SigningSetupSummaryCtrl.$inject = [];
-function SigningSetupSummaryCtrl() {
+SigningSetupSummaryCtrl.$inject = ["$window", "$mdDialog"];
+function SigningSetupSummaryCtrl($window, $mdDialog) {
 	const $ctrl = this;
 
 	$ctrl.$onInit = function () {
@@ -52,8 +52,37 @@ function SigningSetupSummaryCtrl() {
 		});
 	};
 
-	$ctrl.rescindInvite = (role) => {
-		alert("rescind invite placeholder", role);
+	$ctrl.openAddSignersModal = ($event) => {
+		const existingInvites = angular.copy($ctrl.invites);
+		$mdDialog.show({
+			parent: $window.angular.element(document.body),
+			template: `
+				<md-dialog class="mdDialog mdDialog--small">
+					<div class="AppForm-section-content">
+						<signing-invitation-form
+							outer-ctrl="outerCtrl"
+							existing-invites="existingInvites"
+							is-single="outerCtrl.signingWizard.isSingleSigner"></signing-invitation-form>
+						<div class="ComponentWizard-buttonGroup">
+							<button class="ComponentWizard-button ComponentWizard-button--primary" ng-click="outerCtrl.submit()">Send Invites</button>
+							<button class="ComponentWizard-button ComponentWizard-button" ng-click="outerCtrl.cancel()">Cancel</button>
+						</div>
+					</div>
+				</md-dialog>`,
+			controller: function ($scope, $mdDialog, outerCtrl) {
+				$scope.outerCtrl = outerCtrl;
+				$scope.outerCtrl.cancel = $mdDialog.cancel;
+				$scope.outerCtrl.submit = $mdDialog.hide;
+			},
+			targetEvent: $event,
+			focusOnOpen: true,
+			fullscreen: true,
+			closeOnOutsideClick: true,
+			multiple: true,
+			locals: {
+				outerCtrl: $ctrl,
+				existingInvites: existingInvites
+			}
+		});
 	};
-	
 }

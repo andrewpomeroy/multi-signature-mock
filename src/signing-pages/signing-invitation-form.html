@@ -26,7 +26,7 @@
           class="FormCard-main FormCard-split-item FormCard-split-item--fill"
         >
           <wnd-field-block
-            wnd-model="$ctrl.wndModel.model.data.invites[$index]"
+            wnd-model="wndModel.model.data.invites[$index]"
             wnd-label="Email"
             margin="none"
             full-width="true"
@@ -40,7 +40,7 @@
           class="FormCard-main FormCard-split-item FormCard-split-item--fill"
         >
           <wnd-field-block
-            wnd-model="$ctrl.wndModel.model.data.invites[$index]"
+            wnd-model="wndModel.model.data.invites[$index]"
             wnd-label="Notes (optional)"
             margin="none"
             full-width="true"
@@ -71,7 +71,7 @@
         Add Signer
       </button>
     </div>
-    <wnd-field-block wnd-model="$ctrl.wndModel.model.data">
+    <wnd-field-block wnd-model="wndModel.model.data">
       <wnd-field wnd-property="isSelfSigned">
         <wnd-checkbox
           wnd-label="Include myself as a signer (andrew_pomeroy@windsorsolutions.com)"

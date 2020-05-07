@@ -3,44 +3,45 @@ import template from "./signing-invitation-form.html";
 
 export default {
 	bindings: {
-		// roles: "<",
-		// originalRoles: "<",
 		isSingle: "<",
-		invites: "<"
+		existingInvites: "<",
+		outerCtrl: "<",
 	},
 	require: {
 		wndModel: "?^",
-		signingWizard: "^"
+		signingWizard: "?^"
 	},
 	template: template,
 	controller: SigningInvitationFormCtrl,
 	transclude: true,
 };
 
-SigningInvitationFormCtrl.$inject = [];
-function SigningInvitationFormCtrl() {
+SigningInvitationFormCtrl.$inject = ["$scope"];
+function SigningInvitationFormCtrl($scope) {
 	const $ctrl = this;
-
-	Object.defineProperties($ctrl, {
-		oneInviteLeft: {
-			get: () => $ctrl.invites.length === 1
-		}
-	});
-
 	
-	$ctrl.$onInit = function () {
-		$ctrl.invites = [{}];
-	};
-
-	$ctrl.removeInvite = function (index) {
-		$ctrl.invites.splice(index, 1);
-	};
-
-	$ctrl.addNew = function () {
-		$ctrl.invites.push({
-			email: "",
-			notes: ""
+	this.$onInit = function () {
+		$scope.wndModel = $ctrl.wndModel || $ctrl.outerCtrl.wndModel;
+		$scope.outerCtrl = this.outerCtrl || $ctrl;
+		$ctrl.invites = angular.copy($ctrl.existingInvites || [{}]);
+		
+		Object.defineProperties($ctrl, {
+			oneInviteLeft: {
+				get: () => $ctrl.invites.length === 1
+			},
 		});
+
+		$ctrl.removeInvite = function (index) {
+			$ctrl.invites.splice(index, 1);
+		};
+	
+		$ctrl.addNew = function () {
+			$ctrl.invites.push({
+				email: "",
+				notes: ""
+			});
+		};
 	};
+
 	
 }

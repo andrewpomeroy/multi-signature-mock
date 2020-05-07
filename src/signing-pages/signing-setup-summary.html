@@ -44,7 +44,7 @@
       <p>
         <button
           class="ComponentWizard-button ComponentWizard-button--primary ComponentWizard-button--small"
-          ng-click="$ctrl.inviteAdditional($event)"
+          ng-click="$ctrl.openAddSignersModal($event)"
           ng-if="!$ctrl.signingWizard.hasMultipleRoles"
         >
           Invite additional signers
@@ -262,13 +262,15 @@
     You will receive an email notification any time a user signs, as well as
     when submission is completed. You can check on the status of your form
     submission at any time:
-    <a class="TextLink"><strong>View Submission</strong></a>
+    <a class="TextLink TextLink--underline"><strong>View Submission</strong></a>
   </p>
   <!-- TODO: needs role? -->
   <p class="AppForm-text" ng-if="$ctrl.isSelfSigned">
     Your signature {{!$ctrl.signingWizard.isOpenSigning ? "is required" : "may
     be necessary"}} as well. You may
-    <a class="TextLink" ng-click="$ctrl.openSigningDialog($event, {})"
+    <a
+      class="TextLink TextLink--underline"
+      ng-click="$ctrl.openSigningDialog($event, {})"
       ><strong>sign now</strong></a
     >
     or at any other time.
