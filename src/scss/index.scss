@@ -1,21 +1,4 @@
 @import "nform-import/index.scss";
 // @import "@windsor/static-assets/index.scss";
 
-$lightGreen: #dfffff;
-$darkGreen: #128484;
-
-@import "cell-styles-common.scss";
-
 @import "Debug.scss";
-@import "radio-block.scss";
-@import "form-card.scss";
-@import "component-wizard.scss";
-@import "submission-copy.scss";
-@import "SigningRoleSummary.scss";
-@import "SigningRoleTable.scss";
-
-.Alert--success {
-  color: #637785;
-  border-color: #77dcdc;
-  background-color: #ddffff;
-}
