@@ -194,8 +194,8 @@ function WizardShimCtrl() {
 	$ctrl.model.validate();
 
 	function initOptions () {
-		$ctrl.roleSet = $ctrl.roleSets.find(x => x.name === "singleRepeatable");
-		// $ctrl.roleSet = $ctrl.roleSets.find(x => x.name === "multiRepeatable");
+		// $ctrl.roleSet = $ctrl.roleSets.find(x => x.name === "singleRepeatable");
+		$ctrl.roleSet = $ctrl.roleSets.find(x => x.name === "multiRepeatable");
 	}
 	initOptions();
 

@@ -74,4 +74,12 @@
       {{$ctrl.completeButtonText}}
     </button>
   </complete-button>
+  <secondary-nav-items>
+    <a
+      class="ComponentWizard-navLink TextLink TextLink--underline"
+      ng-click="$parent.$parent.$ctrl.signingWizard.finishLater($event)"
+    >
+      <em>Finish Later</em>
+    </a>
+  </secondary-nav-items>
 </component-wizard-nav>

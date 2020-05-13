@@ -85,6 +85,8 @@ function SigningWizardController($timeout, $mdDialog, $window) {
 		}).catch(error => reject(error));
 	});
 
+	$ctrl.finishLater = ($event) => alert('lol')
+
 	$ctrl.openSigningModal = ($event, roles) => new Promise((resolve, reject) => {
 
 		$mdDialog.show({
