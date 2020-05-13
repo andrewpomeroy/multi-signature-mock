@@ -19,10 +19,10 @@ function SigningSetupSummaryCtrl($window, $mdDialog) {
 
 	$ctrl.$onInit = function () {
 		$ctrl.roles = angular.copy($ctrl.wndModel.model.data.signingRoles);
+
 		// just for mockup purposes!
-		// if ($ctrl.roles.length > 2) {
 		$ctrl.roles[$ctrl.roles.length - 1].isSigned = true;
-		// }
+		$ctrl.invites[$ctrl.invites.length - 1].isMissingEsigRole = true;
 	};
 
 	$ctrl.selectedRoles = [];

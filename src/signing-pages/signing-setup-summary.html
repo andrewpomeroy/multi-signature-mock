@@ -141,7 +141,11 @@
         <td
           class="SigningRoleTable-cell SigningRoleTable-body-cell SigningRoleTable-cell--stretch"
         >
-          <div layout="horizontal" align-items="center">
+          <div
+            class="SigningRoleSummary-item-line"
+            layout="horizontal"
+            align-items="center"
+          >
             <span class="SigningRoleSummary-item-icon SvgWrap">
               ${require('@windsor/static-assets/lib/svg/mail.svg')}
             </span>
@@ -151,6 +155,16 @@
                 ng-if="invite.description"
                 ng-bind="invite.description"
               ></div>
+            </div>
+          </div>
+          <div
+            class="SigningRoleSummary-item-line"
+            ng-if="invite.isMissingEsigRole"
+            flex="fill"
+          >
+            <div class="Alert Alert--warning">
+              User is missing e-signature credentials, and will need to complete
+              the e-signature verification process before they can sign.
             </div>
           </div>
         </td>
