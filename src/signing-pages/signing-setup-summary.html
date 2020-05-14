@@ -264,6 +264,26 @@
     </button>
   </p>
 </div>
+
+<!-- Missing e-sig role warning -->
+
+<div
+  class="AppForm-copy-block"
+  ng-if="!$ctrl.wndModel.model.data.currentUserIsCertified && $ctrl.isSelfSigned"
+>
+  <div class="Alert Alert--danger">
+    <div layout="vertical" align-items="center">
+      <p>
+        In order to sign this form, you must be granted electronic-signature
+        rights approval by internal staff.
+      </p>
+      <a ng-click="alert('placeholder')">Request Approval</a>
+    </div>
+  </div>
+</div>
+
+<!-- Finalizing instructions -->
+
 <div class="AppForm-copy-block">
   <div class="AppForm-copy-heading">
     <h3 class="u-headingInherit">What's Next?</h3>
@@ -279,9 +299,15 @@
     <a class="TextLink TextLink--underline">View Submission</a>
   </p>
   <!-- TODO: needs role? -->
-  <p class="AppForm-text" ng-if="$ctrl.isSelfSigned">
-    Your signature {{!$ctrl.signingWizard.isOpenSigning ? "is required" : "may
-    be necessary"}} as well. You may
+  <p
+    class="AppForm-text"
+    ng-if="$ctrl.isSelfSigned && $ctrl.signingWizard.currentUserIsCertified"
+  >
+    <strong
+      >Your signature {{!$ctrl.signingWizard.isOpenSigning ? "is required" :
+      "may be necessary"}} as well.</strong
+    >
+    You may
     <a
       class="TextLink TextLink--underline"
       ng-click="$ctrl.openSigningDialog($event, {})"
@@ -290,6 +316,9 @@
     or at any other time.
   </p>
 </div>
+
+<!-- Footer/actions -->
+
 <div class="AppForm-copy-block">
   <div class="ComponentWizard-buttonGroup">
     <!-- role-specific signing button -->

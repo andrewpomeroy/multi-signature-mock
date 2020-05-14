@@ -153,6 +153,7 @@ function WizardShimCtrl() {
 	];
 
 	const data = {
+		currentUserIsCertified: false,
 		invitationsEnabled: true,
 		signingMethod: undefined,
 		selfSignedOnly: undefined,

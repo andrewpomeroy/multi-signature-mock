@@ -43,6 +43,20 @@
     </radio-block>
   </radio-block-group>
 </div>
+<div
+  class="AppForm-copy-block"
+  ng-if="!$ctrl.wndModel.model.data.currentUserIsCertified && !$ctrl.wndModel.model.data.invitationsEnabled && $ctrl.wndModel.model.data.signingMethod != null"
+>
+  <div class="Alert Alert--danger">
+    <div layout="vertical" align-items="center">
+      <p>
+        In order to sign this form, you must be granted electronic-signature
+        rights approval by internal staff.
+      </p>
+      <a ng-click="alert('placeholder')">Request Approval</a>
+    </div>
+  </div>
+</div>
 <component-wizard-nav
   show-complete-button="!$ctrl.wndModel.model.data.invitationsEnabled"
 >
