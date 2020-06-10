@@ -1,0 +1,111 @@
+<md-dialog class="mdDialog mdDialog--medium mdDialog--fullscreenScroll">
+  <div class="mdDialog--fullscreenScroll-container">
+    <div class="mdDialog--fullscreenScroll-content">
+      <div class="AppForm-section-content">
+        <div class="PageHeader AppForm-PageHeader ng-scope">
+          <div flex="fill" class="flex">
+            <h3
+              class="PageHeader-heading PageHeader-heading--noMargin"
+              section-title-autofocus="true"
+              tabindex="-1"
+            >
+              Signature Added
+            </h3>
+          </div>
+        </div>
+        <div class="AppForm-copy-block AppForm-copy-block--small">
+          <div class="AppForm-copy-heading">
+            <h3 class="u-headingInherit">
+              {{$ctrl.signatureCount}} of {{$ctrl.signatureLines.length}}
+              required signatures
+            </h3>
+          </div>
+        </div>
+        <div class="AppForm-copy-block AppForm-copy-block--small">
+          <div class="AppForm-text">
+            The form will be automatically submitted when all the following
+            signatures are gathered:
+          </div>
+        </div>
+        <div class="AppForm-copy-block AppForm-copy-block--small">
+          <table class="SigningRoleTable">
+            <tbody class="SigningRoleTable-body">
+              <tr
+                class="SigningRoleTable-row"
+                ng-repeat="line in $ctrl.signatureLines"
+                ng-class="{'SigningRoleTable-row--gray': line.signedBy && !line.isSignedByCurrentUser, 'SigningRoleTable-row--green': line.isSignedByCurrentUser}"
+              >
+                <td
+                  class="SigningRoleTable-cell SigningRoleTable-body-cell SigningRoleTable-cell--stretch"
+                >
+                  <strong>{{line.description}}</strong>
+                </td>
+                <td class="SigningRoleTable-cell SigningRoleTable-body-cell">
+                  <div
+                    class="SigningRoleTable-cell-split"
+                    justify-content="flex-end"
+                    ng-if="line.signedBy || line.isSignedByCurrentUser"
+                  >
+                    <div
+                      class="SigningRoleTable-cell-split-item"
+                      style="text-align: right;"
+                    >
+                      <div class="SigningRoleTable-statusText">Signed</div>
+                      <div
+                        style="white-space: nowrap;"
+                        ng-if="!line.isSignedByCurrentUser && line.signedBy"
+                      >
+                        <strong>{{line.signedBy}},</strong>
+                        <span ng-bind="line.signedOnString"></span>
+                      </div>
+                      <div
+                        style="white-space: nowrap;"
+                        ng-if="line.isSignedByCurrentUser"
+                      >
+                        <span ng-bind="line.signedOnString"></span>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr class="SigningRoleTable-row" ng-if="$ctrl.isSelfSigned">
+                <td
+                  class="SigningRoleTable-cell SigningRoleTable-body-cell SigningRoleTable-cell--stretch"
+                >
+                  <strong>andrew_pomeroy@windsorsolutions.com (me)</strong>
+                </td>
+                <td class="SigningRoleTable-cell SigningRoleTable-body-cell">
+                  <div
+                    layout="horizontal"
+                    justify-content="flex-end"
+                    ng-if="!role.isSigned && $ctrl.isSelfSigned"
+                  >
+                    <!-- NOTE: probably needs role on the click handler -->
+                    <button
+                      class="ComponentWizard-button ComponentWizard-button--small ComponentWizard-button--primary"
+                      ng-click="$ctrl.openSigningDialog($event, {})"
+                      style="white-space: nowrap;"
+                    >
+                      Sign
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="AppForm-copy-block AppForm-copy-block--noMarginBottom">
+          <div class="ComponentWizard-buttonGroup">
+            <!-- role-specific signing button -->
+            <button
+              class="ComponentWizard-button ComponentWizard-button--primary"
+              ng-click="alert('byeeeee'); $ctrl.close()"
+            >
+              View Submission
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</md-dialog>

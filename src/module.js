@@ -10,6 +10,8 @@ import signingSetupSummary from "./signing-pages/signing-setup-summary";
 import signingInvitationForm from "./signing-pages/signing-invitation-form";
 import selfSigningSelection from "./signing-pages/self-signing-selection";
 import esignTemplate from "./signing-pages/esign-template";
+import signatureConfirmation from "./signing-pages/signature-confirmation";
+
 angular.module("app").component("wizardShim", wizardShim);
 angular.module("app").component("signingWizard", signingWizard);
 angular.module("app").component("signingSetupPageMethods", signingSetupPageMethods);
@@ -20,4 +22,5 @@ angular.module("app").component("signingSetupSummary", signingSetupSummary);
 angular.module("app").component("signingInvitationForm", signingInvitationForm);
 angular.module("app").component("selfSigningSelection", selfSigningSelection);
 angular.module("app").component("esignTemplate", esignTemplate);
+angular.module("app").component("signatureConfirmation", signatureConfirmation);
 

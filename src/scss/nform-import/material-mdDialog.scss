@@ -8,16 +8,21 @@ $mdDialog-innerPaddingH: 24px;
 
 $mdDialog-toolbars-PaddingV: 18px;
 
-// These are weird.. "width" classes should have more predictable effects
-.mdDialog--small {
-  min-width: $mdDialog-small-width;
+.mdDialog--small,
+.mdDialog--fullscreenScroll.mdDialog--small
+  .mdDialog--fullscreenScroll-content {
+  width: 90%;
+  max-width: $mdDialog-small-width;
 }
-.mdDialog--medium {
+.mdDialog--medium,
+.mdDialog--fullscreenScroll.mdDialog--medium
+  .mdDialog--fullscreenScroll-content {
   width: 100%;
   max-width: $mdDialog-medium-width;
 }
 
-.mdDialog--fullscreen {
+.mdDialog--fullscreen,
+.mdDialog--fullscreenScroll {
   width: 100%;
   max-width: none;
   height: 100%;
@@ -26,8 +31,8 @@ $mdDialog-toolbars-PaddingV: 18px;
 }
 
 .mdDialog--paymentIFrame {
-    max-width: $mdDialog-mediumLarge-width;
-    width: 90%;
+  max-width: $mdDialog-mediumLarge-width;
+  width: 90%;
 }
 
 .mdDialog-body--padded {
@@ -41,7 +46,7 @@ $mdDialog-toolbars-PaddingV: 18px;
 }
 
 md-dialog .mdDialog-actions {
-    padding: $mdDialog-toolbars-PaddingV $mdDialog-innerPaddingH;
+  padding: $mdDialog-toolbars-PaddingV $mdDialog-innerPaddingH;
 }
 
 md-dialog .mdDialog-actions {
@@ -51,5 +56,33 @@ md-dialog .mdDialog-actions {
 }
 
 md-dialog .mdDialog-headerItems {
-    padding: $mdDialog-toolbars-PaddingV $mdDialog-innerPaddingH;
+  padding: $mdDialog-toolbars-PaddingV $mdDialog-innerPaddingH;
+}
+
+.mdDialog--fullscreenScroll {
+  overflow: visible;
+  background: none;
+  display: flex;
+  align-items: center;
+  box-shadow: none;
+  pointer-events: none;
+}
+
+.mdDialog--fullscreenScroll-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  padding: 5em 3em;
+  overflow-y: auto;
+  width: 100%;
+  align-items: flex-start;
+  position: relative;
+}
+
+.mdDialog--fullscreenScroll-content {
+  overflow: hidden;
+  pointer-events: auto;
+  max-width: 720px;
+  background: white;
+  border-radius: 4px;
 }

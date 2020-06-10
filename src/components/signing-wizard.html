@@ -39,3 +39,9 @@
   ng-if="$ctrl.isReadyForSummary && $ctrl.areInvitesSent"
   class="ComponentWizard-largeFadeIn"
 ></signing-setup-summary>
+<signature-confirmation
+  roles="$ctrl.signingConfirmationRoles"
+  open-event="$ctrl.signingConfirmationOpenEvent"
+  on-close="$ctrl.onSigningConfirmationModalClose"
+  on-cancel="$ctrl.onSigningConfirmationModalCancel"
+></signature-confirmation>

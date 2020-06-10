@@ -1,7 +1,6 @@
 import angular from "angular";
 import template from "./signing-wizard.html";
-import esignTemplate from "../signing-pages/esign-template.html";
-import { EsignCtrl } from "../signing-pages/esign-template";
+// import confirmationTemplate from "../signing-pages/confirmation-template.html"
 
 export default {
 	bindings: {
@@ -92,7 +91,7 @@ function SigningWizardController($timeout, $mdDialog, $window) {
 		$mdDialog.show({
 			parent: $window.angular.element(document.body),
 			template: `
-				<md-dialog class="mdDialog mdDialog--small">
+				<md-dialog class="mdDialog mdDialog--medium">
 					<div class="AppForm-section-content">
 						<esign-template outer-ctrl="outerCtrl"></esign-template>
 					</div>
@@ -114,8 +113,26 @@ function SigningWizardController($timeout, $mdDialog, $window) {
 		})
 			.then(result => {
 				resolve(result);
+				console.log(result);
+				$ctrl.openSigningConfirmationModal($event, result.roles)
 			})
 			.catch(error => reject(error));
 	});
+
+	$ctrl.openSigningConfirmationModal = function ($event, roles) {
+		$ctrl.signingConfirmationOpenEvent = $event;
+		$ctrl.signingConfirmationRoles = roles;
+		console.log($event, roles);
+	}
+
+	$ctrl.onSigningConfirmationModalClose = function ($event) {
+		$ctrl.signingConfirmationRoles = [];
+		$ctrl.signingConfirmationOpenEvent = null;
+	}
+	$ctrl.onSigningConfirmationModalCancel = function ($event) {
+		$ctrl.signingConfirmationRoles = [];
+		$ctrl.signingConfirmationOpenEvent = null;
+	}
+
 
 }
