@@ -29,6 +29,9 @@ function SigningInvitationFormCtrl($scope) {
 			oneInviteLeft: {
 				get: () => $ctrl.invites.length === 1
 			},
+			emailInvitesEnabled: {
+				get: () => !$ctrl.signingWizard.isHardCopySigning
+			}
 		});
 
 		$ctrl.removeInvite = function (index) {

@@ -11,7 +11,7 @@ WizardShimCtrl.$inject = [];
 function WizardShimCtrl() {
 	const $ctrl = this;
 
-	$ctrl.useDigital = true;
+	$ctrl.useDigital = false;
 	$ctrl.useHardCopy = true;
 
 	$ctrl.certificationOptions = {

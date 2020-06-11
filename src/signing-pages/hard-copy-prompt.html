@@ -1,0 +1,126 @@
+<div class="PageHeader AppForm-PageHeader">
+  <div flex="fill">
+    <h3
+      class="PageHeader-heading PageHeader-heading--noMargin"
+      section-title-autofocus="true"
+      tabindex="-1"
+    >
+      Signing
+    </h3>
+  </div>
+</div>
+
+<!-- implementation note: I wasn't able to easily get the current-user
+signatures shown in the multiple-invitees version of this, but it would be best
+if they could show like: 'Andrew Pomeroy (me)' in the list -->
+
+<div class="AppForm-copy-block ComponentWizard-largeFadeIn" ng-if="$ctrl.showDownloadPrompt">
+  <div class="AppForm-copy-heading">Download, Print and Sign</div>
+  <p>
+    <span>
+      The following document contains a copy of the form to be submitted, as well as a space for
+    </span>
+    <span ng-if="$ctrl.signatureLines.length > 1">
+      the following signatures:
+    </span>
+    <span ng-if="$ctrl.signatureLines.length === 1">
+      <span ng-if="$ctrl.isSelfSignedOnly">your signature.</span>
+      <span ng-if="!$ctrl.isSelfSignedOnly">the following signature:</span>
+    </span>
+  </p>
+  <p ng-if="!$ctrl.isSelfSignedOnly || $ctrl.signatureLines.length > 1">
+    <table class="SigningRoleTable">
+      <tbody class="SigningRoleTable-body">
+        <tr
+          class="SigningRoleTable-row"
+          ng-repeat="line in $ctrl.signatureLines"
+        >
+          <td
+            class="SigningRoleTable-cell SigningRoleTable-body-cell SigningRoleTable-cell--stretch"
+          >
+            <span>{{line.email || line.name}}</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </p>
+  <p>
+    <span>
+      To complete submission of this form, you must <strong>download the signable form,</strong>
+    </span>
+    <span ng-if="!$ctrl.isSelfSignedOnly || $ctrl.signatureLines.length > 1">
+      <strong>
+        collect the above signatures,
+      </strong>
+    </span>
+    <span ng-if="$ctrl.isSelfSignedOnly && $ctrl.signatureLines.length === 1">
+      <strong>
+        sign it,
+      </strong>
+    </span>
+    <span>
+      <strong>
+        and upload the signed form.
+      </strong>
+    </span>
+  </p>
+  <p>
+    <button
+      class="ComponentWizard-button ComponentWizard-button--primary ComponentWizard-button--small"
+      ng-click="$ctrl.handleDownloadFormClick($event)"
+    >
+      Download signable form
+    </button>
+  </p>
+</div>
+
+
+<div class="AppForm-copy-block ComponentWizard-largeFadeIn" ng-if="!$ctrl.showDownloadPrompt">
+  <div class="AppForm-copy-heading">Sign and Upload</div>
+  <div class="Alert Alert--success">
+    <div flex="fill">
+      <p>
+        <span>
+          To continue, you will need to print the downloaded signable form,
+        </span>
+        <span ng-if="$ctrl.signatureLines.length > 1">
+          gather the following signatures,
+        </span>
+        <span ng-if="$ctrl.signatureLines.length === 1">
+          <span ng-if="$ctrl.isSelfSignedOnly">add your signature</span>
+          <span ng-if="!$ctrl.isSelfSignedOnly">gather the following signature</span>
+        </span>
+        <span>and upload the signed copy.</span>
+      </p>
+      <p ng-if="!$ctrl.isSelfSignedOnly || $ctrl.signatureLines.length > 1">
+        <table class="SigningRoleTable">
+          <tbody class="SigningRoleTable-body">
+            <tr
+              class="SigningRoleTable-row"
+              ng-repeat="line in $ctrl.signatureLines"
+            >
+              <td
+                class="SigningRoleTable-cell SigningRoleTable-body-cell SigningRoleTable-cell--stretch"
+              >
+                <span>{{line.email || line.name}}</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </p>
+      <p>
+        <div class="ComponentWizard-buttonGroup">
+          <button
+            class="ComponentWizard-button ComponentWizard-button--primary ComponentWizard-button--small"
+            ng-click="alert('placeholder')"
+          >
+            Upload Signed Form
+          </button>
+          <a role="button" class="ComponentWizard-navLink TextLink TextLink--subdued" ng-click="alert('placeholder')">
+            Re-download signable form
+          </a>
+      </p>
+    </div>
+  </div>
+</div>
+

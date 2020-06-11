@@ -28,24 +28,27 @@ function SigningSetupPageRolesCtrl() {
 		},
 		completeButtonText: {
 			get: () => (
-				$ctrl.wndModel.model.data.selfSignedOnly
-					? "Sign"
-					: ($ctrl.invites && $ctrl.invites.length > 1)
-						? "Send Invites"
-						// This is just a way to make it so it doesn't say "send invite" if you're the only one signing
-						// the logic will of course have to change here, cause checking email length is just a dumb hack
-						: $ctrl.invites.length === 1 && $ctrl.invites[0].email.length
-							? "Send Invite"
-							: "Next"
+				$ctrl.signingWizard.isHardCopySigning
+					? "Next"
+					: $ctrl.wndModel.model.data.selfSignedOnly
+						? "Sign"
+						: ($ctrl.invites && $ctrl.invites.length > 1)
+							? "Send Invites"
+							// This is just a way to make it so it doesn't say "send invite" if you're the only one signing
+							// the logic will of course have to change here, cause checking email length is just a dumb hack
+							: $ctrl.invites.length === 1 && $ctrl.invites[0].email.length
+								? "Send Invite"
+								: "Next"
 			)
 		}
 	});
 
 	$ctrl.onComplete = ($event) => {
-		return $ctrl.wndModel.model.data.selfSignedOnly 
-			// TODO: handle signing completion
-			? $ctrl.signingWizard.doSigning($event)
-			: $ctrl.signingWizard.sendInvites();
+		return $ctrl.signingWizard.isHardCopySigning 
+			? $ctrl.signingWizard.activateHardCopySignature() 
+			: $ctrl.wndModel.model.data.selfSignedOnly 
+				? $ctrl.signingWizard.doSigning($event)
+				: $ctrl.signingWizard.sendInvites();
 	};
 
 	$ctrl.removeRole = function (index) {

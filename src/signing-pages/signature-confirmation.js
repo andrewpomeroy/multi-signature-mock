@@ -42,6 +42,7 @@ function signatureConfirmationCtrl($scope, $mdDialog, $window) {
 
 					$ctrl.signatureLines = $ctrl.signatureLines.map((line, index) => {
 							if (!line.email) {
+								// -- MOCK - please replace as needed
 								line.email = "andrew_pomeroy@windsorsolutions.com";
 							}
 							return {
@@ -53,9 +54,11 @@ function signatureConfirmationCtrl($scope, $mdDialog, $window) {
 							}
 						});
 
+					// -- MOCK - please replace as needed
 					$ctrl.signatureLines[0].isSignedByCurrentUser = true;
 					$ctrl.signatureLines[0].signedOnString = "1 minute ago";
 
+					// -- MOCK - please replace as needed
 					if ($ctrl.signatureLines.length > 1) {
 						$ctrl.signatureLines[1].isSigned = true;
 						$ctrl.signatureLines[1].signedBy = "Brett Peake";

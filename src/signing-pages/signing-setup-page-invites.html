@@ -77,12 +77,13 @@
     </div>
   </div>
 </div> -->
+<!-- show-complete-button="!$ctrl.signingWizard.isHardCopySigning" -->
 <component-wizard-nav show-complete-button="true">
   <complete-button>
     <button
       class="ComponentWizard-button ComponentWizard-button--next"
       ng-click="$ctrl.onComplete($event)"
-      ng-disabled="!$ctrl.signingWizard.isReadyForSummary"
+      ng-disabled="!$ctrl.signingWizard.isReadyForSummary && !$ctrl.signingWizard.isReadyForHardCopySignature"
     >
       {{$ctrl.completeButtonText}}
     </button>

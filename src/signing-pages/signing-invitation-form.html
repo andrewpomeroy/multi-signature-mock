@@ -1,20 +1,26 @@
 <div class="AppForm-copy-block" ng-if="!$ctrl.isSingle">
   <p class="AppForm-text">
     Please <strong>fill in information for any users</strong> who will need to
-    sign. When you finish this process, they will each be
-    <strong>sent an email invitation to sign the form.</strong>
+    sign.
+    <span ng-if="$ctrl.emailInvitesEnabled"
+      >When you finish this process, they will each be
+      <strong>sent an email invitation to sign the form.</strong></span
+    >
   </p>
-  <p class="AppForm-text">
+  <p class="AppForm-text" ng-if="$ctrl.emailInvitesEnabled">
     Please make sure you specify the correct email address for each user.
   </p>
 </div>
 <div class="AppForm-copy-block" ng-if="$ctrl.isSingle">
   <p class="AppForm-text">
     Please <strong>fill in information for the user</strong> who will need to
-    sign. When you finish this process, they will each be
-    <strong>sent an email invitation to sign the form.</strong>
+    sign.
+    <span ng-if="$ctrl.emailInvitesEnabled"
+      >When you finish this process, they will each be
+      <strong>sent an email invitation to sign the form.</strong></span
+    >
   </p>
-  <p class="AppForm-text">
+  <p class="AppForm-text" ng-if="$ctrl.emailInvitesEnabled">
     Please make sure you specify the correct email address.
   </p>
 </div>
@@ -25,9 +31,10 @@
         <div
           class="FormCard-main FormCard-split-item FormCard-split-item--fill"
         >
+          <!-- IMPLEMENTATION NOTE: This will probably need to be changed to an actual different model property, since name and email require two different types of validation. -->
           <wnd-field-block
             wnd-model="wndModel.model.data.invites[$index]"
-            wnd-label="Email"
+            wnd-label="{{$ctrl.emailInvitesEnabled ? 'Email' : 'Name'}}"
             margin="none"
             full-width="true"
           >

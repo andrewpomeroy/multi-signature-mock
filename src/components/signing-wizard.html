@@ -1,4 +1,4 @@
-<component-wizard ng-if="!$ctrl.areInvitesSent">
+<component-wizard ng-if="!$ctrl.isSigningInProcess">
   <div class="PageHeader AppForm-PageHeader">
     <div flex="fill">
       <h3
@@ -29,16 +29,20 @@
     <signing-setup-page-invites></signing-setup-page-invites>
   </component-wizard-page>
   <!-- <component-wizard-page
-    ng-if="$ctrl.wndModel.model.data.invitationsEnabled"
-    is-navigable="$ctrl.isReadyForSummary"
+    is-navigable="$ctrl.isReadyForHardCopySignature"
+    ng-if="$ctrl.isHardCopySigning"
   >
-    <signing-setup-summary></signing-setup-summary>
+    <hard-copy-prompt></hard-copy-prompt>
   </component-wizard-page> -->
 </component-wizard>
 <signing-setup-summary
-  ng-if="$ctrl.isReadyForSummary && $ctrl.areInvitesSent"
+  ng-if="$ctrl.isReadyForSummary && !$ctrl.isHardCopySigning && $ctrl.isSigningInProcess"
   class="ComponentWizard-largeFadeIn"
 ></signing-setup-summary>
+<hard-copy-prompt
+  ng-if="$ctrl.isReadyForHardCopySignature && $ctrl.isSigningInProcess"
+  class="ComponentWizard-largeFadeIn"
+></hard-copy-prompt>
 <signature-confirmation
   roles="$ctrl.signingConfirmationRoles"
   open-event="$ctrl.signingConfirmationOpenEvent"

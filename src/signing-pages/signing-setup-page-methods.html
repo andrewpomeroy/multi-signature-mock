@@ -58,7 +58,7 @@
   </div>
 </div> -->
 <component-wizard-nav
-  show-complete-button="!$ctrl.wndModel.model.data.invitationsEnabled"
+  show-complete-button="!$ctrl.wndModel.model.data.invitationsEnabled && !$ctrl.signingWizard.isHardCopySignature"
 >
   <complete-button>
     <button

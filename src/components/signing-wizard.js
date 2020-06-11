@@ -28,6 +28,14 @@ function SigningWizardController($timeout, $mdDialog, $window) {
 		isSimpleHardCopySigning: {
 			get: () => $ctrl.isSimpleSigning && $ctrl.options.signingMethods[0] === "hardCopy"
 		},
+		hasHardCopyOption: {
+			get: () => $ctrl.options.signingMethods.find((method) => method === 'hardCopy')
+		},
+		isHardCopySigning: {
+			get: () => ($ctrl.wndModel.model.data.signingMethod === 'hardCopy') || (
+				$ctrl.hasHardCopyOption && !$ctrl.hasMultipleSigningMethods
+			)
+		},
 		// convenience abstraction to clarify business rules
 		isOpenSigning: {
 			get: () => $ctrl.hasMultipleRoles
@@ -59,10 +67,19 @@ function SigningWizardController($timeout, $mdDialog, $window) {
 				&& !$ctrl.hasMultipleRoles || 
 					($ctrl.hasMultipleRoles && $ctrl.wndModel.model.data.selfSignedOnly !== true)
 		},
+		isReadyForHardCopySignature: {
+			get: () => $ctrl.isHardCopySigning && (
+				// easy route, no options
+				$ctrl.isSimpleHardCopySigning || 
+				// user has chosen # of signers, or the option is never presented
+				($ctrl.wndModel.model.data.selfSignedOnly != null || $ctrl.hasMultipleRoles || !$ctrl.canInviteSigners)
+			)
+		},
 		isReadyForSummary: {
 			// substitute for "is valid" on each of the invites
 			get: () => {
-				return (!$ctrl.requiresInvites || 
+				// return (!$ctrl.requiresInvites || 
+				return (!$ctrl.isHardCopySigning && !$ctrl.requiresInvites || 
 				($ctrl.wndModel.model.data.invites && $ctrl.wndModel.model.data.invites.length && $ctrl.wndModel.model.data.invites.every(x => x.email.length)) 
 					|| ($ctrl.wndModel.model.data.invites && $ctrl.wndModel.model.data.invites.length === 1 && $ctrl.wndModel.model.data.isSelfSigned));
 			}
@@ -70,7 +87,9 @@ function SigningWizardController($timeout, $mdDialog, $window) {
 
 	});
 
-	$ctrl.sendInvites = () => $ctrl.areInvitesSent = true;
+	$ctrl.sendInvites = () => $ctrl.isSigningInProcess = true;
+
+	$ctrl.activateHardCopySignature = () => $ctrl.isSigningInProcess = true;
 
 	$ctrl.$onInit = function () {
 		// $ctrl.doSigning().then((result) => {
