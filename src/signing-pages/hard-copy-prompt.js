@@ -16,13 +16,12 @@ export default {
 HardCopyPromptCtrl.$inject = [];
 function HardCopyPromptCtrl() {
 	const $ctrl = this;
-	
-	$ctrl.$onInit = function () {
-		$ctrl.showDownloadPrompt = true;
-	};
 
-	$ctrl.handleDownloadFormClick = function ($event) {
-		$ctrl.showDownloadPrompt = false;
+	$ctrl.download = function ($event) {
+		$ctrl.userHasDownloaded = true;
+	}
+	$ctrl.handleAlreadyDownloadedClick = function ($event) {
+		$ctrl.userHasDownloaded = true;
 	}
 
 	Object.defineProperties($ctrl, {

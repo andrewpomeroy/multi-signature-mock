@@ -54,11 +54,40 @@
     submission will be processed when the signed copy is received.</span
   >
 </div>
-<div class="ComponentWizard-buttonGroup">
+<div
+  class="ComponentWizard-buttonGroup"
+  ng-class="{'AppForm-copy-block AppForm-copy-block--small': $ctrl.userHasDownloaded}"
+>
+  <button
+    class="ComponentWizard-button ComponentWizard-button--small"
+    ng-class="{'ComponentWizard-button--primary': !$ctrl.userHasDownloaded}"
+    ng-click="$ctrl.download($event)"
+  >
+    {{$ctrl.userHasDownloaded ? 'Re-download' : 'Download'}} Signable Form
+  </button>
+  <a
+    role="button"
+    class="ComponentWizard-navLink TextLink TextLink--subdued"
+    ng-if="!$ctrl.userHasDownloaded"
+    ng-click="$ctrl.handleAlreadyDownloadedClick($event)"
+  >
+    <em>I've already downloaded this certification form</em>
+  </a>
+</div>
+<div
+  class="AppForm-copy-block AppForm-copy-block--small"
+  ng-if="$ctrl.userHasDownloaded"
+>
+  <p>
+    Please make sure to send in the completed certification form, or else your
+    submission will not be processed.
+  </p>
+</div>
+<div class="ComponentWizard-buttonGroup" ng-if="$ctrl.userHasDownloaded">
   <button
     class="ComponentWizard-button ComponentWizard-button--primary ComponentWizard-button--small"
     ng-click="alert('hello')"
   >
-    Download Signable Form
+    Submit Form
   </button>
 </div>
