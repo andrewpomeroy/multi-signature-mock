@@ -57,7 +57,12 @@
     </div>
   </div>
 </div> -->
+<hard-copy-prompt
+  ng-if="$ctrl.wndModel.model.data.signingMethod ==='hardCopy'"
+  class="ComponentWizard-largeFadeIn"
+></hard-copy-prompt>
 <component-wizard-nav
+  ng-if="$ctrl.wndModel.model.data.signingMethod !=='hardCopy'"
   show-complete-button="!$ctrl.wndModel.model.data.invitationsEnabled && !$ctrl.signingWizard.isHardCopySignature"
 >
   <complete-button>
