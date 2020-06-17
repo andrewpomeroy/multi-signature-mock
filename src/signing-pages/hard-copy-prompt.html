@@ -55,8 +55,7 @@
   >
 </div>
 <div
-  class="ComponentWizard-buttonGroup"
-  ng-class="{'AppForm-copy-block AppForm-copy-block--small': $ctrl.userHasDownloaded}"
+  class="AppForm-copy-block AppForm-copy-block--small ComponentWizard-buttonGroup"
 >
   <button
     class="ComponentWizard-button ComponentWizard-button--small"
@@ -74,18 +73,16 @@
     <em>I've already downloaded this certification form</em>
   </a>
 </div>
-<div
-  class="AppForm-copy-block AppForm-copy-block--small"
-  ng-if="$ctrl.userHasDownloaded"
->
+<div class="AppForm-copy-block AppForm-copy-block--small">
   <p>
     Please make sure to send in the completed certification form, or else your
     submission will not be processed.
   </p>
 </div>
-<div class="ComponentWizard-buttonGroup" ng-if="$ctrl.userHasDownloaded">
+<div class="ComponentWizard-buttonGroup">
   <button
     class="ComponentWizard-button ComponentWizard-button--primary ComponentWizard-button--small"
+    ng-disabled="!$ctrl.userHasDownloaded"
     ng-click="alert('hello')"
   >
     Submit Form

@@ -57,6 +57,16 @@
     </div>
   </div>
 </div> -->
+<div ng-if="$ctrl.wndModel.model.data.signingMethod ==='hardCopy'">
+  <div class="AppForm-copy-step-header">
+    <div class="AppForm-copy-step-number">
+      2
+    </div>
+    <div class="AppForm-copy-step-heading">
+      Print, Sign, and Send in Signature
+    </div>
+  </div>
+</div>
 <hard-copy-prompt
   ng-if="$ctrl.wndModel.model.data.signingMethod ==='hardCopy'"
   class="ComponentWizard-largeFadeIn"
