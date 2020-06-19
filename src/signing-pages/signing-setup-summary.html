@@ -54,298 +54,351 @@
   </div>
 </div>
 
-<!-- Single-role (closed signing) -- all invited signers -->
-<!-- NOTE: need to implement "role.hasSigned" -->
-
-<div class="AppForm-copy-block" ng-if="!$ctrl.signingWizard.hasMultipleRoles">
-  <div class="AppForm-copy-heading">
-    <h3 class="u-headingInherit">Required Signatures</h3>
-  </div>
-  <table class="SigningRoleTable">
-    <tbody class="SigningRoleTable-body">
-      <tr
-        class="SigningRoleTable-row"
-        ng-repeat="invite in $ctrl.invites"
-        ng-class="{'SigningRoleTable-row--isSigned': invite.hasSigned}"
-      >
-        <td
-          class="SigningRoleTable-cell SigningRoleTable-body-cell SigningRoleTable-cell--stretch"
-        >
-          <strong>{{invite.email}}</strong>
-        </td>
-        <td class="SigningRoleTable-cell SigningRoleTable-body-cell">
-          <div class="SigningRoleTable-cell-split" ng-if="invite.hasSigned">
-            <div
-              class="SigningRoleTable-cell-split-item"
-              style="text-align: right;"
-            >
-              <div class="SigningRoleTable-statusText">Signed</div>
-              <div style="white-space: nowrap;">
-                <strong>Brett Peake,</strong> 39 minutes ago
-              </div>
-            </div>
-            <!-- needs permission -->
-            <div
-              class="SigningRoleTable-cell-split-item"
-              style="text-align: right;"
-            >
-              <button
-                class="ComponentWizard-button ComponentWizard-button--small ComponentWizard-button--danger"
-                ng-click="alert('unimplemented')"
-              >
-                Unsign
-              </button>
-            </div>
-          </div>
-        </td>
-      </tr>
-      <tr class="SigningRoleTable-row" ng-if="$ctrl.isSelfSigned">
-        <td
-          class="SigningRoleTable-cell SigningRoleTable-body-cell SigningRoleTable-cell--stretch"
-        >
-          <strong>andrew_pomeroy@windsorsolutions.com (me)</strong>
-        </td>
-        <td class="SigningRoleTable-cell SigningRoleTable-body-cell">
-          <div
-            layout="horizontal"
-            justify-content="flex-end"
-            ng-if="!role.isSigned && $ctrl.isSelfSigned"
-          >
-            <!-- NOTE: probably needs role on the click handler -->
-            <button
-              class="ComponentWizard-button ComponentWizard-button--small ComponentWizard-button--primary"
-              ng-click="$ctrl.openSigningDialog($event, {})"
-              style="white-space: nowrap;"
-            >
-              Sign
-            </button>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<!-- Multi-role (open signing) -- pending invites -->
-
-<div
-  class="AppForm-copy-block"
-  ng-if="$ctrl.signingWizard.hasMultipleRoles && $ctrl.invites.length"
->
-  <div class="AppForm-copy-heading">
-    <h3 class="u-headingInherit">Pending Invitations</h3>
-  </div>
-  <table class="SigningRoleTable">
-    <tbody class="SigningRoleTable-body">
-      <tr class="SigningRoleTable-row" ng-repeat="invite in $ctrl.invites">
-        <td
-          class="SigningRoleTable-cell SigningRoleTable-body-cell SigningRoleTable-cell--stretch"
-        >
-          <div
-            class="SigningRoleSummary-item-line"
-            layout="horizontal"
-            align-items="center"
-          >
-            <span class="SigningRoleSummary-item-icon SvgWrap">
-              ${require('@windsor/static-assets/lib/svg/mail.svg')}
-            </span>
-            <div>
-              <strong>{{invite.email}}</strong>
-              <div
-                ng-if="invite.description"
-                ng-bind="invite.description"
-              ></div>
-            </div>
-          </div>
-          <!-- <div
-            class="SigningRoleSummary-item-line"
-            ng-if="invite.isMissingEsigRole"
-            flex="fill"
-          >
-            <div class="Alert Alert--warning">
-              User is missing e-signature credentials, and will need to complete
-              the e-signature verification process before they can sign.
-            </div>
-          </div> -->
-        </td>
-        <!-- <td class="SigningRoleTable-cell SigningRoleTable-body-cell">
-          <div layout="horizontal" justify-content="flex-end">
-            <button
-              class="ComponentWizard-button ComponentWizard-button--small ComponentWizard-button--primary"
-              ng-click="$ctrl.rescindInite(invite)"
-              style="white-space: nowrap;"
-              ng-if="!$ctrl.isRoleSelected(invite)"
-            >
-              Rescind
-            </button>
-          </div>
-        </td> -->
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<!-- Multi-role (open signing) -- Signatures needed -->
+<!-- Multi-role signing -->
 
 <div class="AppForm-copy-block" ng-if="$ctrl.signingWizard.hasMultipleRoles">
   <div class="AppForm-copy-heading">
-    <h3 class="u-headingInherit">Signatures Needed</h3>
-  </div>
-  <table class="SigningRoleTable">
-    <tbody class="SigningRoleTable-body">
-      <tr
-        class="SigningRoleTable-row"
-        ng-repeat="role in $ctrl.roles"
-        ng-class="{'SigningRoleTable-row--isSelected': $ctrl.isRoleSelected(role), 'SigningRoleTable-row--isSigned': role.isSigned}"
-      >
-        <td
-          class="SigningRoleTable-cell SigningRoleTable-body-cell SigningRoleTable-cell--stretch"
-        >
-          <strong>{{role.name}}</strong>
-          <div ng-if="role.description" ng-bind="role.description"></div>
-        </td>
-        <td class="SigningRoleTable-cell SigningRoleTable-body-cell">
-          <div
-            layout="horizontal"
-            justify-content="flex-end"
-            ng-if="!role.isSigned && $ctrl.isSelfSigned"
+    <div layout="horizontal" justify-content="space-between" align-items="center">
+      <h3 class="u-headingInherit">
+        {{$ctrl.roles.length}} Required Signatures
+      </h3>
+      <div>
+        <md-menu>
+          <button
+            class="ComponentWizard-button ComponentWizard-button--small"
+            ng-click="$mdMenu.open()"
           >
-            <button
-              class="ComponentWizard-button ComponentWizard-button--small ComponentWizard-button--primary"
-              ng-click="$ctrl.selectRole(role)"
-              style="white-space: nowrap;"
-              ng-if="!$ctrl.isRoleSelected(role)"
-            >
-              Select
-            </button>
-            <button
-              class="ComponentWizard-button ComponentWizard-button--small"
-              ng-click="$ctrl.deselectRole(role)"
-              style="white-space: nowrap;"
-              ng-if="$ctrl.isRoleSelected(role)"
-            >
-              Deselect
-            </button>
-          </div>
-          <div class="SigningRoleTable-cell-split" ng-if="role.isSigned">
-            <div
-              class="SigningRoleTable-cell-split-item"
-              style="text-align: right;"
-            >
-              <div class="SigningRoleTable-statusText">Signed</div>
-              <div style="white-space: nowrap;">
-                <strong>Brett Peake,</strong> 39 minutes ago
-              </div>
-            </div>
-            <!-- needs permission -->
-            <div
-              class="SigningRoleTable-cell-split-item"
-              style="text-align: right;"
-            >
-              <button
-                class="ComponentWizard-button ComponentWizard-button--small ComponentWizard-button--danger"
-                ng-click="alert('unimplemented')"
-              >
-                Unsign
-              </button>
-            </div>
-          </div>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <p>
-    <button
-      class="ComponentWizard-button ComponentWizard-button--primary ComponentWizard-button--small"
-      ng-click="$ctrl.inviteAdditional($event)"
-      ng-if="$ctrl.signingWizard.hasMultipleRoles"
-    >
-      Invite additional signers
-    </button>
-  </p>
-</div>
-
-<!-- Missing e-sig role warning -->
-
-<!-- <div
-  class="AppForm-copy-block"
-  ng-if="!$ctrl.wndModel.model.data.currentUserIsCertified && $ctrl.isSelfSigned"
->
-  <div class="Alert Alert--danger">
-    <div layout="vertical" align-items="center">
-      <p>
-        In order to sign this form, you must be granted electronic-signature
-        rights approval by internal staff.
-      </p>
-      <a ng-click="alert('placeholder')">Request Approval</a>
+            ...
+          </button>
+          <md-menu-content class="mdMenu mdMenu--mediumPadding">
+            <md-menu-item>
+              <md-button ng-click="downloadDmr(item)">
+                Cancel Signing
+              </md-button>
+            </md-menu-item>
+          </md-menu-content>
+        </md-menu>
+      </div>
     </div>
   </div>
-</div> -->
-
-<!-- Finalizing instructions -->
-
-<div class="AppForm-copy-block">
-  <div class="AppForm-copy-heading">
-    <h3 class="u-headingInherit">What's Next?</h3>
+  <div class="FormCard FormCard--sectioned">
+    <div class="FormCard-header FormCard-header--tabs">
+      <div class="FormCard-tabs">
+        <button class="FormCard-tab" id="tab-roles" role="tab" ng-class="{'FormCard-tab--isActive': !$ctrl.viewingInvites}" ng-click="$ctrl.viewRoles()" aria-selected="{{!$ctrl.viewingInvites}}">
+          Signing Roles
+        </button>
+        <button class="FormCard-tab" id="tab-invites" role="tab" ng-class="{'FormCard-tab--isActive': $ctrl.viewingInvites}" ng-click="$ctrl.viewInvites()" aria-selected="{{$ctrl.viewingInvites}}">
+          Invitations ({{$ctrl.invites.length}})
+        </button>
+      </div>
+    </div>
+    <!-- Roles tab content -->
+    <div ng-if="!$ctrl.viewingInvites" aria-labelledby="tab-roles">
+      <div class="FormCard-body FormCard-body--padded">
+        <div ng-class="{'AppForm-copy-block AppForm-copy-block--small': $ctrl.multipleRolesAvailable}">
+          <table class="SigningRoleTable">
+            <tbody class="SigningRoleTable-body">
+              <tr
+                class="SigningRoleTable-row"
+                ng-repeat="role in $ctrl.roles"
+                ng-class="{'SigningRoleTable-row--isSelected': $ctrl.isRoleSelected(role), 'SigningRoleTable-row--isSigned': role.isSigned}"
+              >
+                <td class="SigningRoleTable-cell SigningRoleTable-body-cell"
+                  ng-show="$ctrl.isMultiSigningActive">
+                  <input type="checkbox"
+                    aria-label="{{$ctrl.selectedModel[$index] ? 'Deselect' : 'Select'}} {{role.name}} for multiple-signing"
+                    ng-model="$ctrl.selectedModel[$index]"
+                    ng-disabled="role.isSigned"
+                    >
+                </td> 
+                <td
+                  class="SigningRoleTable-cell SigningRoleTable-body-cell SigningRoleTable-cell--stretch"
+                >
+                  <strong>{{role.name}}</strong>
+                  <div ng-if="role.description" ng-bind="role.description"></div>
+                </td>
+                <td class="SigningRoleTable-cell SigningRoleTable-body-cell">
+                  <div
+                    layout="horizontal"
+                    justify-content="flex-end"
+                    ng-if="!role.isSigned && $ctrl.isSelfSigned && !$ctrl.isMultiSigningActive"
+                  >
+                    <button
+                      class="ComponentWizard-button ComponentWizard-button--small ComponentWizard-button--primary"
+                      ng-click="$ctrl.openSigningDialog($event, [role])"
+                      style="white-space: nowrap;"
+                    >
+                      Sign
+                    </button>
+                  </div>
+                  <div class="SigningRoleTable-cell-split" ng-if="role.isSigned">
+                    <div
+                      class="SigningRoleTable-cell-split-item"
+                      style="text-align: right;"
+                    >
+                      <div class="SigningRoleTable-statusText">Signed</div>
+                      <div style="white-space: nowrap;">
+                        <strong>Brett Peake,</strong> 39 minutes ago
+                      </div>
+                    </div>
+                    <!-- needs permission -->
+                    <div
+                      class="SigningRoleTable-cell-split-item"
+                      style="text-align: right;"
+                      ng-if="!$ctrl.isMultiSigningActive"
+                    >
+                      <button
+                        class="ComponentWizard-button ComponentWizard-button--small ComponentWizard-button--danger"
+                        ng-click="alert('unimplemented')"
+                      >
+                        Remove Signature
+                      </button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div ng-if="$ctrl.multipleRolesAvailable">
+          <button class="ComponentWizard-button ComponentWizard-button--primary ComponentWizard-button--small" ng-if="$ctrl.isAnyRoleSelected()" ng-click="$ctrl.doMultipleSign($event)">
+            Sign
+          </button>
+          <button class="ComponentWizard-button ComponentWizard-button--small" ng-click="$ctrl.toggleMultiSign()">
+            {{$ctrl.isMultiSigningActive ? 'Cancel' : 'Sign Multiple'}}
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- Invites tab content -->
+    <div ng-if="$ctrl.viewingInvites" aria-labelledby="tab-invites">
+      <div class="FormCard-body FormCard-body--padded">
+        <div class="AppForm-copy-block AppForm-copy-block--small">
+          <table class="SigningRoleTable">
+            <tbody
+              class="SigningRoleTable-body"
+            >
+              <tr
+                class="SigningRoleTable-row"
+                ng-repeat="invite in $ctrl.invites"
+                ng-class="{'SigningRoleTable-row--isSigned': invite.hasSigned}"
+              >
+                <td
+                  class="SigningRoleTable-cell SigningRoleTable-body-cell SigningRoleTable-cell--stretch"
+                >
+                  <div layout="horizontal" align-items="center">
+                    <span class="SigningRoleSummary-item-icon SvgWrap">
+                      ${require('@windsor/static-assets/lib/svg/mail.svg')}
+                    </span>
+                    <strong>{{invite.email}}</strong>
+                  </div>
+                </td>
+                <td class="SigningRoleTable-cell SigningRoleTable-body-cell">
+                  <div class="SigningRoleTable-cell-split" ng-if="invite.hasSigned">
+                    <div
+                      class="SigningRoleTable-cell-split-item"
+                      style="text-align: right;"
+                    >
+                      <div class="SigningRoleTable-statusText">Signed</div>
+                      <div style="white-space: nowrap;">
+                        <strong>Brett Peake,</strong> 39 minutes ago
+                      </div>
+                    </div>
+                    <!-- needs permission -->
+                    <div
+                      class="SigningRoleTable-cell-split-item"
+                      style="text-align: right;"
+                    >
+                      <button
+                        class="ComponentWizard-button ComponentWizard-button--small ComponentWizard-button--danger"
+                        ng-click="alert('unimplemented')"
+                      >
+                        Unsign
+                      </button>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr class="SigningRoleTable-row" ng-if="$ctrl.isSelfSigned">
+                <td
+                  class="SigningRoleTable-cell SigningRoleTable-body-cell SigningRoleTable-cell--stretch"
+                >
+                  <div layout="horizontal" align-items="center">
+                    <span class="SigningRoleSummary-item-icon SvgWrap">
+                      ${require('@windsor/static-assets/lib/svg/mail.svg')}
+                    </span>
+                    <strong>andrew_pomeroy@windsorsolutions.com (me)</strong>
+                  </div>
+                </td>
+                <td class="SigningRoleTable-cell SigningRoleTable-body-cell">
+                  <div
+                    layout="horizontal"
+                    justify-content="flex-end"
+                    ng-if="!role.isSigned && $ctrl.isSelfSigned"
+                  >
+                    <!-- NOTE: probably needs role on the click handler -->
+                    <!-- <button
+                      class="ComponentWizard-button ComponentWizard-button--small ComponentWizard-button--primary"
+                      ng-click="$ctrl.openSigningDialog($event, {})"
+                      style="white-space: nowrap;"
+                    >
+                      Sign
+                    </button> -->
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <button class="ComponentWizard-button ComponentWizard-button--small" ng-click="$ctrl.inviteAdditional($event)">
+          Invite Additional Signers
+        </button>
+      </div>
+    </div>
   </div>
-  <p class="AppForm-text">
-    The form will be submitted automatically when
-    <strong>all of the above signatures are provided.</strong>
-  </p>
-  <p class="AppForm-text">
-    You will receive an email notification any time a user signs, as well as
-    when submission is completed. You can check on the status of your form
-    submission at any time:
-    <a class="TextLink TextLink--underline">View Submission</a>
-  </p>
-  <!-- TODO: needs role? -->
-  <p
-    class="AppForm-text"
-    ng-if="$ctrl.isSelfSigned && $ctrl.signingWizard.currentUserIsCertified"
-  >
-    <strong
-      >Your signature {{!$ctrl.signingWizard.isOpenSigning ? "is required" :
-      "may be necessary"}} as well.</strong
-    >
-    You may
-    <a
-      class="TextLink TextLink--underline"
-      ng-click="$ctrl.openSigningDialog($event, {})"
-      >sign now</a
-    >
-    or at any other time.
-  </p>
 </div>
 
-<!-- Footer/actions -->
+  <!-- Single-role (closed signing) -- all invited signers -->
+  <!-- NOTE: need to implement "role.hasSigned" -->
 
-<div class="AppForm-copy-block">
-  <div class="ComponentWizard-buttonGroup">
-    <!-- role-specific signing button -->
-    <button
-      class="ComponentWizard-button ComponentWizard-button--primary"
-      ng-click="$ctrl.openSigningDialog($event, $ctrl.selectedRoles)"
-      ng-if="$ctrl.signingWizard.hasMultipleRoles && $ctrl.selectedRoles.length"
+  <div class="AppForm-copy-block" ng-if="!$ctrl.signingWizard.hasMultipleRoles">
+    <div class="AppForm-copy-heading">
+      <h3 class="u-headingInherit">
+        <span ng-if="$ctrl.invites.length === 1">1 Required Signature</span>
+        <span ng-if="$ctrl.invites.length > 1">{{$ctrl.invites.length}} Required Signatures</span>
+    </h3>
+    </div>
+    <table class="SigningRoleTable">
+      <tbody class="SigningRoleTable-body">
+        <tr
+          class="SigningRoleTable-row"
+          ng-repeat="invite in $ctrl.invites"
+          ng-class="{'SigningRoleTable-row--isSigned': invite.hasSigned}"
+        >
+          <td
+            class="SigningRoleTable-cell SigningRoleTable-body-cell SigningRoleTable-cell--stretch"
+          >
+            <strong>{{invite.email}}</strong>
+          </td>
+          <td class="SigningRoleTable-cell SigningRoleTable-body-cell">
+            <div class="SigningRoleTable-cell-split" ng-if="invite.hasSigned">
+              <div
+                class="SigningRoleTable-cell-split-item"
+                style="text-align: right;"
+              >
+                <div class="SigningRoleTable-statusText">Signed</div>
+                <div style="white-space: nowrap;">
+                  <strong>Brett Peake,</strong> 39 minutes ago
+                </div>
+              </div>
+              <!-- needs permission -->
+              <div
+                class="SigningRoleTable-cell-split-item"
+                style="text-align: right;"
+              >
+                <button
+                  class="ComponentWizard-button ComponentWizard-button--small ComponentWizard-button--danger"
+                  ng-click="alert('unimplemented')"
+                >
+                  Unsign
+                </button>
+              </div>
+            </div>
+          </td>
+        </tr>
+        <tr class="SigningRoleTable-row" ng-if="$ctrl.isSelfSigned">
+          <td
+            class="SigningRoleTable-cell SigningRoleTable-body-cell SigningRoleTable-cell--stretch"
+          >
+            <strong>andrew_pomeroy@windsorsolutions.com (me)</strong>
+          </td>
+          <td class="SigningRoleTable-cell SigningRoleTable-body-cell">
+            <div
+              layout="horizontal"
+              justify-content="flex-end"
+              ng-if="!role.isSigned && $ctrl.isSelfSigned"
+            >
+              <!-- NOTE: probably needs role on the click handler -->
+              <button
+                class="ComponentWizard-button ComponentWizard-button--small ComponentWizard-button--primary"
+                ng-click="$ctrl.openSigningDialog($event, {})"
+                style="white-space: nowrap;"
+              >
+                Sign
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <!-- Finalizing instructions -->
+
+  <div class="AppForm-copy-block">
+    <div class="AppForm-copy-heading">
+      <h3 class="u-headingInherit">What's Next?</h3>
+    </div>
+    <p class="AppForm-text">
+      The form will be submitted automatically when
+      <strong>all of the above signatures are provided.</strong>
+    </p>
+    <p class="AppForm-text">
+      You will receive an email notification any time a user signs, as well as
+      when submission is completed. You can check on the status of your form
+      submission at any time:
+      <a class="TextLink TextLink--underline">View Submission</a>
+    </p>
+    <!-- TODO: needs role? -->
+    <p
+      class="AppForm-text"
+      ng-if="$ctrl.isSelfSigned && $ctrl.signingWizard.currentUserIsCertified"
     >
-      <span ng-if="$ctrl.selectedRoles.length === 1">
-        Sign as <em>{{$ctrl.selectedRoles[0].name}}</em>
-      </span>
-      <span ng-if="$ctrl.selectedRoles.length !== 1">
-        Sign as {{$ctrl.selectedRoles.length}} roles
-      </span>
-    </button>
+      <strong
+        >Your signature {{!$ctrl.signingWizard.isOpenSigning ? "is required" :
+        "may be necessary"}} as well.</strong
+      >
+      You may
+      <a
+        class="TextLink TextLink--underline"
+        ng-click="$ctrl.openSigningDialog($event, {})"
+        >sign now</a
+      >
+      or at any other time.
+    </p>
+  </div>
 
-    <!-- single-role signing button -->
-    <button
-      class="ComponentWizard-button ComponentWizard-button--primary"
-      ng-click="$ctrl.openSigningDialog($event, $ctrl.roles[0])"
-      ng-if="!$ctrl.signingWizard.hasMultipleRoles && $ctrl.wndModel.model.data.isSelfSigned"
-    >
-      Sign
-    </button>
+  <!-- Footer/actions -->
 
-    <button class="ComponentWizard-button">
-      View Submission
-    </button>
+  <div class="AppForm-copy-block">
+    <div class="ComponentWizard-buttonGroup">
+      <!-- role-specific signing button -->
+      <button
+        class="ComponentWizard-button ComponentWizard-button--primary"
+        ng-click="$ctrl.openSigningDialog($event, $ctrl.selectedRoles)"
+        ng-if="$ctrl.signingWizard.hasMultipleRoles && $ctrl.selectedRoles.length"
+      >
+        <span ng-if="$ctrl.selectedRoles.length === 1">
+          Sign as <em>{{$ctrl.selectedRoles[0].name}}</em>
+        </span>
+        <span ng-if="$ctrl.selectedRoles.length !== 1">
+          Sign as {{$ctrl.selectedRoles.length}} roles
+        </span>
+      </button>
+
+      <!-- single-role signing button -->
+      <button
+        class="ComponentWizard-button ComponentWizard-button--primary"
+        ng-click="$ctrl.openSigningDialog($event, $ctrl.roles[0])"
+        ng-if="!$ctrl.signingWizard.hasMultipleRoles && $ctrl.wndModel.model.data.isSelfSigned"
+      >
+        Sign
+      </button>
+
+      <button class="ComponentWizard-button">
+        View Submission
+      </button>
+    </div>
   </div>
 </div>
