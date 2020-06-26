@@ -37,7 +37,7 @@ function signatureConfirmationCtrl($scope, $mdDialog, $window) {
 					$ctrl.signedRoles = roles;
 					$ctrl.allRoles = outerCtrl.wndModel.model.data.signingRoles;
 					$ctrl.invites = outerCtrl.wndModel.model.data.invites;
-					$ctrl.signatureLines = (outerCtrl.wndModel.model.data.signingRoles.length > 1 ?
+					$ctrl.signatureLines = (outerCtrl.wndModel.model.data.signingRoles && outerCtrl.wndModel.model.data.signingRoles.length > 1 ?
 						outerCtrl.wndModel.model.data.signingRoles : $ctrl.invites)
 
 					$ctrl.signatureLines = $ctrl.signatureLines.map((line, index) => {
@@ -65,9 +65,12 @@ function signatureConfirmationCtrl($scope, $mdDialog, $window) {
 					}
 
 					Object.defineProperties($ctrl, {
+						remainingSignatures: {
+							get: () => $ctrl.signatureLines.filter(line => !line.signedBy && !line.isSignedByCurrentUser)
+						},
 						signatureCount: {
-							get: () => $ctrl.signatureLines.filter(line => line.signedBy || line.isSignedByCurrentUser).length
-						}
+							get: () => $ctrl.signatureLines.length - $ctrl.remainingSignatures.length
+						},
 					})
 
 					$ctrl.cancel = $mdDialog.cancel;

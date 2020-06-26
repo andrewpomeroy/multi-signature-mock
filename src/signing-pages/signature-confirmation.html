@@ -14,20 +14,6 @@
           </div>
         </div>
         <div class="AppForm-copy-block AppForm-copy-block--small">
-          <div class="AppForm-copy-heading">
-            <h3 class="u-headingInherit">
-              {{$ctrl.signatureCount}} of {{$ctrl.signatureLines.length}}
-              required signatures
-            </h3>
-          </div>
-        </div>
-        <div class="AppForm-copy-block AppForm-copy-block--small">
-          <div class="AppForm-text">
-            The form will be automatically submitted when all the following
-            signatures are gathered:
-          </div>
-        </div>
-        <div class="AppForm-copy-block AppForm-copy-block--small">
           <table class="SigningRoleTable">
             <tbody class="SigningRoleTable-body">
               <tr
@@ -93,6 +79,26 @@
               </tr>
             </tbody>
           </table>
+        </div>
+        <div
+          class="AppForm-copy-block AppForm-copy-block--small"
+          ng-if="$ctrl.remainingSignatures.length"
+        >
+          <div
+            class="AppForm-text"
+            ng-if="$ctrl.remainingSignatures.length > 1"
+          >
+            The form will be automatically submitted when the
+            {{$ctrl.remainingSignatures.length}} remaining signatures are
+            gathered.
+          </div>
+          <div
+            class="AppForm-text"
+            ng-if="$ctrl.remainingSignatures.length === 1"
+          >
+            The form will be automatically submitted when the final signature is
+            gathered.
+          </div>
         </div>
         <div class="AppForm-copy-block AppForm-copy-block--noMarginBottom">
           <div class="ComponentWizard-buttonGroup">
