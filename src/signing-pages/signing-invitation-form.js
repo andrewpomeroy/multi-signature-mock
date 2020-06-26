@@ -30,7 +30,7 @@ function SigningInvitationFormCtrl($scope) {
 				get: () => $ctrl.invites.length === 1
 			},
 			emailInvitesEnabled: {
-				get: () => !$ctrl.signingWizard.isHardCopySigning
+				get: () => !$scope.outerCtrl.signingWizard.isHardCopySigning
 			}
 		});
 
